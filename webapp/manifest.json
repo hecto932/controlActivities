@@ -1,0 +1,140 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "controlActivities",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.32.0"
+		},
+		"dataSources": {
+            "tiles": {
+                "uri": "model/data.json",
+                "type": "JSON"
+            }
+        }
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
+	},
+
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "controlActivities.view.App",
+			"type": "JS"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "controlActivities.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "tiles"
+            }
+        },
+		"routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewPath": "controlActivities.view",
+                "viewType": "JS",
+                "targetControl": "app",
+                "clearTarget": false,
+                "targetAggregation": "pages"
+            },
+            "routes": [
+            	{
+					"pattern": "",
+					"name": "home",
+					"view": "Shed",
+					"targetAggregation": "pages",
+					"targetControl": "app"
+				},
+				{
+					"pattern": "splitApp/{shedId}",
+					"name": "splitapp",
+					"view": "SplitApp",
+					"targetAggregation": "pages",
+					"targetControl": "app",
+					
+					"subroutes": [{
+						"pattern": "master/{shedId}",
+						"name": "master",
+						"view": "Master",
+						"targetAggregation": "masterPages",
+						"targetControl": "splitApp",
+						"subroutes": [{
+							"pattern": "detail/{shedId}/{weekId}",
+							"name": "detail",
+							"view": "Detail",
+							"targetAggregation": "detailPages",
+							"targetControl": "splitApp"
+						}]
+					}]
+				}
+            ],
+            "targets": {
+            	"home": {
+					"viewName": "Shed",
+					"viewType": "JS"
+				},
+				"splitapp": {
+					"viewName": "SplitApp",
+					"viewType": "JS"
+				},
+				"master": {
+					"viewName": "Master",
+					"viewType": "JS"
+				},
+				"detail": {
+					"viewName": "Detail",
+					"viewType": "JS"
+				}
+            }
+        },
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		}
+	}
+}

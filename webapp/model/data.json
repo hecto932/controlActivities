@@ -1,0 +1,109 @@
+{
+	"ShedsCollection": [{
+		"id": "1",
+		"icon": "sap-icon://insurance-house",
+		"number": "1",
+		"numberUnit": "Farm",
+		"title": "Bogotá",
+		"info": "This is a info's example",
+		"weeks": [{
+			"id": "1",
+			"title": "Semana 1",
+			"number": "0.046",
+			"numberUnit": "Kg",
+			"lote" : "LOTE Nº 416165",
+			"icon": "sap-icon://product",
+			"intro": "Semana 1"
+		}, {
+			"id": "2",
+			"title": "Semana 2",
+			"number": "0.046",
+			"numberUnit": "Kg",
+			"lote" : "LOTE Nº 41978",
+			"icon": "sap-icon://product",
+			"intro": "Semana 2"
+		}, {
+			"id": "3",
+			"title": "Semana 3",
+			"number": "0.750",
+			"numberUnit": "Kg",
+			"lote" : "LOTE Nº 41978",
+			"icon": "sap-icon://product",
+			"intro": "Semana 3"
+		}, {
+			"id": "4",
+			"title": "Semana 4",
+			"number": "1.150",
+			"numberUnit": "Kg",
+			"lote" : "LOTE Nº 41978",
+			"icon": "sap-icon://product",
+			"intro": "Semana 4"
+		}, {
+			"id": "5",
+			"title": "Semana 5",
+			"number": "1.350",
+			"numberUnit": "Kg",
+			"lote" : "LOTE Nº 51978",
+			"icon": "sap-icon://product",
+			"intro": "Semana 5"
+		}, {
+			"id": "6",
+			"title": "Semana 6",
+			"number": "1.800",
+			"numberUnit": "Kg",
+			"lote" : "LOTE Nº 61978",
+			"icon": "sap-icon://product",
+			"intro": "Semana 6"
+		}]
+	}, {
+		"id": "2",
+		"icon": "sap-icon://insurance-house",
+		"number": "2",
+		"numberUnit": "Farm",
+		"title": "Medellín",
+		"info": "This is a info's example",
+		"weeks": [{
+			"id": "1",
+			"icon": "sap-icon://factory",
+			"number": "1",
+			"numberUnit": "G2001",
+			"title": "Chicken type 1",
+			"info": "Infomation"
+		}, {
+			"id": "2",
+			"icon": "sap-icon://factory",
+			"number": "2",
+			"numberUnit": "G2002",
+			"title": "Chicken type 2",
+			"info": "Information"
+		}, {
+			"id": "3",
+			"icon": "sap-icon://factory",
+			"number": "3",
+			"numberUnit": "G2003",
+			"title": "Chicken type 3",
+			"info": "Infomation"
+		}, {
+			"id": "4",
+			"icon": "sap-icon://factory",
+			"number": "4",
+			"numberUnit": "G2004",
+			"title": "Chicken type 4",
+			"info": "Information"
+		}, {
+			"id": "5",
+			"icon": "sap-icon://factory",
+			"number": "5",
+			"numberUnit": "G2005",
+			"title": "Chicken type 5",
+			"info": "Infomation"
+		}, {
+			"id": "6",
+			"icon": "sap-icon://factory",
+			"number": "6",
+			"numberUnit": "G2006",
+			"title": "Chicken type 6",
+			"info": "Information"
+		}]
+	}]
+}
