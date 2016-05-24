@@ -13,7 +13,10 @@
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 416165",
 			"icon": "sap-icon://product",
-			"intro": "Semana 1"
+			"intro": "Semana 1",
+			"status_text1": "1.800.000 Kgs",
+			"status_text2": "489116 Aves",
+			"shedRating": 3.5
 		}, {
 			"id": "2",
 			"title": "Semana 2",
@@ -21,7 +24,10 @@
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 41978",
 			"icon": "sap-icon://product",
-			"intro": "Semana 2"
+			"intro": "Semana 2",
+			"status_text1": "1.485.000 Kgs",
+			"status_text2": "18114 Aves",
+			"shedRating": 1
 		}, {
 			"id": "3",
 			"title": "Semana 3",
@@ -29,7 +35,10 @@
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 41978",
 			"icon": "sap-icon://product",
-			"intro": "Semana 3"
+			"intro": "Semana 3",
+			"status_text1": "1.948.000 Kgs",
+			"status_text2": "1111 Aves",
+			"shedRating": 5
 		}, {
 			"id": "4",
 			"title": "Semana 4",
@@ -37,7 +46,10 @@
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 41978",
 			"icon": "sap-icon://product",
-			"intro": "Semana 4"
+			"intro": "Semana 4",
+			"status_text1": "1.879.000 Kgs",
+			"status_text2": "489116 Aves",
+			"shedRating": 4.5
 		}, {
 			"id": "5",
 			"title": "Semana 5",
@@ -45,7 +57,10 @@
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 51978",
 			"icon": "sap-icon://product",
-			"intro": "Semana 5"
+			"intro": "Semana 5",
+			"status_text1": "1.800.000 Kgs",
+			"status_text2": "489116 Aves",
+			"shedRating": 2.7
 		}, {
 			"id": "6",
 			"title": "Semana 6",
@@ -53,7 +68,10 @@
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 61978",
 			"icon": "sap-icon://product",
-			"intro": "Semana 6"
+			"intro": "Semana 6",
+			"status_text1": "1.000.000 Kgs",
+			"status_text2": "11542 Aves",
+			"shedRating": 2
 		}]
 	}, {
 		"id": "2",

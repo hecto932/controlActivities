@@ -21,7 +21,6 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			this._oRouterArgs = oEvent.getParameter("arguments");
-			console.log(this._oRouterArgs);
 			console.log("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId);
 			this.getView().bindElement({
 				path: "/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId

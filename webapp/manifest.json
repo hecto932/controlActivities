@@ -95,7 +95,7 @@
 					"view": "SplitApp",
 					"targetAggregation": "pages",
 					"targetControl": "app",
-					
+					"preservePageInSplitContainer": true,					
 					"subroutes": [{
 						"pattern": "master/{shedId}",
 						"name": "master",

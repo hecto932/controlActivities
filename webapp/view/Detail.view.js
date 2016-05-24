@@ -26,41 +26,19 @@ sap.ui.jsview("controlActivities.view.Detail", {
 			statuses: [
 				new sap.m.ObjectStatus({
 					title: "Peso del Lote",
-					text: "1.800.000 Kgs",
+					text: "{status_text1}",
 					state: "None"
 				}),
 				new sap.m.ObjectStatus({
 					title: "Cantidad de Aves",
-					text: "45879",
+					text: "{status_text2}",
 					state: "None"
 				})
 			]
 		});
 
-		/*var oObjectHeader = new sap.m.ObjectHeader({
 
-			title : "LOTE Nº 416165",
-			icon: "sap-icon://product",
-			intro: "Semana 1",
-			fullScreenOptimized: false,
-			condensed: false,
-			responsive: true,
-			backgroundDesign: "Solid",
-			statuses: [
-				new sap.m.ObjectStatus({
-					title: "Peso del Lote",
-					text: "1.800.000 Kgs",
-					state: "None"
-				}),
-				new sap.m.ObjectStatus({
-					title: "Cantidad de Aves",
-					text: "45879",
-					state: "None"
-				})
-			]
-		});*/
-
-		/*var oTable = new sap.m.Table();
+		var oTable = new sap.m.Table();
 		oTable.addStyleClass("tableSpace");
 
 		var col1 = new sap.m.Column("col1", { 
@@ -85,7 +63,7 @@ sap.ui.jsview("controlActivities.view.Detail", {
 		.addColumn(col2)
 		.addColumn(col3)
 		.addColumn(col4);
-
+		/*
 		var oItem1 = new sap.m.ColumnListItem({
 			cells: [
 				new sap.m.ObjectNumber({
@@ -260,7 +238,7 @@ sap.ui.jsview("controlActivities.view.Detail", {
 		oTable.addItem(oItem5);
 		oTable.addItem(oItem6);
 		oTable.addItem(oItem7);
-
+		*/
 		var oGridLayout = new sap.ui.layout.Grid({
 			hSpacing: 0,
 			defaultSpan: "XL10 L10 M10 S12",
@@ -269,7 +247,7 @@ sap.ui.jsview("controlActivities.view.Detail", {
 				oTable
 			]
 		});
-		*/
+		
 		var oBar = new sap.m.Bar({
 			contentLeft : [],
 			contentMiddle : [],
@@ -286,7 +264,7 @@ sap.ui.jsview("controlActivities.view.Detail", {
 			iconSize: "1.3em",
 			enabled : false,
 			maxValue : 5,
-			value : 3,
+			value : "{shedRating}",
 			visualMode: "Full"
 		})
 
@@ -309,10 +287,10 @@ sap.ui.jsview("controlActivities.view.Detail", {
  		return new sap.m.Page("detail", {
 			title: "Galpón 1 - Control de Producción",
 			content: [
-				oPanel
+				oPanel,
+				oGridLayout
 			],
-			footer: oBar,
-			showNavButton: true
+			footer: oBar
 		});
 	}
 

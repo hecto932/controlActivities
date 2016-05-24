@@ -14,7 +14,7 @@ sap.ui.jsview("controlActivities.view.Master", {
 	 */
 	createContent: function(oController) {
 
-		var oList = new sap.m.List();
+		var oList = new sap.m.List("myList");
 
 		var oObjectListItem = new sap.m.ObjectListItem({
 			title: "{title}",

@@ -5,7 +5,7 @@ sap.ui.jsview("controlActivities.view.SplitApp", {
 	 * @memberOf controller.SplitApp
 	 */
 	getControllerName: function() {
-		return null;
+		return "controlActivities.controller.SplitApp";
 	},
 
 	/** Is initially called once after the Controller has been instantiated. It is the place where the UI is constructed. 
@@ -15,7 +15,7 @@ sap.ui.jsview("controlActivities.view.SplitApp", {
 	createContent: function(oController) {
 
 		return new sap.m.SplitContainer("splitApp", {
-
+			
 		});
 	}
 
