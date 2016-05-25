@@ -14,7 +14,7 @@ sap.ui.jsview("controlActivities.view.Detail", {
 	 */
 	createContent: function(oController) {
 		
-		var oObjectHeader = new sap.m.ObjectHeader("objectHeader", {
+		var oObjectHeader = new sap.m.ObjectHeader({
 
 			title : "{lote}",
 			icon: "{icon}",
@@ -63,6 +63,33 @@ sap.ui.jsview("controlActivities.view.Detail", {
 		.addColumn(col2)
 		.addColumn(col3)
 		.addColumn(col4);
+
+		var oColumnListItemTemplate = new sap.m.ColumnListItem({
+			cells: [
+				new sap.m.ObjectNumber({
+					number: "{day}",
+					state: "None"
+				}),
+				new sap.m.ObjectNumber({
+					number: "{mortality}",
+					numberUnit: "{numberUnit}",
+					state: "{mortalityState}"
+				}),
+				new sap.m.ObjectNumber({
+					number: "{discard}",
+					numberUnit: "{numberUnit}",
+					state: "{discardState}"
+				}),
+				new sap.m.ObjectNumber({
+					number: "{food}",
+					numberUnit: "{numberUnitFood}",
+					state: "{foodState}"
+				})
+			]
+		});
+
+		oTable.bindItems("days", oColumnListItemTemplate);
+
 		/*
 		var oItem1 = new sap.m.ColumnListItem({
 			cells: [
@@ -290,7 +317,11 @@ sap.ui.jsview("controlActivities.view.Detail", {
 				oPanel,
 				oGridLayout
 			],
-			footer: oBar
+			footer: oBar,
+			showNavButton: "{device>/system/phone}",
+			navButtonPress: function (oEvent) {  
+          		oController.onNavBack(oEvent);
+          	}
 		});
 	}
 

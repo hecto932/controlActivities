@@ -1,6 +1,7 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/routing/History"
+], function(Controller, History) {
 	"use strict";
 
 	return Controller.extend("controlActivities.controller.Detail", {
@@ -25,6 +26,16 @@ sap.ui.define([
 			this.getView().bindElement({
 				path: "/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId
 			});
+		},
+		onNavBack: function (oEvent) {
+			var oHistory, sPreviousHash;
+			oHistory = History.getInstance();
+			sPreviousHash = oHistory.getPreviousHash();
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				this.getRouter().navTo("master", {}, true /*no history*/);
+			}
 		}
 
 		/**

@@ -15,7 +15,7 @@ sap.ui.jsview("controlActivities.view.App", {
 	createContent: function(oController) {
 
 		return new sap.m.App("app", {
-
+			
 		});
 	}
 

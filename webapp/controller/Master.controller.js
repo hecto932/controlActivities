@@ -1,6 +1,7 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/routing/History"
+], function(Controller, History) {
 	"use strict";
 
 	return Controller.extend("controlActivities.controller.Master", {
@@ -40,6 +41,16 @@ sap.ui.define([
 					shedId: splitPath[2],
 					weekId: splitPath[4]
 				});
+			},
+			onNavBack: function (oEvent) {
+				var oHistory, sPreviousHash;
+				oHistory = History.getInstance();
+				sPreviousHash = oHistory.getPreviousHash();
+				if (sPreviousHash !== undefined) {
+					window.history.go(-1);
+				} else {
+					this.getRouter().navTo("home", {}, true /*no history*/);
+				}
 			}
 
 		/**

@@ -33,7 +33,12 @@ sap.ui.jsview("controlActivities.view.Master", {
 			title: "Semanas",
 			content: [
 				oList
-			]
+			],
+			enableScrolling: false,
+			showNavButton : true,
+			navButtonPress: function (oEvent){  
+          		oController.onNavBack(oEvent);
+          	}
 		});
 	}
 
