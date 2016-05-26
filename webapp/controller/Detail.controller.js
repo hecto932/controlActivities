@@ -65,13 +65,48 @@ sap.ui.define([
 			});
 		},
 		reportingDailyData: function (){
-			
+			var oTableControl = sap.ui.getCore().byId("tableContol");
+			var oTableControlLength = oTableControl.getItems().length;
+			var dailyData = {
+				"day": oTableControlLength + 1,
+				"mortality": sap.ui.getCore().byId("inputMortality").getValue(),
+				"discard": sap.ui.getCore().byId("inputDiscard").getValue(),
+				"food": sap.ui.getCore().byId("inputFood").getValue()
+			};
+
+			console.log(dailyData);
+
+			var oColumnListItem = new sap.m.ColumnListItem({
+				cells: [
+					new sap.m.ObjectNumber({
+						number: dailyData.day,
+						state: "None"
+					}),
+					new sap.m.ObjectNumber({
+						number: dailyData.mortality,
+						numberUnit: "Aves",
+						state: "{mortalityState}"
+					}),
+					new sap.m.ObjectNumber({
+						number: dailyData.discard,
+						numberUnit: "Aves",
+						state: "{discardState}"
+					}),
+					new sap.m.ObjectNumber({
+						number: dailyData.food,
+						numberUnit: "Kg",
+						state: "{foodState}"
+					})
+				]
+			});
+			oTableControl.addItem(oColumnListItem);
 		},
 		onDialogPress: function (oEvent) {
 			var oTableControl = sap.ui.getCore().byId("tableContol");
 			var oTableControlLength = oTableControl.getItems().length;
 
 			if(oTableControlLength < 7){
+				var that = this;
 				var dialog = new sap.m.Dialog({
 					title: 'Reporte',
 					content: [
@@ -105,7 +140,7 @@ sap.ui.define([
 								}),
 								new sap.m.Label({
 									design: "Bold",
-									text: "Cantidad de alimento..."
+									text: "Cantidad de alimento"
 								}),
 								new sap.m.Input("inputFood", {
 									type: "Number",
@@ -119,41 +154,7 @@ sap.ui.define([
 						text: 'Agregar',
 						type: "Accept",
 						press: function (){
-							var oTableControl = sap.ui.getCore().byId("tableContol");
-							var oTableControlLength = oTableControl.getItems().length;
-							var dailyData = {
-								"day": oTableControlLength + 1,
-								"mortality": sap.ui.getCore().byId("inputMortality").getValue(),
-								"discard": sap.ui.getCore().byId("inputDiscard").getValue(),
-								"food": sap.ui.getCore().byId("inputFood").getValue()
-							};
-
-							console.log(dailyData);
-
-							var oColumnListItem = new sap.m.ColumnListItem({
-								cells: [
-									new sap.m.ObjectNumber({
-										number: dailyData.day,
-										state: "None"
-									}),
-									new sap.m.ObjectNumber({
-										number: dailyData.mortality,
-										numberUnit: "Aves",
-										state: "{mortalityState}"
-									}),
-									new sap.m.ObjectNumber({
-										number: dailyData.discard,
-										numberUnit: "Aves",
-										state: "{discardState}"
-									}),
-									new sap.m.ObjectNumber({
-										number: dailyData.food,
-										numberUnit: "Kg",
-										state: "{foodState}"
-									})
-								]
-							});
-							oTableControl.addItem(oColumnListItem);
+							that.reportingDailyData();
 							dialog.close()
 						} 
 					}),
