@@ -21,11 +21,22 @@ sap.ui.define([
 			oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
+			var oModel = this.getView().getModel();
+			
 			this._oRouterArgs = oEvent.getParameter("arguments");
+
 			console.log("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId);
+
 			this.getView().bindElement({
 				path: "/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId
 			});
+
+			var galponNumber = oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/number");
+			oModel.setProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/galponNumber", galponNumber);
+
+		},
+		getRouter: function(){
+			return this.getOwnerComponent().getRouter();
 		},
 		onNavBack: function (oEvent) {
 			var oHistory, sPreviousHash;
@@ -34,8 +45,138 @@ sap.ui.define([
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
-				this.getRouter().navTo("master", {}, true /*no history*/);
+				this.getRouter().navTo("home", {}, true /*no history*/);
 			}
+		},
+		showErrorReport: function(oEvent) {
+			sap.m.MessageToast.show("Ya se han cargado todos los dias de la semana.", {
+			    duration: 3000,                  // default
+			    width: "13em",                   // default
+			    my: "center center",             // default
+			    at: "center center",             // default
+			    of: window,                      // default
+			    offset: "0 0",                   // default
+			    collision: "fit fit",            // default
+			    onClose: null,                   // default
+			    autoClose: true,                 // default
+			    animationTimingFunction: "ease", // default
+			    animationDuration: 1000,         // default
+			    closeOnBrowserNavigation: true   // default
+			});
+		},
+		reportingDailyData: function (){
+			
+		},
+		onDialogPress: function (oEvent) {
+			var oTableControl = sap.ui.getCore().byId("tableContol");
+			var oTableControlLength = oTableControl.getItems().length;
+
+			if(oTableControlLength < 7){
+				var dialog = new sap.m.Dialog({
+					title: 'Reporte',
+					content: [
+						new sap.ui.layout.form.SimpleForm({
+							editable: true,
+							maxContainerCols: 2,
+							layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+							labelSpanL: 4,
+							labelSpanM: 4,
+							emptySpanL: 4,
+							columnsL: 4,
+							columnsM: 4,
+							content: [
+								new sap.m.Label({
+									design: "Bold",
+									text: "Mortalidad"
+								}),
+								new sap.m.Input("inputMortality", {
+									type: "Number",
+									enabled: true,
+									placeholder: "Numero de mortalidad..."
+								}),
+								new sap.m.Label({
+									design: "Bold",
+									text: "Descarte"
+								}),
+								new sap.m.Input("inputDiscard", {
+									type: "Number",
+									enabled: true,
+									placeholder: "Numero de descarte..."
+								}),
+								new sap.m.Label({
+									design: "Bold",
+									text: "Cantidad de alimento..."
+								}),
+								new sap.m.Input("inputFood", {
+									type: "Number",
+									enabled: true,
+									placeholder: "Cantidad de alimento en silo..."
+								})
+							]
+						})
+					],
+					beginButton: new sap.m.Button({
+						text: 'Agregar',
+						type: "Accept",
+						press: function (){
+							var oTableControl = sap.ui.getCore().byId("tableContol");
+							var oTableControlLength = oTableControl.getItems().length;
+							var dailyData = {
+								"day": oTableControlLength + 1,
+								"mortality": sap.ui.getCore().byId("inputMortality").getValue(),
+								"discard": sap.ui.getCore().byId("inputDiscard").getValue(),
+								"food": sap.ui.getCore().byId("inputFood").getValue()
+							};
+
+							console.log(dailyData);
+
+							var oColumnListItem = new sap.m.ColumnListItem({
+								cells: [
+									new sap.m.ObjectNumber({
+										number: dailyData.day,
+										state: "None"
+									}),
+									new sap.m.ObjectNumber({
+										number: dailyData.mortality,
+										numberUnit: "Aves",
+										state: "{mortalityState}"
+									}),
+									new sap.m.ObjectNumber({
+										number: dailyData.discard,
+										numberUnit: "Aves",
+										state: "{discardState}"
+									}),
+									new sap.m.ObjectNumber({
+										number: dailyData.food,
+										numberUnit: "Kg",
+										state: "{foodState}"
+									})
+								]
+							});
+							oTableControl.addItem(oColumnListItem);
+							dialog.close()
+						} 
+					}),
+					endButton: new sap.m.Button({
+						text: 'Cancelar',
+						type: "Reject",
+						press: function () {
+							dialog.close();
+						}
+					}),
+					afterClose: function() {
+						dialog.destroy();
+					}
+				});
+	 
+				//to get access to the global model
+				this.getView().addDependent(dialog);
+				dialog.open();
+			}
+			else{
+				this.showErrorReport(oEvent);
+			}
+			
 		}
 
 		/**

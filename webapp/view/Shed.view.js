@@ -20,6 +20,7 @@ sap.ui.jsview("controlActivities.view.Shed", {
 			numberUnit: "{numberUnit}",
 			icon: "{icon}",
 			press: function(oEvent){
+				console.log(oEvent);
 				oController.handlePress(oEvent);
 			}
 		});

@@ -341,7 +341,54 @@
 			"intro": "Semana 2",
 			"status_text1": "1.485.000 Kgs",
 			"status_text2": "18114 Aves",
-			"shedRating": 1
+			"shedRating": 1,
+			"days": [
+				{
+					"day": "1",
+					"mortality": "45",
+					"discard": "35",
+					"food": "4000",
+					"numberUnit": "Aves",
+					"numberUnitFood": "kg",
+					"mortalityState": "Warning",
+					"discardState": "Warning",
+					"foodState": "Success"
+				},
+				{
+					"day": "2",
+					"mortality": "15",
+					"discard": "34",
+					"food": "3000",
+					"numberUnit": "Aves",
+					"numberUnitFood": "kg",
+					"mortalityState": "Success",
+					"discardState": "Warning",
+					"foodState": "Success"
+				},
+				{
+					"day": "3",
+					"mortality": "56",
+					"discard": "33",
+					"food": "2000",
+					"numberUnit": "Aves",
+					"numberUnitFood": "kg",
+					"mortalityState": "Error",
+					"discardState": "Warning",
+					"foodState": "Success"
+				},
+				{
+					"day": "4",
+					"mortality": "15",
+					"discard": "62",
+					"food": "1500",
+					"numberUnit": "Aves",
+					"numberUnitFood": "kg",
+					"mortalityState": "Success",
+					"discardState": "Error",
+					"foodState": "Warning"
+
+				}
+			]
 		}, {
 			"id": "3",
 			"title": "Semana 3",

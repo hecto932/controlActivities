@@ -27,6 +27,9 @@ sap.ui.define([
 					path: "/ShedsCollection/" + this._oRouterArgs.shedId
 				});
 			},
+			getRouter: function(){
+				return this.getOwnerComponent().getRouter();
+			},
 			handlePress: function(oEvent){
 
 				var oItem = oEvent.getSource();
@@ -43,14 +46,7 @@ sap.ui.define([
 				});
 			},
 			onNavBack: function (oEvent) {
-				var oHistory, sPreviousHash;
-				oHistory = History.getInstance();
-				sPreviousHash = oHistory.getPreviousHash();
-				if (sPreviousHash !== undefined) {
-					window.history.go(-1);
-				} else {
-					this.getRouter().navTo("home", {}, true /*no history*/);
-				}
+				this.getRouter().navTo("home", {}, true /*no history*/);
 			}
 
 		/**
