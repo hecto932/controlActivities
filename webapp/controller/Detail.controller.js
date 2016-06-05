@@ -22,17 +22,13 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			var oModel = this.getView().getModel();
-			
 			this._oRouterArgs = oEvent.getParameter("arguments");
 
-			console.log("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId);
+			//console.log("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId);
 
 			this.getView().bindElement({
 				path: "/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId
 			});
-
-			var galponNumber = oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/number");
-			oModel.setProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/galponNumber", galponNumber);
 
 		},
 		getRouter: function(){
@@ -51,7 +47,7 @@ sap.ui.define([
 		showErrorReport: function(oEvent) {
 			sap.m.MessageToast.show("Ya se han cargado todos los dias de la semana.", {
 			    duration: 3000,                  // default
-			    width: "13em",                   // default
+			    width: "18em",                   // default
 			    my: "center center",             // default
 			    at: "center center",             // default
 			    of: window,                      // default
@@ -100,6 +96,11 @@ sap.ui.define([
 				]
 			});
 			oTableControl.addItem(oColumnListItem);
+
+			if(oTableControl.getItems().length == 7){
+				var btnReport = sap.ui.getCore().byId("btnReport");
+				btnReport.setVisible(false);
+			}
 		},
 		onDialogPress: function (oEvent) {
 			var oTableControl = sap.ui.getCore().byId("tableContol");
@@ -122,7 +123,8 @@ sap.ui.define([
 							content: [
 								new sap.m.Label({
 									design: "Bold",
-									text: "Mortalidad"
+									text: "Mortalidad",
+									required: true
 								}),
 								new sap.m.Input("inputMortality", {
 									type: "Number",
@@ -131,7 +133,8 @@ sap.ui.define([
 								}),
 								new sap.m.Label({
 									design: "Bold",
-									text: "Descarte"
+									text: "Descarte",
+									required: true
 								}),
 								new sap.m.Input("inputDiscard", {
 									type: "Number",
@@ -140,7 +143,8 @@ sap.ui.define([
 								}),
 								new sap.m.Label({
 									design: "Bold",
-									text: "Cantidad de alimento"
+									text: "Cantidad de alimento",
+									required: true
 								}),
 								new sap.m.Input("inputFood", {
 									type: "Number",

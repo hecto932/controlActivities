@@ -17,25 +17,49 @@ sap.ui.jsview("controlActivities.view.Master", {
 		var oList = new sap.m.List("myList");
 
 		var oObjectListItem = new sap.m.ObjectListItem({
-			title: "{title}",
+			title: "{i18n>objectWeek} {id}",
+			description: "DOM 01 - SAB 08",
 			number: "{number}",
 			numberUnit: "{numberUnit}",
 			type: "Active",
 			numberState: "Success",
+			attributes: [
+				new sap.m.ObjectAttribute({
+					text : "DOM 01 - SAB 08",
+					active : false
+				})
+			],
 			press: function(oEvent){
 				oController.handlePress(oEvent);
 			}
 		});
 
 		oList.bindAggregation("items", "weeks", oObjectListItem);
+		//oList.setMode("SingleSelectMaster");
+
+		var oBar = new sap.m.Bar({
+			contentLeft : [],
+			contentMiddle : [],
+			contentRight : [
+				new sap.m.Button({
+					text : "Agregar",
+					type : "Default",
+					icon : "sap-icon://add",
+					press: function(oEvent){
+						oController.addWeek(oEvent);
+					}
+				})
+			]
+		});
 	
 		return new sap.m.Page("master", {
-			title: "Semanas",
+			title: "{i18n>masterTitle}",
 			content: [
 				oList
 			],
 			enableScrolling: false,
 			showNavButton : true,
+			//footer: oBar,
 			navButtonPress: function (oEvent){  
           		oController.onNavBack(oEvent);
           	}

@@ -1,17 +1,17 @@
 {
 	"ShedsCollection": [{
 		"id": "1",
-		"icon": "sap-icon://home",
-		"number": "1",
-		"numberUnit": "Galpón",
-		"title": "Bogotá",
-		"info": "Seleccionar",
+	   	"icon" : "sap-icon://machine",
+	   	"number" : "01",
+	   	"title" : "15.000 Aves",
+	   	"info" : "600 Kg",
+	   	"numberUnit": "Galpón",
+	   	"infoState": "Warning",
 		"weeks": [{
 			"id": "1",
 			"title": "Semana 1",
 			"number": "0.046",
 			"numberUnit": "Kg",
-			"lote" : "LOTE Nº 416165",
 			"icon": "sap-icon://product",
 			"intro": "Semana 1",
 			"status_text1": "1.800.000 Kgs",
@@ -100,14 +100,14 @@
 		}, {
 			"id": "2",
 			"title": "Semana 2",
-			"number": "0.046",
+			"number": "0.052",
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 41978",
 			"icon": "sap-icon://product",
 			"intro": "Semana 2",
 			"status_text1": "1.485.000 Kgs",
 			"status_text2": "18114 Aves",
-			"shedRating": 1,
+			"shedRating": 5,
 			"days": [
 				{
 					"day": "1",
@@ -188,64 +188,20 @@
 					"foodState": "Error"
 				}
 			]
-		}, {
-			"id": "3",
-			"title": "Semana 3",
-			"number": "0.750",
-			"numberUnit": "Kg",
-			"lote" : "LOTE Nº 41978",
-			"icon": "sap-icon://product",
-			"intro": "Semana 3",
-			"status_text1": "1.948.000 Kgs",
-			"status_text2": "1111 Aves",
-			"shedRating": 5
-		}, {
-			"id": "4",
-			"title": "Semana 4",
-			"number": "1.150",
-			"numberUnit": "Kg",
-			"lote" : "LOTE Nº 41978",
-			"icon": "sap-icon://product",
-			"intro": "Semana 4",
-			"status_text1": "1.879.000 Kgs",
-			"status_text2": "489116 Aves",
-			"shedRating": 4.5
-		}, {
-			"id": "5",
-			"title": "Semana 5",
-			"number": "1.350",
-			"numberUnit": "Kg",
-			"lote" : "LOTE Nº 51978",
-			"icon": "sap-icon://product",
-			"intro": "Semana 5",
-			"status_text1": "1.800.000 Kgs",
-			"status_text2": "489116 Aves",
-			"shedRating": 2.7
-		}, {
-			"id": "6",
-			"title": "Semana 6",
-			"number": "1.800",
-			"numberUnit": "Kg",
-			"lote" : "LOTE Nº 61978",
-			"icon": "sap-icon://product",
-			"intro": "Semana 6",
-			"status_text1": "1.000.000 Kgs",
-			"status_text2": "11542 Aves",
-			"shedRating": 2
 		}]
 	}, {
 		"id": "2",
-		"icon": "sap-icon://home",
-		"number": "2",
+		"icon" : "sap-icon://machine",
+		"number" : "02",
+		"title" : "15.012 Aves",
+		"info" : "500 Kg",
 		"numberUnit": "Galpón",
-		"title": "Medellín",
-		"info": "Seleccionar",
+		"infoState": "Warning",
 		"weeks": [{
 			"id": "1",
 			"title": "Semana 1",
 			"number": "0.046",
 			"numberUnit": "Kg",
-			"lote" : "LOTE Nº 416165",
 			"icon": "sap-icon://product",
 			"intro": "Semana 1",
 			"status_text1": "1.800.000 Kgs",

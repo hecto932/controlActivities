@@ -19,8 +19,8 @@ sap.ui.jsview("controlActivities.view.Shed", {
 			number: "{number}",
 			numberUnit: "{numberUnit}",
 			icon: "{icon}",
+			infoState: "{infoState}",
 			press: function(oEvent){
-				console.log(oEvent);
 				oController.handlePress(oEvent);
 			}
 		});
@@ -30,7 +30,7 @@ sap.ui.jsview("controlActivities.view.Shed", {
 		oTileContainer.bindAggregation("tiles", "/ShedsCollection", oTemplateTile);
 
 		var oPage = new sap.m.Page({
-			title: "{i18n>title}",
+			title: "{i18n>shed_title}",
 			enableScrolling: false,
 			content: [
 				oTileContainer

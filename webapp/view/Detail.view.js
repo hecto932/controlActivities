@@ -16,16 +16,16 @@ sap.ui.jsview("controlActivities.view.Detail", {
 		
 		var oObjectHeader = new sap.m.ObjectHeader({
 
-			title : "{lote}",
+			title : "{intro}",
 			icon: "{icon}",
-			intro: "{intro}",
+			intro: "{i18n>text_shed} {/numberShed}",
 			fullScreenOptimized: false,
 			condensed: false,
 			responsive: true,
 			backgroundDesign: "Solid",
 			statuses: [
 				new sap.m.ObjectStatus({
-					title: "Peso del Lote",
+					title: "Peso del galpon",
 					text: "{status_text1}",
 					state: "None"
 				}),
@@ -102,7 +102,7 @@ sap.ui.jsview("controlActivities.view.Detail", {
 			contentLeft : [],
 			contentMiddle : [],
 			contentRight : [
-				new sap.m.Button({
+				new sap.m.Button("btnReport",{
 					text : "Reportar",
 					type : "Default",
 					icon : "sap-icon://add",
@@ -138,7 +138,7 @@ sap.ui.jsview("controlActivities.view.Detail", {
 		});
 
  		return new sap.m.Page("detail", {
-			title: "Galpón {galponNumber} - Control de Producción",
+			title: "{i18n>appTitle}",
 			content: [
 				oPanel,
 				oGridLayout

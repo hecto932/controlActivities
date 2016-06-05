@@ -47,6 +47,9 @@ sap.ui.define([
 			},
 			onNavBack: function (oEvent) {
 				this.getRouter().navTo("home", {}, true /*no history*/);
+			},
+			addWeek : function(oEvent){
+				console.log("Agregando semana");
 			}
 
 		/**
