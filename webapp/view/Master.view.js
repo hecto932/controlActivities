@@ -18,14 +18,13 @@ sap.ui.jsview("controlActivities.view.Master", {
 
 		var oObjectListItem = new sap.m.ObjectListItem({
 			title: "{i18n>objectWeek} {id}",
-			description: "DOM 01 - SAB 08",
 			number: "{number}",
 			numberUnit: "{numberUnit}",
 			type: "Active",
 			numberState: "Success",
 			attributes: [
 				new sap.m.ObjectAttribute({
-					text : "DOM 01 - SAB 08",
+					text : "{initDate} hasta {lastDate}",
 					active : false
 				})
 			],

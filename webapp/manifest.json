@@ -49,6 +49,7 @@
 			"viewName": "controlActivities.view.App",
 			"type": "JS"
 		},
+		"handleValidation": true,
 		"dependencies": {
 			"minUI5Version": "1.30.0",
 			"libs": {
@@ -70,6 +71,10 @@
             },
             "": {
                 "dataSource": "tiles"
+            },
+            "dummy": {
+            	"type": "sap.ui.model.json.JSONModel",
+    			"uri": "model/dummy.json"
             }
         },
 		"routing": {

@@ -52,16 +52,11 @@ sap.ui.jsview("controlActivities.view.Detail", {
 			header: new sap.m.Label({ text: "Descarte", textAlign: "Center", design: "Bold" }), 
 			hAlign: "Center" 
 		});
-		var col4 = new sap.m.Column("col4", { 
-			header: new sap.m.Label({ text: "Cant. Alimentación", textAlign: "Center", design: "Bold" }), 
-			hAlign: "Center" 
-		});
 		
 		oTable
 		.addColumn(col1)
 		.addColumn(col2)
-		.addColumn(col3)
-		.addColumn(col4);
+		.addColumn(col3);
 
 		var oColumnListItemTemplate = new sap.m.ColumnListItem({
 			cells: [
@@ -72,17 +67,22 @@ sap.ui.jsview("controlActivities.view.Detail", {
 				new sap.m.ObjectNumber({
 					number: "{mortality}",
 					numberUnit: "{numberUnit}",
-					state: "{mortalityState}"
+					state: {
+						parts: [
+							{ path : "mortality" }
+						],
+						formatter: oController.formatter.verifyStatusMortality
+					}
 				}),
 				new sap.m.ObjectNumber({
 					number: "{discard}",
 					numberUnit: "{numberUnit}",
-					state: "{discardState}"
-				}),
-				new sap.m.ObjectNumber({
-					number: "{food}",
-					numberUnit: "{numberUnitFood}",
-					state: "{foodState}"
+					state: {
+						parts: [
+							{ path : "discard" }
+						],
+						formatter: oController.formatter.verifyStatusDiscard
+					}
 				})
 			]
 		});
@@ -99,7 +99,16 @@ sap.ui.jsview("controlActivities.view.Detail", {
 		});
 		
 		var oBar = new sap.m.Bar({
-			contentLeft : [],
+			contentLeft : [
+				new sap.m.Button("btnWeight",{
+					text : "Calcular peso",
+					type : "Default",
+					icon : "sap-icon://compare-2",
+					press: function(oEvent){
+						oController.onRegisterWeight(oEvent);
+					}
+				})
+			],
 			contentMiddle : [],
 			contentRight : [
 				new sap.m.Button("btnReport",{

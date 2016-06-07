@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History"
-], function(Controller, History) {
+	"sap/ui/core/routing/History",
+	"controlActivities/model/formatter"
+], function(Controller, History, formatter) {
 	"use strict";
 
 	return Controller.extend("controlActivities.controller.Detail", {
@@ -11,6 +12,7 @@ sap.ui.define([
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf controlActivities.view.Detail
 		 */
+		formatter: formatter,
 		onInit: function () {
 			
 			var sPath = jQuery.sap.getModulePath("controlActivities.model", "/data.json");
@@ -29,6 +31,18 @@ sap.ui.define([
 			this.getView().bindElement({
 				path: "/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId
 			});
+
+			var oTable = sap.ui.getCore().byId("tableContol");
+			var oTableLength = oTable.getItems().length;
+			console.log(oTableLength);
+			if(oTableLength == 7){
+				sap.ui.getCore().byId("btnReport").setVisible(false);
+				sap.ui.getCore().byId("btnWeight").setVisible(true);
+			}
+			else{
+				sap.ui.getCore().byId("btnReport").setVisible(true);
+				sap.ui.getCore().byId("btnWeight").setVisible(false);
+			}
 
 		},
 		getRouter: function(){
@@ -66,32 +80,23 @@ sap.ui.define([
 			var dailyData = {
 				"day": oTableControlLength + 1,
 				"mortality": sap.ui.getCore().byId("inputMortality").getValue(),
-				"discard": sap.ui.getCore().byId("inputDiscard").getValue(),
-				"food": sap.ui.getCore().byId("inputFood").getValue()
+				"discard": sap.ui.getCore().byId("inputDiscard").getValue()
 			};
-
-			console.log(dailyData);
 
 			var oColumnListItem = new sap.m.ColumnListItem({
 				cells: [
 					new sap.m.ObjectNumber({
-						number: dailyData.day,
-						state: "None"
+						number: dailyData.day
 					}),
 					new sap.m.ObjectNumber({
 						number: dailyData.mortality,
 						numberUnit: "Aves",
-						state: "{mortalityState}"
+						state: formatter.verifyStatusMortality(dailyData.mortality)
 					}),
 					new sap.m.ObjectNumber({
 						number: dailyData.discard,
 						numberUnit: "Aves",
-						state: "{discardState}"
-					}),
-					new sap.m.ObjectNumber({
-						number: dailyData.food,
-						numberUnit: "Kg",
-						state: "{foodState}"
+						state: formatter.verifyStatusDiscard(dailyData.discard)
 					})
 				]
 			});
@@ -101,10 +106,55 @@ sap.ui.define([
 				var btnReport = sap.ui.getCore().byId("btnReport");
 				btnReport.setVisible(false);
 			}
+
+			sap.ui.getCore().byId("inputMortality").setValue("0");
+			sap.ui.getCore().byId("inputDiscard").setValue("0");
 		},
 		onDialogPress: function (oEvent) {
 			var oTableControl = sap.ui.getCore().byId("tableContol");
 			var oTableControlLength = oTableControl.getItems().length;
+
+			var oInputMortality = new sap.m.Input("inputMortality", {
+				type: "Number",
+				enabled: true,
+				placeholder: "Numero de mortalidad...",
+				value: {
+					path: "dummy>/input/mortality",
+					type: "sap.ui.model.type.Integer",
+					constraints: {
+						minimum: 0
+					}
+				},
+				liveChange: function(oEvent){
+					var valueDiscard = sap.ui.getCore().byId("inputDiscard").getValue();
+					if(this.getValue() == "" || this.getValue() < 0 || valueDiscard == "" || valueDiscard < 0){
+						sap.ui.getCore().byId("btnAdd").setEnabled(false);
+					} else{
+						sap.ui.getCore().byId("btnAdd").setEnabled(true);
+					}
+				}
+			});
+
+			var oInputDiscard = new sap.m.Input("inputDiscard", {
+				type: "Number",
+				enabled: true,
+				placeholder: "Numero de descarte...",
+				value: {
+					path: "dummy>/input/discard",
+					type: "sap.ui.model.type.Integer",
+					constraints: {
+						minimum: 0
+					}
+				},
+				liveChange: function(oEvent){
+					var valueMortality = sap.ui.getCore().byId("inputMortality").getValue();
+					if(this.getValue() == "" || this.getValue() < 0 || valueMortality == "" || valueMortality < 0){
+						sap.ui.getCore().byId("btnAdd").setEnabled(false);
+					} else{
+						sap.ui.getCore().byId("btnAdd").setEnabled(true);
+					}
+				}
+			})
 
 			if(oTableControlLength < 7){
 				var that = this;
@@ -126,40 +176,24 @@ sap.ui.define([
 									text: "Mortalidad",
 									required: true
 								}),
-								new sap.m.Input("inputMortality", {
-									type: "Number",
-									enabled: true,
-									placeholder: "Numero de mortalidad..."
-								}),
+								oInputMortality
+								,
 								new sap.m.Label({
 									design: "Bold",
 									text: "Descarte",
 									required: true
 								}),
-								new sap.m.Input("inputDiscard", {
-									type: "Number",
-									enabled: true,
-									placeholder: "Numero de descarte..."
-								}),
-								new sap.m.Label({
-									design: "Bold",
-									text: "Cantidad de alimento",
-									required: true
-								}),
-								new sap.m.Input("inputFood", {
-									type: "Number",
-									enabled: true,
-									placeholder: "Cantidad de alimento en silo..."
-								})
+								oInputDiscard
 							]
 						})
 					],
-					beginButton: new sap.m.Button({
-						text: 'Agregar',
+					beginButton: new sap.m.Button("btnAdd",{
+						text: 'Guardar',
 						type: "Accept",
 						press: function (){
 							that.reportingDailyData();
-							dialog.close()
+							dialog.close();
+							dialog.destroy();
 						} 
 					}),
 					endButton: new sap.m.Button({
@@ -167,6 +201,7 @@ sap.ui.define([
 						type: "Reject",
 						press: function () {
 							dialog.close();
+							dialog.destroy();
 						}
 					}),
 					afterClose: function() {
