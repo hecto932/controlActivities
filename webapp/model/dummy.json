@@ -1,6 +1,7 @@
 {
     "input": {
         "mortality": "0",
-        "discard": "0"
+        "discard": "0",
+        "cuadriculas": "1"
     }
 }

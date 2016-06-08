@@ -50,6 +50,20 @@ sap.ui.define([
 			},
 			addWeek : function(oEvent){
 				console.log("Agregando semana");
+			},
+			OnShowGraphic: function(oEvent){
+				/*var oItem = oEvent.getSource();
+				var oRouter = oItem.getBindingContext().getPath();
+				console.log(oRouter);
+				var splitPath = oItem.getBindingContext().getPath().split("/");
+
+				console.log(splitPath);*/
+
+				var route = sap.ui.core.UIComponent.getRouterFor(this);
+				route.navTo("chart", {
+					shedId: splitPath[2],
+					weekId: splitPath[4]
+				});
 			}
 
 		/**

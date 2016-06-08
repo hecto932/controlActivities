@@ -113,6 +113,12 @@
 							"view": "Detail",
 							"targetAggregation": "detailPages",
 							"targetControl": "splitApp"
+						}, {
+							"pattern": "graphic",
+							"name": "graphic",
+							"view": "Chart",
+							"targetAggregation": "pages",
+							"targetControl": "app"
 						}]
 					}]
 				}
@@ -132,6 +138,10 @@
 				},
 				"detail": {
 					"viewName": "Detail",
+					"viewType": "JS"
+				},
+				"graphic": {
+					"viewName": "Chart",
 					"viewType": "JS"
 				}
             }

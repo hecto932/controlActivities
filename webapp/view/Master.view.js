@@ -24,7 +24,7 @@ sap.ui.jsview("controlActivities.view.Master", {
 			numberState: "Success",
 			attributes: [
 				new sap.m.ObjectAttribute({
-					text : "{initDate} hasta {lastDate}",
+					text : "{initDate} - {lastDate}",
 					active : false
 				})
 			],
@@ -41,11 +41,11 @@ sap.ui.jsview("controlActivities.view.Master", {
 			contentMiddle : [],
 			contentRight : [
 				new sap.m.Button({
-					text : "Agregar",
+					text : "Ver grafica",
 					type : "Default",
 					icon : "sap-icon://add",
 					press: function(oEvent){
-						oController.addWeek(oEvent);
+						oController.OnShowGraphic(oEvent);
 					}
 				})
 			]
@@ -56,9 +56,9 @@ sap.ui.jsview("controlActivities.view.Master", {
 			content: [
 				oList
 			],
-			enableScrolling: false,
+			enableScrolling : true,
 			showNavButton : true,
-			//footer: oBar,
+			footer: oBar,
 			navButtonPress: function (oEvent){  
           		oController.onNavBack(oEvent);
           	}

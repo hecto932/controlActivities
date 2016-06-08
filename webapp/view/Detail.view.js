@@ -18,8 +18,8 @@ sap.ui.jsview("controlActivities.view.Detail", {
 
 			title : "{intro}",
 			icon: "{icon}",
-			intro: "{i18n>text_shed} {/numberShed}",
-			fullScreenOptimized: false,
+			intro: "{i18n>text_shed} {numberShed}",
+			fullScreenOptimized: true,
 			condensed: false,
 			responsive: true,
 			backgroundDesign: "Solid",

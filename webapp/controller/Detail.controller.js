@@ -23,7 +23,7 @@ sap.ui.define([
 			oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
-			var oModel = this.getView().getModel();
+			var oModel = this.getView().getModel("");
 			this._oRouterArgs = oEvent.getParameter("arguments");
 
 			//console.log("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId);
@@ -43,7 +43,6 @@ sap.ui.define([
 				sap.ui.getCore().byId("btnReport").setVisible(true);
 				sap.ui.getCore().byId("btnWeight").setVisible(false);
 			}
-
 		},
 		getRouter: function(){
 			return this.getOwnerComponent().getRouter();
@@ -217,6 +216,86 @@ sap.ui.define([
 				this.showErrorReport(oEvent);
 			}
 			
+		},
+		onRegisterWeight: function(oEvent){
+			var that = this;
+
+			var oInputCuadriculas = new sap.m.Input({
+				type: "Number",
+				enabled: true,
+				placeholder: "Numero de descarte...",
+				value: {
+					path: "dummy>/input/cuadriculas",
+					type: "sap.ui.model.type.Integer",
+					constraints: {
+						minimum: 1
+					}
+				},
+				liveChange: function(oEvent){
+					var oValue = this.getValue();
+					var formWeight = sap.ui.getCore().byId("formWeight");
+					formWeight.removeAllContent();
+					
+
+					var oAverage = new sap.m.Input();
+					var oCountBirds = new sap.m.Input();
+					var oDialog = sap.ui.getCore().byId("formWeight");
+					
+					/*var oDialog = sap.ui.getCore().byId("weightDialog");
+					for(int i = 0; 0 < oValue; i++){
+						var oAverage = new sap.m.Input("_input_"+i);
+						var oCountBirds = new sap.m.Input("_input_"+i+1);
+						oDialog.addContent(oAverage);
+						oDialog.addContent(oCountBirds);
+					}*/
+					console.log(this.getValue());
+				}
+			});
+
+			var dialog = new sap.m.Dialog("weightDialog",{
+				title: 'Reporte',
+				content: [
+					new sap.ui.layout.form.SimpleForm("formWeight",{
+						editable: true,
+						maxContainerCols: 2,
+						layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+						labelSpanL: 4,
+						labelSpanM: 4,
+						emptySpanL: 4,
+						columnsL: 4,
+						columnsM: 4,
+						content: [
+							new sap.m.Label({
+								design: "Bold",
+								text: "Cantidad de Cuadriculas",
+								required: true
+							}),
+							oInputCuadriculas
+						]
+					})
+				],
+				beginButton: new sap.m.Button({
+					text: 'Guardar',
+					type: "Accept",
+					press: function (){
+						dialog.close();
+					} 
+				}),
+				endButton: new sap.m.Button({
+					text: 'Cancelar',
+					type: "Reject",
+					press: function () {
+						dialog.close();
+					}
+				}),
+				afterClose: function() {
+					dialog.destroy();
+				}
+			});
+
+			//to get access to the global model
+			this.getView().addDependent(dialog);
+			dialog.open();
 		}
 
 		/**
