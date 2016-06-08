@@ -60,10 +60,7 @@ sap.ui.define([
 				console.log(splitPath);*/
 
 				var route = sap.ui.core.UIComponent.getRouterFor(this);
-				route.navTo("chart", {
-					shedId: splitPath[2],
-					weekId: splitPath[4]
-				});
+				route.navTo("graphic");
 			}
 
 		/**

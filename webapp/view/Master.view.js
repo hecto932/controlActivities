@@ -43,7 +43,7 @@ sap.ui.jsview("controlActivities.view.Master", {
 				new sap.m.Button({
 					text : "Ver grafica",
 					type : "Default",
-					icon : "sap-icon://add",
+					icon : "sap-icon://crossed-line-chart",
 					press: function(oEvent){
 						oController.OnShowGraphic(oEvent);
 					}
