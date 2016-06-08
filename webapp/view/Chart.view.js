@@ -14,12 +14,38 @@ sap.ui.jsview("controlActivities.view.Chart", {
 	 */
 	createContent: function(oController) {
 
-		return new sap.m.Page("app", {
+		jQuery.sap.require("sap.viz.ui5");
+
+		var oVizFrame = new sap.viz.ui5.controls.VizFrame("vizFrame", {
+			height: "700px",
+			width: "100%",
+			uiConfig: {applicationSet : 'Fiori'}
+		});
+
+		var oChartContainerContent = new sap.suite.ui.commons.ChartContainerContent({
+			icon: "sap-icon://bubble-chart",
+			title: "Bubble Chart",
 			content: [
-				new sap.suite.ui.commons.ChartContainer({
-					fullScreen : true,
-					title : "Grafica del galpon"
-				})
+				oVizFrame
+			]
+		});
+
+		var oChartContainer = new sap.suite.ui.commons.ChartContainer("chartContainer", {
+			autoAdjustHeight: true,
+			contentChange: "attachContentChange",
+			personalizationPress: "attachPersonalizationPress",
+			showFullScreen: true,
+			showLegend: false,
+			title: "Halo",
+			content: [
+				oChartContainerContent
+			]	
+		});
+
+		return new sap.m.Page({
+			title: "Grafica",
+			content: [
+				oChartContainer
 			]
 		});
 	}

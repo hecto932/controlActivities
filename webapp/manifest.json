@@ -75,6 +75,10 @@
             "dummy": {
             	"type": "sap.ui.model.json.JSONModel",
     			"uri": "model/dummy.json"
+            },
+            "chart": {
+            	"type": "sap.ui.model.json.JSONModel",
+    			"uri": "model/chart.json"
             }
         },
 		"routing": {
