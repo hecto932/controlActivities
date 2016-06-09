@@ -1,6 +1,7 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], function(Controller) {
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/routing/History",
+], function(Controller, History) {
     "use strict";
 
     return Controller.extend("controlActivities.controller.Chart", {
@@ -62,6 +63,19 @@ sap.ui.define([
             oVizFrame.addFeed(feedAxisLabels_bl7);
             oVizFrame.addFeed(feedTargetValues_bl7);
             oVizFrame.setVizType('line');
+        },
+        getRouter: function() {
+            return this.getOwnerComponent().getRouter();
+        },
+        onNavBack: function(oEvent) {
+            var oHistory, sPreviousHash;
+            oHistory = History.getInstance();
+            sPreviousHash = oHistory.getPreviousHash();
+            if (sPreviousHash !== undefined) {
+                window.history.go(-1);
+            } else {
+                this.getRouter().navTo("home", {}, true /*no history*/);
+            }
         }
     });
 

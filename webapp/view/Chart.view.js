@@ -39,7 +39,10 @@ sap.ui.jsview("controlActivities.view.Chart", {
 				oChartContainer
 			],
 			enableScrolling : true,
-			showNavButton : true
+			showNavButton : true,
+			navButtonPress: function (oEvent){  
+          		oController.onNavBack(oEvent);
+          	}
 		});
 	}
 
