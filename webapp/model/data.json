@@ -194,7 +194,7 @@
 		}, {
 			"id": "2",
 			"title": "Semana 2",
-			"number": "0.046",
+			"number": "-",
 			"numberShed" : "02",
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 41978",
@@ -234,7 +234,7 @@
 		}, {
 			"id": "3",
 			"title": "Semana 3",
-			"number": "0.750",
+			"number": "-",
 			"numberShed" : "02",
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 41978",
@@ -248,7 +248,7 @@
 		}, {
 			"id": "4",
 			"title": "Semana 4",
-			"number": "1.150",
+			"number": "-",
 			"numberShed" : "02",
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 41978",
@@ -262,7 +262,7 @@
 		}, {
 			"id": "5",
 			"title": "Semana 5",
-			"number": "1.350",
+			"number": "-",
 			"numberShed" : "02",
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 51978",
@@ -276,7 +276,7 @@
 		}, {
 			"id": "6",
 			"title": "Semana 6",
-			"number": "1.800",
+			"number": "-",
 			"numberShed" : "02",
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 61978",

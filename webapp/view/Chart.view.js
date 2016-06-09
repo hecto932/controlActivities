@@ -15,7 +15,6 @@ sap.ui.jsview("controlActivities.view.Chart", {
 	createContent: function(oController) {
 
 		var oVizFrame = new sap.viz.ui5.controls.VizFrame("oVizFrame", {
-			height: "700px",
 			width: "100%",
 			uiConfig: { 
 				applicationSet: "fiori"
@@ -29,12 +28,13 @@ sap.ui.jsview("controlActivities.view.Chart", {
 		});
 
 		var oChartContainer = new sap.suite.ui.commons.ChartContainer("oChartContainer", {
-			title: "Revenue",
+			title: "Calidad del Galpon",
+			showFullScreen: true,
 			content: oChartContainerContent
 		});
 
 		return new sap.m.Page({
-			title: "Grafica",
+			title: "Control de Produccion",
 			content: [
 				oChartContainer
 			],
