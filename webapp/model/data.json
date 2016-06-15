@@ -16,7 +16,7 @@
 			"icon": "sap-icon://product",
 			"intro": "Semana 1",
 			"status_text1": "1.800.000 Kgs",
-			"status_text2": "489116 Aves",
+			"status_text2": "489116",
 			"shedRating": 3.5,
 			"initDate": "06/06/2016",
 			"lastDate": "12/06/2016",
@@ -24,45 +24,38 @@
 				{
 					"day": "1",
 					"mortality": "45",
-					"discard": "35",
-					"numberUnit": "Aves"
+					"discard": "35"
 				},
 				{
 					"day": "2",
 					"mortality": "15",
-					"discard": "34",
-					"numberUnit": "Aves"
+					"discard": "34"
 				},
 				{
 					"day": "3",
 					"mortality": "56",
-					"discard": "33",
-					"numberUnit": "Aves"
+					"discard": "33"
 				},
 				{
 					"day": "4",
 					"mortality": "15",
-					"discard": "62",
-					"numberUnit": "Aves"
+					"discard": "62"
 
 				},
 				{
 					"day": "5",
 					"mortality": "10",
-					"discard": "10",
-					"numberUnit": "Aves"
+					"discard": "10"
 				},
 				{
 					"day": "6",
 					"mortality": "30",
-					"discard": "35",
-					"numberUnit": "Aves"
+					"discard": "35"
 				},
 				{
 					"day": "7",
 					"mortality": "5",
-					"discard": "35",
-					"numberUnit": "Aves"
+					"discard": "35"
 				}
 			]
 		}, {
@@ -83,45 +76,38 @@
 				{
 					"day": "1",
 					"mortality": "45",
-					"discard": "35",
-					"numberUnit": "Aves"
+					"discard": "35"
 				},
 				{
 					"day": "2",
 					"mortality": "15",
-					"discard": "34",
-					"numberUnit": "Aves"
+					"discard": "34"
 				},
 				{
 					"day": "3",
 					"mortality": "56",
-					"discard": "33",
-					"numberUnit": "Aves"
+					"discard": "33"
 				},
 				{
 					"day": "4",
 					"mortality": "15",
-					"discard": "62",
-					"numberUnit": "Aves"
+					"discard": "62"
 
 				},
 				{
 					"day": "5",
 					"mortality": "10",
-					"discard": "10",
-					"numberUnit": "Aves"
+					"discard": "10"
 				},
 				{
 					"day": "6",
 					"mortality": "30",
-					"discard": "35",
-					"numberUnit": "Aves"
+					"discard": "35"
 				},
 				{
 					"day": "7",
 					"mortality": "5",
-					"discard": "35",
-					"numberUnit": "Aves"
+					"discard": "35"
 				}
 			]
 		}]
@@ -142,7 +128,7 @@
 			"icon": "sap-icon://product",
 			"intro": "Semana 1",
 			"status_text1": "1.800.000 Kgs",
-			"status_text2": "489116 Aves",
+			"status_text2": "489116",
 			"shedRating": 3.5,
 			"initDate": "06/06/2016",
 			"lastDate": "12/06/2016",
@@ -150,45 +136,38 @@
 				{
 					"day": "1",
 					"mortality": "45",
-					"discard": "35",
-					"numberUnit": "Aves"
+					"discard": "35"
 				},
 				{
 					"day": "2",
 					"mortality": "15",
-					"discard": "34",
-					"numberUnit": "Aves"
+					"discard": "34"
 				},
 				{
 					"day": "3",
 					"mortality": "56",
-					"discard": "33",
-					"numberUnit": "Aves"
+					"discard": "33"
 				},
 				{
 					"day": "4",
 					"mortality": "15",
-					"discard": "62",
-					"numberUnit": "Aves"
+					"discard": "62"
 
 				},
 				{
 					"day": "5",
 					"mortality": "10",
-					"discard": "10",
-					"numberUnit": "Aves"
+					"discard": "10"
 				},
 				{
 					"day": "6",
 					"mortality": "30",
-					"discard": "35",
-					"numberUnit": "Aves"
+					"discard": "35"
 				},
 				{
 					"day": "7",
 					"mortality": "5",
-					"discard": "35",
-					"numberUnit": "Aves"
+					"discard": "35"
 				}
 			]
 		}, {
@@ -209,26 +188,22 @@
 				{
 					"day": "1",
 					"mortality": "45",
-					"discard": "35",
-					"numberUnit": "Aves"
+					"discard": "35"
 				},
 				{
 					"day": "2",
 					"mortality": "15",
-					"discard": "34",
-					"numberUnit": "Aves"
+					"discard": "34"
 				},
 				{
 					"day": "3",
 					"mortality": "56",
-					"discard": "33",
-					"numberUnit": "Aves"
+					"discard": "33"
 				},
 				{
 					"day": "4",
 					"mortality": "15",
-					"discard": "62",
-					"numberUnit": "Aves"
+					"discard": "62"
 				}
 			]
 		}, {
@@ -255,7 +230,7 @@
 			"icon": "sap-icon://product",
 			"intro": "Semana 4",
 			"status_text1": "1.879.000 Kgs",
-			"status_text2": "489116 Aves",
+			"status_text2": "489116",
 			"shedRating": 4.5,
 			"initDate": "27/06/2016",
 			"lastDate": "02/07/2016"
@@ -269,7 +244,7 @@
 			"icon": "sap-icon://product",
 			"intro": "Semana 5",
 			"status_text1": "1.800.000 Kgs",
-			"status_text2": "489116 Aves",
+			"status_text2": "489116",
 			"shedRating": 2.7,
 			"initDate": "03/07/2016",
 			"lastDate": "09/07/2016"

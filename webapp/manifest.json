@@ -116,7 +116,21 @@
 							"name": "detail",
 							"view": "Detail",
 							"targetAggregation": "detailPages",
-							"targetControl": "splitApp"
+							"targetControl": "splitApp",
+							"subroutes": [{
+								"pattern": "weight/{shedId}/{weekId}",
+								"name": "weight",
+								"view": "Weight",
+								"targetAggregation": "pages",
+								"targetControl": "app",
+								"subroutes": [{
+									"pattern": "cuadricula/{shedId}/{weekId}/{cuadriculas}",
+									"name": "cuadricula",
+									"view": "Cuadricula",
+									"targetAggregation": "pages",
+									"targetControl": "app"
+								}]
+							}]
 						}, {
 							"pattern": "graphic",
 							"name": "graphic",
@@ -130,23 +144,38 @@
             "targets": {
             	"home": {
 					"viewName": "Shed",
-					"viewType": "JS"
+					"viewType": "JS",
+					"viewLevel": 1
 				},
 				"splitapp": {
 					"viewName": "SplitApp",
-					"viewType": "JS"
+					"viewType": "JS",
+					"viewLevel": 2
 				},
 				"master": {
 					"viewName": "Master",
-					"viewType": "JS"
+					"viewType": "JS",
+					"viewLevel": 3
 				},
 				"detail": {
 					"viewName": "Detail",
-					"viewType": "JS"
+					"viewType": "JS",
+					"viewLevel": 4
 				},
 				"graphic": {
 					"viewName": "Chart",
-					"viewType": "JS"
+					"viewType": "JS",
+					"viewLevel": 5
+				},
+				"weight": {
+					"viewName": "Weight",
+					"viewType": "JS",
+					"viewLevel": 6
+				},
+				"cuadricula": {
+					"viewName": "Cuadricula",
+					"viewType": "JS",
+					"viewLevel": 7
 				}
             }
         },

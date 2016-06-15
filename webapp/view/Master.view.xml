@@ -1,0 +1,36 @@
+<mvc:View
+	height="100%"
+	controllerName="controlActivities.controller.Master"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page
+		title="{i18n>masterTitle}"
+		enableScrolling="true" 
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<List 
+			id="myList"
+			items="{weeks}">
+			<ObjectListItem 
+				title="{i18n>objectWeek} {id}"
+				number="{number}"
+				numberUnit="{numberUnit}"
+				type="Active"
+				numberState="Success" 
+				press="handlePress">
+				<attributes>
+					<ObjectAttribute text="{initDate} - {lastDate}" active="false"/>
+				</attributes>
+			</ObjectListItem>
+		</List>
+		<footer>
+			<OverflowToolbar >
+				<Button 
+					text="Ver grafica"
+					type="Default"
+					press="OnShowGraphic">
+				</Button>
+			</OverflowToolbar >
+		</footer>
+	</Page>
+</mvc:View>

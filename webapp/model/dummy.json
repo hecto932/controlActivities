@@ -1,7 +1,10 @@
 {
     "input": {
-        "mortality": "0",
-        "discard": "0",
-        "cuadriculas": "1"
+        "mortality": 0,
+        "discard": 0,
+        "squares": 0,
+        "average": 0,
+        "numberBirds": 0,
+        "weightAverage": 0
     }
 }

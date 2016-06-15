@@ -15,9 +15,9 @@ sap.ui.define([
 		formatter: formatter,
 		onInit: function () {
 			
-			var sPath = jQuery.sap.getModulePath("controlActivities.model", "/data.json");
+			/*var sPath = jQuery.sap.getModulePath("controlActivities.model", "/data.json");
 			var oModel = new sap.ui.model.json.JSONModel(sPath);
-			this.getView().setModel(oModel);
+			this.getView().setModel(oModel);*/
 			
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this);
@@ -218,84 +218,18 @@ sap.ui.define([
 			
 		},
 		onRegisterWeight: function(oEvent){
-			var that = this;
+			var oItem = oEvent.getSource();
+			var oRouter = oItem.getBindingContext().getPath();
+			console.log(oRouter);
+			var splitPath = oItem.getBindingContext().getPath().split("/");
 
-			var oInputCuadriculas = new sap.m.Input({
-				type: "Number",
-				enabled: true,
-				placeholder: "Numero de descarte...",
-				value: {
-					path: "dummy>/input/cuadriculas",
-					type: "sap.ui.model.type.Integer",
-					constraints: {
-						minimum: 1
-					}
-				},
-				liveChange: function(oEvent){
-					var oValue = this.getValue();
-					var formWeight = sap.ui.getCore().byId("formWeight");
-					formWeight.removeAllContent();
-					
+			console.log(splitPath);
 
-					var oAverage = new sap.m.Input();
-					var oCountBirds = new sap.m.Input();
-					var oDialog = sap.ui.getCore().byId("formWeight");
-					
-					/*var oDialog = sap.ui.getCore().byId("weightDialog");
-					for(int i = 0; 0 < oValue; i++){
-						var oAverage = new sap.m.Input("_input_"+i);
-						var oCountBirds = new sap.m.Input("_input_"+i+1);
-						oDialog.addContent(oAverage);
-						oDialog.addContent(oCountBirds);
-					}*/
-					console.log(this.getValue());
-				}
+			var route = sap.ui.core.UIComponent.getRouterFor(this);
+			route.navTo("weight", {
+				shedId: splitPath[2],
+				weekId: splitPath[4]
 			});
-
-			var dialog = new sap.m.Dialog("weightDialog",{
-				title: 'Reporte',
-				content: [
-					new sap.ui.layout.form.SimpleForm("formWeight",{
-						editable: true,
-						maxContainerCols: 2,
-						layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
-						labelSpanL: 4,
-						labelSpanM: 4,
-						emptySpanL: 4,
-						columnsL: 4,
-						columnsM: 4,
-						content: [
-							new sap.m.Label({
-								design: "Bold",
-								text: "Cantidad de Cuadriculas",
-								required: true
-							}),
-							oInputCuadriculas
-						]
-					})
-				],
-				beginButton: new sap.m.Button({
-					text: 'Guardar',
-					type: "Accept",
-					press: function (){
-						dialog.close();
-					} 
-				}),
-				endButton: new sap.m.Button({
-					text: 'Cancelar',
-					type: "Reject",
-					press: function () {
-						dialog.close();
-					}
-				}),
-				afterClose: function() {
-					dialog.destroy();
-				}
-			});
-
-			//to get access to the global model
-			this.getView().addDependent(dialog);
-			dialog.open();
 		}
 
 		/**

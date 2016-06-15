@@ -1,0 +1,22 @@
+<mvc:View
+	height="100%"
+	controllerName="controlActivities.controller.Detail"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page
+		id="detail"
+		title="{i18n>masterTitle}"
+		enableScrolling="true" 
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<ObjectHeader
+			title="{intro}"
+			icon="{icon}"
+			intro="{i18n>text_shed} {numberShed}"
+			fullScreenOptimized="true"
+			condensed="false"
+			responsive="true"
+			backgroundDesign="Solid">
+		</ObjectHeader>
+	</Page>
+</mvc:View>

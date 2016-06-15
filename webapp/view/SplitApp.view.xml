@@ -1,0 +1,8 @@
+<mvc:View
+	controllerName="controlActivities.controller.SplitApp"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<SplitContainer id="splitApp">
+		
+	</SplitContainer> 
+</mvc:View>

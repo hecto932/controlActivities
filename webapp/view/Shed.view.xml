@@ -1,0 +1,25 @@
+<mvc:View
+	height="100%"
+	controllerName="controlActivities.controller.Shed"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<App id="sheds">
+		<Page
+			title="{i18n>shed_title}"
+			enableScrolling="false">
+			<TileContainer
+				id="container"
+				tiles="{/ShedsCollection}">
+				<StandardTile
+					icon="{icon}"
+					type="{type}"
+					number="{number}"
+					numberUnit="{numberUnit}"
+					title="{title}"
+					info="{info}"
+					infoState="{infoState}" 
+					press="handlePress" />
+			</TileContainer>
+		</Page>
+	</App>	
+</mvc:View>

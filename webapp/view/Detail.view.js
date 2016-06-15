@@ -14,6 +14,8 @@ sap.ui.jsview("controlActivities.view.Detail", {
 	 */
 	createContent: function(oController) {
 		
+		//Validar que la cantidad de Mortalidad y Descarte reportada no sea igual o mayor la que existe
+
 		var oObjectHeader = new sap.m.ObjectHeader({
 
 			title : "{intro}",
@@ -30,7 +32,7 @@ sap.ui.jsview("controlActivities.view.Detail", {
 					state: "None"
 				}),
 				new sap.m.ObjectStatus({
-					title: "Cantidad de Aves",
+					title: "Cantidad de pollos",
 					text: "{status_text2}",
 					state: "None"
 				})
@@ -91,8 +93,9 @@ sap.ui.jsview("controlActivities.view.Detail", {
 
 		var oGridLayout = new sap.ui.layout.Grid({
 			hSpacing: 0,
-			defaultSpan: "XL10 L10 M10 S12",
-			defaultIndent: "XL1 L1 M1 S0",
+			width: "auto",
+			defaultSpan: "XL12 L12 M12 S12",
+			defaultIndent: "XL0 L0 M0 S0",
 			content: [
 				oTable
 			]

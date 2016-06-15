@@ -1,16 +1,16 @@
-sap.ui.jsview("controlActivities.view.Weight", {
+sap.ui.jsview("controlActivities.view.Cuadricula", {
 
 	/** Specifies the Controller belonging to this View. 
 	 * In the case that it is not implemented, or that "null" is returned, this View does not have a Controller.
-	 * @memberOf controlActivities.view.Weight
+	 * @memberOf controlActivities.view.Cuadricula
 	 */
 	getControllerName: function() {
-		return "controlActivities.controller.Weight";
+		return "controlActivities.controller.Cuadricula";
 	},
 
 	/** Is initially called once after the Controller has been instantiated. It is the place where the UI is constructed. 
 	 * Since the Controller is given to this method, its event handlers can be attached right away. 
-	 * @memberOf controlActivities.view.Weight
+	 * @memberOf controlActivities.view.Cuadricula
 	 */
 	createContent: function(oController) {
 
@@ -25,33 +25,64 @@ sap.ui.jsview("controlActivities.view.Weight", {
 			columnsM: 4,
 			title: "Cuantificacion de peso semanal",
 			content: [
+				new sap.m.Text("textItr", {
+					text: "Faltan {dummy>/input/squares}"
+				}).addStyleClass("itr"),
 				new sap.m.Label({
 					design: "Bold",
-					text: "Cantidad de cuadriculas",
+					text: "Promedio",
 					required: true,
 					textAlign: "Center"
 				}),
-				new sap.m.Input("inputCuadriculas", {
+				new sap.m.Input("inputAverage", {
 					type: "Number",
 					enabled: true,
-					placeholder: "Numero de mortalidad...",
+					placeholder: "Promedio de aves",
 					value: {
-						path: "dummy>/input/squares",
+						path: "dummy>/input/average",
+						type: "sap.ui.model.type.Float",
+						constraints: {
+							minimum: 1
+						}
+					},
+					liveChange: function(oEvent){
+						var birdsValue = sap.ui.getCore().byId("inputBirds").getValue();
+						if(this.getValue() == "" || this.getValue() <= 0 || birdsValue == "" || birdsValue <= 0){
+							sap.ui.getCore().byId("btnSave").setEnabled(false);
+						} else{
+							sap.ui.getCore().byId("btnSave").setEnabled(true);
+						}
+					}
+				}),
+				new sap.m.Label({
+					design: "Bold",
+					text: "Cantidad de Aves",
+					required: true,
+					textAlign: "Center"
+				}),
+				new sap.m.Input("inputBirds", {
+					type: "Number",
+					enabled: true,
+					placeholder: "Numero de Aves...",
+					value: {
+						path: "dummy>/input/numberBirds",
 						type: "sap.ui.model.type.Integer",
 						constraints: {
 							minimum: 1
 						}
 					},
 					liveChange: function(oEvent){
-						if(this.getValue() <= 0 || this.getValue() == ""){
-							sap.ui.getCore().byId("btnCuadriculas").setEnabled(false);
+						var averageValue = sap.ui.getCore().byId("inputAverage").getValue();
+						if(this.getValue() == "" || this.getValue() <= 0 || averageValue == "" || averageValue <= 0){
+							sap.ui.getCore().byId("btnSave").setEnabled(false);
 						} else{
-							sap.ui.getCore().byId("btnCuadriculas").setEnabled(true);
+							sap.ui.getCore().byId("btnSave").setEnabled(true);
 						}
 					}
+
 				}),
 				new sap.m.Label(),
-				new sap.m.Button("btnCuadriculas", {
+				new sap.m.Button("btnSave", {
 					text : "Aceptar",
 					type : "Accept",
 					width : "100%",
@@ -118,7 +149,7 @@ sap.ui.jsview("controlActivities.view.Weight", {
 			]
 		});
 
-		return new sap.m.Page("weightPage", {
+		return new sap.m.Page("cuadriculaPage", {
 			title: "Control de Produccion",
 			content: [
 				oPanel,

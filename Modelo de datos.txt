@@ -1,0 +1,30 @@
+Control de Produccion
+======================
+
+Entidades:
+	- Plan de Produccion
+	- Actividades Diarias
+	- Actividades Semanales
+
+Plan de Produccion
+==================
+	- ID de Lote
+
+Actividades Diarias
+===================
+- ID de Lote
+- Semana
+- Fecha
+- Dia 
+- Mortalidad
+- Descarte
+
+Actividades Semanales
+=====================
+- Id del lote
+- Fecha
+- Semana
+- Dia
+- Promedio pollo
+- Cantidad de polllo
+- Cuadriculas - Se deben Guardar ?
