@@ -219,7 +219,9 @@
 			"status_text2": "1111 Aves",
 			"shedRating": 5,
 			"initDate": "20/06/2016",
-			"lastDate": "26/06/2016"
+			"lastDate": "26/06/2016",
+			"days": []
+
 		}, {
 			"id": "4",
 			"title": "Semana 4",
@@ -233,7 +235,8 @@
 			"status_text2": "489116",
 			"shedRating": 4.5,
 			"initDate": "27/06/2016",
-			"lastDate": "02/07/2016"
+			"lastDate": "02/07/2016",
+			"days": []
 		}, {
 			"id": "5",
 			"title": "Semana 5",
@@ -247,7 +250,8 @@
 			"status_text2": "489116",
 			"shedRating": 2.7,
 			"initDate": "03/07/2016",
-			"lastDate": "09/07/2016"
+			"lastDate": "09/07/2016",
+			"days": []
 		}, {
 			"id": "6",
 			"title": "Semana 6",
@@ -261,7 +265,8 @@
 			"status_text2": "11542 Aves",
 			"shedRating": 2,
 			"initDate": "10/07/2016",
-			"lastDate": "16/07/2016"
+			"lastDate": "16/07/2016",
+			"days": []
 		}]
 	}]
 }
