@@ -11,7 +11,7 @@
 			"id": "1",
 			"title": "Semana 1",
 			"numberShed" : "01",
-			"number": "0.046",
+			"number": "460",
 			"numberUnit": "Kg",
 			"icon": "sap-icon://product",
 			"intro": "Semana 1",
@@ -61,7 +61,7 @@
 		}, {
 			"id": "2",
 			"title": "Semana 2",
-			"number": "0.052",
+			"number": "52",
 			"numberShed" : "01",
 			"numberUnit": "Kg",
 			"lote" : "LOTE Nº 41978",
@@ -122,7 +122,7 @@
 		"weeks": [{
 			"id": "1",
 			"title": "Semana 1",
-			"number": "0.046",
+			"number": "46",
 			"numberUnit": "Kg",
 			"numberShed" : "02",
 			"icon": "sap-icon://product",

@@ -35,8 +35,9 @@ sap.ui.define([
             this.getView().getModel().refresh(true);
             console.log(sap.ui.getCore().byId("textItr").getText());
             this.getView().getModel("dummy").setProperty("/input/squares", itr);
-            oAverage += sap.ui.getCore().byId("inputAverage").getValue();
-
+            console.log(oAverage);
+            oAverage += parseInt(sap.ui.getCore().byId("inputAverage").getValue());
+            console.log(oAverage);
             sap.ui.getCore().byId("inputAverage").setValue();
             sap.ui.getCore().byId("inputBirds").setValue();
 
@@ -47,9 +48,10 @@ sap.ui.define([
                 console.log(oArgs);
 
                 var oModel = this.getView().getModel();
-                oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId +"/number", String(oAverage/oArgs.cuadriculas));
+                oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId +"/number", parseFloat( oAverage/oArgs.cuadriculas));
                 this.getView().setModel(oModel);
                 console.log(oModel);
+                sap.ui.getCore().byId("master").setModel(oModel);
 
                 var route = sap.ui.core.UIComponent.getRouterFor(this);
                 sap.ui.getCore().byId("myList").getBinding("items").refresh();

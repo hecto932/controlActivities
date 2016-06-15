@@ -18,7 +18,22 @@ sap.ui.jsview("controlActivities.view.Master", {
 
 		var oObjectListItem = new sap.m.ObjectListItem({
 			title: "{i18n>objectWeek} {id}",
-			number: "{number}",
+			//number: "{number}",
+			number: {
+				path: "number",
+				type: "sap.ui.model.type.Float",
+				formatOptions: {
+					maxFractionDigits: 2
+				},
+				formatter: function(n){
+					if(n != "-"){
+						return n / 1000;
+					}
+					else{
+						return n;
+					}
+				}
+			},
 			numberUnit: "{numberUnit}",
 			type: "Active",
 			numberState: "Success",

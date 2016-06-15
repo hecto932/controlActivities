@@ -4,7 +4,7 @@ sap.ui.define([
 	"controlActivities/model/formatter"
 ], function(Controller, History, formatter) {
 	"use strict";
-
+	var oArgs = {};
 	return Controller.extend("controlActivities.controller.Detail", {
 
 		/**
@@ -23,7 +23,7 @@ sap.ui.define([
 			oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
-			var oModel = this.getView().getModel("");
+			var oModel = this.getView().getModel();
 			this._oRouterArgs = oEvent.getParameter("arguments");
 
 			//console.log("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId);
@@ -31,7 +31,7 @@ sap.ui.define([
 			this.getView().bindElement({
 				path: "/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId
 			});
-
+			oArgs = this._oRouterArgs;
 			var oTable = sap.ui.getCore().byId("tableContol");
 			var oTableLength = oTable.getItems().length;
 			console.log(oTableLength);
@@ -41,6 +41,13 @@ sap.ui.define([
 			}
 			else{
 				sap.ui.getCore().byId("btnReport").setVisible(true);
+				sap.ui.getCore().byId("btnWeight").setVisible(false);
+			}
+			console.log(oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/number"));
+			if(oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId + "/number") == "-" && oTableLength == 7)
+			{
+				sap.ui.getCore().byId("btnWeight").setVisible(true);
+			}else{
 				sap.ui.getCore().byId("btnWeight").setVisible(false);
 			}
 		},
@@ -74,6 +81,7 @@ sap.ui.define([
 			});
 		},
 		reportingDailyData: function (){
+			var oModel = this.getView().getModel();
 			var oTableControl = sap.ui.getCore().byId("tableContol");
 			var oTableControlLength = oTableControl.getItems().length;
 			var dailyData = {
@@ -89,12 +97,12 @@ sap.ui.define([
 					}),
 					new sap.m.ObjectNumber({
 						number: dailyData.mortality,
-						numberUnit: "Aves",
+						//numberUnit: "Aves",
 						state: formatter.verifyStatusMortality(dailyData.mortality)
 					}),
 					new sap.m.ObjectNumber({
 						number: dailyData.discard,
-						numberUnit: "Aves",
+						//numberUnit: "Aves",
 						state: formatter.verifyStatusDiscard(dailyData.discard)
 					})
 				]
@@ -103,11 +111,18 @@ sap.ui.define([
 
 			if(oTableControl.getItems().length == 7){
 				var btnReport = sap.ui.getCore().byId("btnReport");
+				var btnWeight = sap.ui.getCore().byId("btnWeight");
 				btnReport.setVisible(false);
+				btnWeight.setVisible(true);
 			}
 
 			sap.ui.getCore().byId("inputMortality").setValue("0");
 			sap.ui.getCore().byId("inputDiscard").setValue("0");
+
+			var days = oModel.getProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/days");
+			days.push(dailyData);
+			oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/days", days);
+
 		},
 		onDialogPress: function (oEvent) {
 			var oTableControl = sap.ui.getCore().byId("tableContol");
