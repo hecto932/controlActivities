@@ -31,8 +31,9 @@ sap.ui.define([
 				return this.getOwnerComponent().getRouter();
 			},
 			handlePress: function(oEvent){
-
 				var oItem = oEvent.getSource();
+				console.log(oItem);
+				console.log(oEvent);
 				var oRouter = oItem.getBindingContext().getPath();
 				console.log(oRouter);
 				var splitPath = oItem.getBindingContext().getPath().split("/");
@@ -43,10 +44,18 @@ sap.ui.define([
 				route.navTo("detail", {
 					shedId: splitPath[2],
 					weekId: splitPath[4]
-				});
+				}, true);
 			},
 			onNavBack: function (oEvent) {
-				this.getRouter().navTo("home", {}, true /*no history*/);
+				//this.getRouter().navTo("home", {}, true /*no history*/);
+				var oHistory, sPreviousHash;
+				oHistory = History.getInstance();
+				sPreviousHash = oHistory.getPreviousHash();
+				if (sPreviousHash !== undefined) {
+					window.history.go(-1);
+				} else {
+					this.getRouter().navTo("home", {}, true /*no history*/);
+				}
 			},
 			addWeek : function(oEvent){
 				console.log("Agregando semana");
@@ -61,6 +70,17 @@ sap.ui.define([
 
 				var route = sap.ui.core.UIComponent.getRouterFor(this);
 				route.navTo("graphic");
+			},
+			onSelectionChange: function(oEvent){
+				var sPath = oEvent.getParameter("listItem").getBindingContext().getPath();
+				console.log(sPath);
+				var splitPath = sPath.split('/');
+				console.log(splitPath);
+				var route = this.getRouter();
+				route.navTo("detail", {
+					shedId: splitPath[2],
+					weekId: splitPath[4]
+				}, true);
 			}
 
 		/**

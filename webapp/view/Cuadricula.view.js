@@ -37,7 +37,7 @@ sap.ui.jsview("controlActivities.view.Cuadricula", {
 				new sap.m.Input("inputAverage", {
 					type: "Number",
 					enabled: true,
-					placeholder: "Promedio de aves",
+					placeholder: "Peso del Ave",
 					value: {
 						path: "dummy>/input/average",
 						type: "sap.ui.model.type.Float",
@@ -53,33 +53,6 @@ sap.ui.jsview("controlActivities.view.Cuadricula", {
 							sap.ui.getCore().byId("btnSave").setEnabled(true);
 						}
 					}
-				}),
-				new sap.m.Label({
-					design: "Bold",
-					text: "Cantidad de Aves",
-					required: true,
-					textAlign: "Center"
-				}),
-				new sap.m.Input("inputBirds", {
-					type: "Number",
-					enabled: true,
-					placeholder: "Numero de Aves...",
-					value: {
-						path: "dummy>/input/numberBirds",
-						type: "sap.ui.model.type.Integer",
-						constraints: {
-							minimum: 1
-						}
-					},
-					liveChange: function(oEvent){
-						var averageValue = sap.ui.getCore().byId("inputAverage").getValue();
-						if(this.getValue() == "" || this.getValue() <= 0 || averageValue == "" || averageValue <= 0){
-							sap.ui.getCore().byId("btnSave").setEnabled(false);
-						} else{
-							sap.ui.getCore().byId("btnSave").setEnabled(true);
-						}
-					}
-
 				}),
 				new sap.m.Label(),
 				new sap.m.Button("btnSave", {

@@ -27,12 +27,12 @@ sap.ui.jsview("controlActivities.view.Detail", {
 			backgroundDesign: "Solid",
 			statuses: [
 				new sap.m.ObjectStatus({
-					title: "Peso del galpon",
+					title: "Peso de galpón (Kg)",
 					text: "{status_text1}",
 					state: "None"
 				}),
 				new sap.m.ObjectStatus({
-					title: "Cantidad de pollos",
+					title: "Cantidad de Aves",
 					text: "{status_text2}",
 					state: "None"
 				})

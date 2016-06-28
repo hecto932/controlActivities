@@ -5,7 +5,7 @@ sap.ui.jsview("controlActivities.view.App", {
 	 * @memberOf controlActivities.view.App
 	 */
 	getControllerName: function() {
-		return null;
+		return "controlActivities.controller.App";
 	},
 
 	/** Is initially called once after the Controller has been instantiated. It is the place where the UI is constructed. 

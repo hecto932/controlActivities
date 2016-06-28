@@ -2,112 +2,112 @@
    "Datos":[
       {
          "Dia":0,
-         "Teorico":21,
+         "Teorico":42,
          "Peso":"41"
       },
       {
          "Dia":1,
-         "Teorico":111,
+         "Teorico":52,
          "Peso":"51"
       },
       {
          "Dia":2,
-         "Teorico":45,
+         "Teorico":66,
          "Peso":"65"
       },
       {
          "Dia":3,
-         "Teorico":140,
+         "Teorico":81,
          "Peso":"80"
       },
       {
          "Dia":4,
-         "Teorico":79,
+         "Teorico":100,
          "Peso":"99"
       },
       {
          "Dia":5,
-         "Teorico":181,
+         "Teorico":122,
          "Peso":"121"
       },
       {
          "Dia":6,
-         "Teorico":126,
+         "Teorico":148,
          "Peso":"146"
       },
       {
          "Dia":7,
-         "Teorico":235,
+         "Teorico":177,
          "Peso":"175"
       },
       {
          "Dia":8,
-         "Teorico":185,
+         "Teorico":177,
          "Peso":"205"
       },
       {
          "Dia":9,
-         "Teorico":297,
+         "Teorico":208,
          "Peso":"237"
       },
       {
          "Dia":10,
-         "Teorico":250,
+         "Teorico":242,
          "Peso":"270"
       },
       {
          "Dia":11,
-         "Teorico":369,
+         "Teorico":279,
          "Peso":"309"
       },
       {
          "Dia":12,
-         "Teorico":331,
+         "Teorico":320,
          "Peso":"351"
       },
       {
          "Dia":13,
-         "Teorico":456,
+         "Teorico":364,
          "Peso":"396"
       },
       {
          "Dia":14,
-         "Teorico":423,
+         "Teorico":410,
          "Peso":"443"
       },
       {
          "Dia":15,
-         "Teorico":551,
+         "Teorico":459,
          "Peso":"491"
       },
       {
          "Dia":16,
-         "Teorico":522,
+         "Teorico":511,
          "Peso":"542"
       },
       {
          "Dia":17,
-         "Teorico":655,
+         "Teorico":567,
          "Peso":"595"
       },
       {
          "Dia":18,
-         "Teorico":632,
+         "Teorico":626,
          "Peso":"652"
       },
       {
          "Dia":19,
-         "Teorico":773,
+         "Teorico":688,
          "Peso":"713"
       },
       {
          "Dia":20,
-         "Teorico":758,
+         "Teorico":753,
          "Peso":"778"
       },
       {
          "Dia":21,
-         "Teorico":904,
+         "Teorico":821,
          "Peso":"844"
       },
       {
@@ -117,172 +117,177 @@
       },
       {
          "Dia":23,
-         "Teorico":1039,
+         "Teorico":964,
          "Peso":"979"
       },
       {
          "Dia":24,
-         "Teorico":1028,
+         "Teorico":1039,
          "Peso":"1048"
       },
       {
          "Dia":25,
-         "Teorico":1178,
+         "Teorico":1115,
          "Peso":"1118"
       },
       {
          "Dia":26,
-         "Teorico":1170,
+         "Teorico":1193,
          "Peso":"1190"
       },
       {
          "Dia":27,
-         "Teorico":1324,
+         "Teorico":1272,
          "Peso":"1264"
       },
       {
          "Dia":28,
-         "Teorico":1321,
+         "Teorico":1353,
          "Peso":"1341"
       },
       {
          "Dia":29,
-         "Teorico":1479,
+         "Teorico":1436,
          "Peso":"1419"
       },
       {
          "Dia":30,
-         "Teorico":1478,
+         "Teorico":1521,
          "Peso":"1498"
       },
       {
          "Dia":31,
-         "Teorico":1638,
+         "Teorico":1608,
          "Peso":"1578"
       },
       {
          "Dia":32,
-         "Teorico":1640,
+         "Teorico":1697,
          "Peso":"1660"
       },
       {
          "Dia":33,
-         "Teorico":1804,
+         "Teorico":1788,
          "Peso":"1744"
       },
       {
          "Dia":34,
-         "Teorico":1809,
+         "Teorico":1880,
          "Peso":"1829"
       },
       {
          "Dia":35,
-         "Teorico":1974,
+         "Teorico":1973,
          "Peso":"1914"
       },
       {
          "Dia":36,
-         "Teorico":1979,
+         "Teorico":2067,
          "Peso":"1999"
       },
       {
          "Dia":37,
-         "Teorico":2144,
+         "Teorico":2162,
          "Peso":"2084"
       },
       {
          "Dia":38,
-         "Teorico":2149,
+         "Teorico":2257,
          "Peso":"2169"
       },
       {
          "Dia":39,
-         "Teorico":2314,
+         "Teorico":2352,
          "Peso":"2254"
       },
       {
          "Dia":40,
-         "Teorico":2319,
+         "Teorico":2447,
          "Peso":"2339"
       },
       {
          "Dia":41,
-         "Teorico":2485,
+         "Teorico":2542,
          "Peso":"2425"
       },
       {
          "Dia":42,
-         "Teorico":2491,
+         "Teorico":2637,
          "Peso":"2511"
       },
       {
          "Dia":43,
-         "Teorico":2656,
+         "Teorico":2732,
          "Peso":"2596"
       },
       {
          "Dia":44,
-         "Teorico":2659,
+         "Teorico":2826,
          "Peso":"2679"
       },
       {
          "Dia":45,
-         "Teorico":2820,
+         "Teorico":2919,
          "Peso":"2760"
       },
       {
          "Dia":46,
-         "Teorico":2821,
+         "Teorico":3011,
          "Peso":"2841"
       },
       {
          "Dia":47,
-         "Teorico":2982,
+         "Teorico":3102,
          "Peso":"2922"
       },
       {
          "Dia":48,
-         "Teorico":2983,
+         "Teorico":3192,
          "Peso":"3003"
       },
       {
          "Dia":49,
-         "Teorico":3144,
+         "Teorico":3281,
          "Peso":"3084"
       },
       {
          "Dia":50,
-         "Teorico":3145,
+         "Teorico":3369,
          "Peso":"3165"
       },
       {
          "Dia":51,
-         "Teorico":3306,
+         "Teorico":3456,
          "Peso":"3246"
       },
       {
          "Dia":52,
-         "Teorico":3305,
+         "Teorico":3542,
          "Peso":"3325"
       },
       {
          "Dia":53,
-         "Teorico":3464,
+         "Teorico":3627,
          "Peso":"3404"
       },
       {
          "Dia":54,
-         "Teorico":3463,
+         "Teorico":3711,
          "Peso":"3483"
       },
       {
          "Dia":55,
-         "Teorico":3622,
+         "Teorico":3794,
          "Peso":"3562"
       },
       {
          "Dia":56,
-         "Teorico":3621,
+         "Teorico":3876,
+         "Peso":"3641"
+      },
+      {
+         "Dia":57,
+         "Teorico":3958,
          "Peso":"3641"
       }
    ]

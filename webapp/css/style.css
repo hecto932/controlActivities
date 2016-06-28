@@ -4,3 +4,9 @@
 	font-size: 2em;
 	font-weight: bold;
 }
+
+.itr span{
+	font-size: 1.8em;
+	font-weight: bold;
+	text-align: center;
+}

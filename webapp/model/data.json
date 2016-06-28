@@ -3,7 +3,7 @@
 		"id": "1",
 	   	"icon" : "sap-icon://machine",
 	   	"number" : "01",
-	   	"title" : "15.000 Aves",
+	   	"title" : "15.000",
 	   	"info" : "600 Kg",
 	   	"numberUnit": "Galpón",
 	   	"infoState": "Warning",
@@ -15,11 +15,11 @@
 			"numberUnit": "Kg",
 			"icon": "sap-icon://product",
 			"intro": "Semana 1",
-			"status_text1": "1.800.000 Kgs",
+			"status_text1": "1.800.000",
 			"status_text2": "489116",
 			"shedRating": 3.5,
-			"initDate": "06/06/2016",
-			"lastDate": "12/06/2016",
+			"initDate": "06 JUN",
+			"lastDate": "12 JUN",
 			"days": [
 				{
 					"day": "1",
@@ -67,11 +67,11 @@
 			"lote" : "LOTE Nº 41978",
 			"icon": "sap-icon://product",
 			"intro": "Semana 2",
-			"status_text1": "1.485.000 Kgs",
-			"status_text2": "18114 Aves",
+			"status_text1": "1.485.000",
+			"status_text2": "18114",
 			"shedRating": 5,
-			"initDate": "13/06/2016",
-			"lastDate": "20/06/2016",
+			"initDate": "13 JUN",
+			"lastDate": "20 JUN",
 			"days": [
 				{
 					"day": "1",
@@ -115,7 +115,7 @@
 		"id": "2",
 		"icon" : "sap-icon://machine",
 		"number" : "02",
-		"title" : "15.012 Aves",
+		"title" : "15.012",
 		"info" : "500 Kg",
 		"numberUnit": "Galpón",
 		"infoState": "Warning",
@@ -127,11 +127,11 @@
 			"numberShed" : "02",
 			"icon": "sap-icon://product",
 			"intro": "Semana 1",
-			"status_text1": "1.800.000 Kgs",
+			"status_text1": "1.800.000",
 			"status_text2": "489116",
 			"shedRating": 3.5,
-			"initDate": "06/06/2016",
-			"lastDate": "12/06/2016",
+			"initDate": "06 JUN",
+			"lastDate": "12 JUN",
 			"days": [
 				{
 					"day": "1",
@@ -179,11 +179,11 @@
 			"lote" : "LOTE Nº 41978",
 			"icon": "sap-icon://product",
 			"intro": "Semana 2",
-			"status_text1": "1.485.000 Kgs",
-			"status_text2": "18114 Aves",
+			"status_text1": "1.485.000",
+			"status_text2": "18114",
 			"shedRating": 1,
-			"initDate": "13/06/2016",
-			"lastDate": "19/06/2016",
+			"initDate": "13 JUN",
+			"lastDate": "19 JUN",
 			"days": [
 				{
 					"day": "1",
@@ -215,11 +215,11 @@
 			"lote" : "LOTE Nº 41978",
 			"icon": "sap-icon://product",
 			"intro": "Semana 3",
-			"status_text1": "1.948.000 Kgs",
-			"status_text2": "1111 Aves",
+			"status_text1": "1.948.000",
+			"status_text2": "1111",
 			"shedRating": 5,
-			"initDate": "20/06/2016",
-			"lastDate": "26/06/2016",
+			"initDate": "20 JUN",
+			"lastDate": "26 JUN",
 			"days": []
 
 		}, {
@@ -231,11 +231,11 @@
 			"lote" : "LOTE Nº 41978",
 			"icon": "sap-icon://product",
 			"intro": "Semana 4",
-			"status_text1": "1.879.000 Kgs",
+			"status_text1": "1.879.000",
 			"status_text2": "489116",
 			"shedRating": 4.5,
-			"initDate": "27/06/2016",
-			"lastDate": "02/07/2016",
+			"initDate": "27 JUN",
+			"lastDate": "02 JUL",
 			"days": []
 		}, {
 			"id": "5",
@@ -246,11 +246,11 @@
 			"lote" : "LOTE Nº 51978",
 			"icon": "sap-icon://product",
 			"intro": "Semana 5",
-			"status_text1": "1.800.000 Kgs",
+			"status_text1": "1.800.000",
 			"status_text2": "489116",
 			"shedRating": 2.7,
-			"initDate": "03/07/2016",
-			"lastDate": "09/07/2016",
+			"initDate": "03 JUL",
+			"lastDate": "09 JUL",
 			"days": []
 		}, {
 			"id": "6",
@@ -261,11 +261,11 @@
 			"lote" : "LOTE Nº 61978",
 			"icon": "sap-icon://product",
 			"intro": "Semana 6",
-			"status_text1": "1.000.000 Kgs",
-			"status_text2": "11542 Aves",
+			"status_text1": "1.000.000",
+			"status_text2": "11542",
 			"shedRating": 2,
-			"initDate": "10/07/2016",
-			"lastDate": "16/07/2016",
+			"initDate": "10 JUL",
+			"lastDate": "16 JUL",
 			"days": []
 		}]
 	}]

@@ -14,11 +14,15 @@ sap.ui.jsview("controlActivities.view.Master", {
 	 */
 	createContent: function(oController) {
 
-		var oList = new sap.m.List("myList");
+		var oList = new sap.m.List("myList", {
+			mode: "SingleSelectMaster",
+			selectionChange: function(oEvent){
+				oController.onSelectionChange(oEvent);
+			}
+		});
 
 		var oObjectListItem = new sap.m.ObjectListItem({
-			title: "{i18n>objectWeek} {id}",
-			//number: "{number}",
+			title: "{id}",
 			number: {
 				path: "number",
 				type: "sap.ui.model.type.Float",
@@ -34,6 +38,7 @@ sap.ui.jsview("controlActivities.view.Master", {
 					}
 				}
 			},
+			numberTextDirection: "RTL",
 			numberUnit: "{numberUnit}",
 			type: "Active",
 			numberState: "Success",
@@ -42,14 +47,13 @@ sap.ui.jsview("controlActivities.view.Master", {
 					text : "{initDate} - {lastDate}",
 					active : false
 				})
-			],
+			]/*,
 			press: function(oEvent){
 				oController.handlePress(oEvent);
-			}
-		});
+			}*/
+		}).addStyleClass("itr");
 
 		oList.bindAggregation("items", "weeks", oObjectListItem);
-		//oList.setMode("SingleSelectMaster");
 
 		var oBar = new sap.m.Bar({
 			contentLeft : [],
@@ -58,6 +62,7 @@ sap.ui.jsview("controlActivities.view.Master", {
 				new sap.m.Button({
 					text : "Ver grafica",
 					type : "Default",
+					icon: "sap-icon://line-chart",
 					press: function(oEvent){
 						oController.OnShowGraphic(oEvent);
 					}

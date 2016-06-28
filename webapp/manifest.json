@@ -104,6 +104,7 @@
 					"view": "SplitApp",
 					"targetAggregation": "pages",
 					"targetControl": "app",
+					"viewLevel" : 1,
 					"preservePageInSplitContainer": true,					
 					"subroutes": [{
 						"pattern": "master/{shedId}",
@@ -111,23 +112,27 @@
 						"view": "Master",
 						"targetAggregation": "masterPages",
 						"targetControl": "splitApp",
+						"viewLevel" : 2,
 						"subroutes": [{
 							"pattern": "detail/{shedId}/{weekId}",
 							"name": "detail",
 							"view": "Detail",
 							"targetAggregation": "detailPages",
 							"targetControl": "splitApp",
+							"viewLevel" : 3,
 							"subroutes": [{
 								"pattern": "weight/{shedId}/{weekId}",
 								"name": "weight",
 								"view": "Weight",
 								"targetAggregation": "pages",
+								"viewLevel" : 4,
 								"targetControl": "app",
 								"subroutes": [{
 									"pattern": "cuadricula/{shedId}/{weekId}/{cuadriculas}",
 									"name": "cuadricula",
 									"view": "Cuadricula",
 									"targetAggregation": "pages",
+									"viewLevel" : 5,
 									"targetControl": "app"
 								}]
 							}]
@@ -136,7 +141,8 @@
 							"name": "graphic",
 							"view": "Chart",
 							"targetAggregation": "pages",
-							"targetControl": "app"
+							"targetControl": "app",
+							"viewLevel" : 6
 						}]
 					}]
 				}
@@ -145,37 +151,37 @@
             	"home": {
 					"viewName": "Shed",
 					"viewType": "JS",
-					"viewLevel": 1
+					"viewLevel": 0
 				},
 				"splitapp": {
 					"viewName": "SplitApp",
 					"viewType": "JS",
-					"viewLevel": 2
+					"viewLevel": 1
 				},
 				"master": {
 					"viewName": "Master",
 					"viewType": "JS",
-					"viewLevel": 3
+					"viewLevel": 2
 				},
 				"detail": {
 					"viewName": "Detail",
 					"viewType": "JS",
-					"viewLevel": 4
+					"viewLevel": 3
 				},
 				"graphic": {
 					"viewName": "Chart",
 					"viewType": "JS",
-					"viewLevel": 5
+					"viewLevel": 4
 				},
 				"weight": {
 					"viewName": "Weight",
 					"viewType": "JS",
-					"viewLevel": 6
+					"viewLevel": 5
 				},
 				"cuadricula": {
 					"viewName": "Cuadricula",
 					"viewType": "JS",
-					"viewLevel": 7
+					"viewLevel": 6
 				}
             }
         },
