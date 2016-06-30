@@ -88,7 +88,12 @@
                 "viewType": "JS",
                 "targetControl": "app",
                 "clearTarget": false,
-                "targetAggregation": "pages"
+                "controlId": "app",
+            	"controlAggregation": "pages",
+            	"transition": "slide",
+                "bypassed": {
+               		"target": "notFound"
+            	}
             },
             "routes": [
             	{
@@ -169,7 +174,12 @@
 					"viewName": "Weight",
 					"viewType": "JS",
 					"viewLevel": 5
-				}
+				},
+				"notFound": {
+	               "viewName": "NotFound",
+	               "viewType": "XML",
+	               "transition": "slide"
+	            }
             }
         },
 		"resources": {
