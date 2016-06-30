@@ -17,7 +17,7 @@ sap.ui.jsview("controlActivities.view.Shed", {
 			title: "{title}",
 			info: "{info}",
 			number: "{number}",
-			numberUnit: "{numberUnit}",
+			numberUnit: "{i18n>shed_numberUnit}",
 			icon: "{icon}",
 			infoState: "{infoState}",
 			press: function(oEvent){

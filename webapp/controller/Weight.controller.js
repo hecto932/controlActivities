@@ -3,38 +3,50 @@ sap.ui.define([
     "sap/ui/core/routing/History"
 ], function(Controller, History){
 
+    //GLOBAL VARIABLES
+    var oArgs = {};     //THIS VARIABLE CONTAIN GET PARAMETERS
+    var weights = [];
+
 	return Controller.extend("controlActivities.controller.Weight", {
 		onInit: function(){
-			var sPath = jQuery.sap.getModulePath("controlActivities.model", "/data.json");
-            var oModel = new sap.ui.model.json.JSONModel(sPath);
-            this.getView().setModel(oModel);
-
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.getRoute("weight").attachPatternMatched(this._onObjectMatched, this);
         },
         _onObjectMatched: function (oEvent) {
             var oModel = this.getView().getModel();
-            this._oRouterArgs = oEvent.getParameter("arguments");
-
-            //console.log("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId);
+            oArgs = oEvent.getParameter("arguments");
 
             this.getView().bindElement({
-                path: "/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId
+                path: "/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId
             });
+
+            var SamplingRate = oModel.getProperty("/SamplingRate");
+            var population = oModel.getProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/status_text2");
+            var result = parseInt(population * (SamplingRate / 100));
+            oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/missing", result);
         },
         onWeight: function(oEvent){
-            var oItem = oEvent.getSource();
-            var oRouter = oItem.getBindingContext().getPath();
-            var splitPath = oItem.getBindingContext().getPath().split("/");
+            var oModel = this.getView().getModel();
+            var populationMissing = oModel.getProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/missing");
 
-            console.log(splitPath);
+            oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/missing", --populationMissing);
+            var inputWeight = sap.ui.getCore().byId("inputWeight").getValue();
+            weights.push(parseFloat(inputWeight));
+            console.log(weights);
 
-            var route = sap.ui.core.UIComponent.getRouterFor(this);
-            route.navTo("cuadricula", {
-                shedId: splitPath[2],
-                weekId: splitPath[4],
-                cuadriculas: sap.ui.getCore().byId("inputCuadriculas").getValue()
-            });
+            if(populationMissing <= 0){
+                console.log("Termine");
+                var sum = weights.reduce(function(a, b) { return a + b; });
+                var avg = sum / weights.length;
+                console.log("Resultdo: " + avg);
+                weights = [];
+                oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/number", parseFloat(avg));
+                console.log(oModel);
+                this.getRouter().navTo("detail", {
+                    shedId: oArgs.shedId,
+                    weekId: oArgs.weekId
+                }, true /*no history*/);
+            }
         },
 		getRouter: function() {
             return this.getOwnerComponent().getRouter();

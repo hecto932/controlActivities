@@ -126,15 +126,7 @@
 								"view": "Weight",
 								"targetAggregation": "pages",
 								"viewLevel" : 4,
-								"targetControl": "app",
-								"subroutes": [{
-									"pattern": "cuadricula/{shedId}/{weekId}/{cuadriculas}",
-									"name": "cuadricula",
-									"view": "Cuadricula",
-									"targetAggregation": "pages",
-									"viewLevel" : 5,
-									"targetControl": "app"
-								}]
+								"targetControl": "app"
 							}]
 						}, {
 							"pattern": "graphic",
@@ -177,11 +169,6 @@
 					"viewName": "Weight",
 					"viewType": "JS",
 					"viewLevel": 5
-				},
-				"cuadricula": {
-					"viewName": "Cuadricula",
-					"viewType": "JS",
-					"viewLevel": 6
 				}
             }
         },

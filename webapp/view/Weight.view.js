@@ -13,7 +13,6 @@ sap.ui.jsview("controlActivities.view.Weight", {
 	 * @memberOf controlActivities.view.Weight
 	 */
 	createContent: function(oController) {
-
 		var oSimpleForm = new sap.ui.layout.form.SimpleForm({
 			editable: true,
 			maxContainerCols: 2,
@@ -23,36 +22,39 @@ sap.ui.jsview("controlActivities.view.Weight", {
 			emptySpanL: 4,
 			columnsL: 4,
 			columnsM: 4,
-			title: "Cuantificacion de peso semanal",
+			title: "{i18n>weight_formTitle}",
 			content: [
+				new sap.m.Text("textItr", {
+					text: "{i18n>weight_text} {missing}"
+				}).addStyleClass("itr"),
 				new sap.m.Label({
 					design: "Bold",
-					text: "Cantidad de cuadriculas",
+					text: "{i18n>weight_lblText}",
 					required: true,
 					textAlign: "Center"
 				}),
-				new sap.m.Input("inputCuadriculas", {
+				new sap.m.Input("inputWeight", {
 					type: "Number",
 					enabled: true,
-					placeholder: "Numero de mortalidad...",
+					placeholder: "Peso del Ave",
 					value: {
-						path: "dummy>/input/squares",
-						type: "sap.ui.model.type.Integer",
+						path: "dummy>/input/average",
+						type: "sap.ui.model.type.Float",
 						constraints: {
 							minimum: 1
 						}
 					},
 					liveChange: function(oEvent){
-						if(this.getValue() <= 0 || this.getValue() == ""){
-							sap.ui.getCore().byId("btnCuadriculas").setEnabled(false);
+						if(this.getValue() == "" || this.getValue() <= 0){
+							sap.ui.getCore().byId("btnSave").setEnabled(false);
 						} else{
-							sap.ui.getCore().byId("btnCuadriculas").setEnabled(true);
+							sap.ui.getCore().byId("btnSave").setEnabled(true);
 						}
 					}
 				}),
 				new sap.m.Label(),
-				new sap.m.Button("btnCuadriculas", {
-					text : "Aceptar",
+				new sap.m.Button("btnSave", {
+					text : "{i18n>weight_btnTextAccept}",
 					type : "Accept",
 					width : "100%",
 					enabled: false,
@@ -75,19 +77,19 @@ sap.ui.jsview("controlActivities.view.Weight", {
 		var oObjectHeader = new sap.m.ObjectHeader({
 			title : "{intro}",
 			icon: "{icon}",
-			intro: "{i18n>text_shed} {numberShed}",
+			intro: "{i18n>weight_objectHeaderText} {numberShed}",
 			fullScreenOptimized: true,
 			condensed: false,
 			responsive: true,
 			backgroundDesign: "Solid",
 			statuses: [
 				new sap.m.ObjectStatus({
-					title: "Peso del galpon",
+					title: "{i18n>weight_objectStatusText1}",
 					text: "{status_text1}",
 					state: "None"
 				}),
 				new sap.m.ObjectStatus({
-					title: "Cantidad de Aves",
+					title: "{i18n>weight_objectStatusText2}",
 					text: "{status_text2}",
 					state: "None"
 				})
@@ -118,8 +120,8 @@ sap.ui.jsview("controlActivities.view.Weight", {
 			]
 		});
 
-		return new sap.m.Page("weightPage", {
-			title: "Control de Produccion",
+		return new sap.m.Page("weight", {
+			title: "{i18n>weight_pageTitle}",
 			content: [
 				oPanel,
 				oGridLayout

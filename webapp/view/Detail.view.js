@@ -20,19 +20,19 @@ sap.ui.jsview("controlActivities.view.Detail", {
 
 			title : "{intro}",
 			icon: "{icon}",
-			intro: "{i18n>text_shed} {numberShed}",
+			intro: "{i18n>detail_objectHeaderText} {numberShed}",
 			fullScreenOptimized: true,
 			condensed: false,
 			responsive: true,
 			backgroundDesign: "Solid",
 			statuses: [
 				new sap.m.ObjectStatus({
-					title: "Peso de galpón (Kg)",
+					title: "{i18n>detail_objectStatusText1}",
 					text: "{status_text1}",
 					state: "None"
 				}),
 				new sap.m.ObjectStatus({
-					title: "Cantidad de Aves",
+					title: "{i18n>detail_objectStatusText2}",
 					text: "{status_text2}",
 					state: "None"
 				})
@@ -43,15 +43,15 @@ sap.ui.jsview("controlActivities.view.Detail", {
 		var oTable = new sap.m.Table("tableContol");
 
 		var col1 = new sap.m.Column("col1", { 
-			header: new sap.m.Label({ text: "Día", textAlign: "Center", design: "Bold" }), 
+			header: new sap.m.Label({ text: "{i18n>detail_tableCol1}", textAlign: "Center", design: "Bold" }), 
 			hAlign: "Center" 
 		});
 		var col2 = new sap.m.Column("col2", { 
-			header: new sap.m.Label({ text: "Mortalidad", textAlign: "Center", design: "Bold" }), 
+			header: new sap.m.Label({ text: "{i18n>detail_tableCol2}", textAlign: "Center", design: "Bold" }), 
 			hAlign: "Center" 
 		});
 		var col3 = new sap.m.Column("col3", { 
-			header: new sap.m.Label({ text: "Descarte", textAlign: "Center", design: "Bold" }), 
+			header: new sap.m.Label({ text: "{i18n>detail_tableCol3}", textAlign: "Center", design: "Bold" }), 
 			hAlign: "Center" 
 		});
 		
@@ -104,7 +104,7 @@ sap.ui.jsview("controlActivities.view.Detail", {
 		var oBar = new sap.m.Bar({
 			contentLeft : [
 				new sap.m.Button("btnWeight",{
-					text : "Calcular peso",
+					text : "{i18n>detail_btnWeight}",
 					type : "Default",
 					icon : "sap-icon://compare-2",
 					press: function(oEvent){
@@ -115,7 +115,7 @@ sap.ui.jsview("controlActivities.view.Detail", {
 			contentMiddle : [],
 			contentRight : [
 				new sap.m.Button("btnReport",{
-					text : "Reportar",
+					text : "{i18n>detail_btnReportDaily}",
 					type : "Default",
 					icon : "sap-icon://add",
 					press: function(oEvent){
@@ -137,6 +137,9 @@ sap.ui.jsview("controlActivities.view.Detail", {
 			alignItems:"Start",
 			justifyContent:"Center",
 			items: [
+				new sap.m.Text({
+					text: "{i18n>detail_text1}"
+				}),
 				oRatingIndicator
 			]
 		});

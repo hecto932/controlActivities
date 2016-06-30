@@ -30,7 +30,7 @@ sap.ui.jsview("controlActivities.view.Master", {
 					maxFractionDigits: 2
 				},
 				formatter: function(n){
-					if(n != "-"){
+					if(n != "0"){
 						return n / 1000;
 					}
 					else{
@@ -47,10 +47,7 @@ sap.ui.jsview("controlActivities.view.Master", {
 					text : "{initDate} - {lastDate}",
 					active : false
 				})
-			]/*,
-			press: function(oEvent){
-				oController.handlePress(oEvent);
-			}*/
+			]
 		}).addStyleClass("itr");
 
 		oList.bindAggregation("items", "weeks", oObjectListItem);
@@ -60,7 +57,7 @@ sap.ui.jsview("controlActivities.view.Master", {
 			contentMiddle : [],
 			contentRight : [
 				new sap.m.Button({
-					text : "Ver grafica",
+					text : "{i18n>master_btnGraphic}",
 					type : "Default",
 					icon: "sap-icon://line-chart",
 					press: function(oEvent){
@@ -71,7 +68,7 @@ sap.ui.jsview("controlActivities.view.Master", {
 		});
 	
 		return new sap.m.Page("master", {
-			title: "{i18n>masterTitle}",
+			title: "{i18n>master_pageTitle}",
 			content: [
 				oList
 			],

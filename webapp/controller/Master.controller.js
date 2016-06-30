@@ -12,10 +12,6 @@ sap.ui.define([
 		 * @memberOf controlActivities.view.Master
 		 */
 			onInit: function () {
-			
-				var sPath = jQuery.sap.getModulePath("controlActivities.model", "/data.json");
-				var oModel = new sap.ui.model.json.JSONModel(sPath);
-				this.getView().setModel(oModel);
 				
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.getRoute("master").attachPatternMatched(this._onObjectMatched, this);

@@ -34,7 +34,7 @@ sap.ui.define([
 			oArgs = this._oRouterArgs;
 			var oTable = sap.ui.getCore().byId("tableContol");
 			var oTableLength = oTable.getItems().length;
-			console.log(oTableLength);
+			//console.log(oTableLength);
 			if(oTableLength == 7){
 				sap.ui.getCore().byId("btnReport").setVisible(false);
 				sap.ui.getCore().byId("btnWeight").setVisible(true);
@@ -43,8 +43,8 @@ sap.ui.define([
 				sap.ui.getCore().byId("btnReport").setVisible(true);
 				sap.ui.getCore().byId("btnWeight").setVisible(false);
 			}
-			console.log(oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/number"));
-			if(oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId + "/number") == "-" && oTableLength == 7)
+			//console.log(oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/number"));
+			if(oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId + "/number") == "0" && oTableLength == 7)
 			{
 				sap.ui.getCore().byId("btnWeight").setVisible(true);
 			}else{
