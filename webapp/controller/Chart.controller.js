@@ -6,7 +6,7 @@ sap.ui.define([
 
     return Controller.extend("controlActivities.controller.Chart", {
         onInit: function() {
-
+            var _i18n = this.getI18n();
             var sPath = jQuery.sap.getModulePath("controlActivities.model", "/chart.json");
             var oModel = new sap.ui.model.json.JSONModel(sPath);
             console.log(oModel);
@@ -17,16 +17,16 @@ sap.ui.define([
 
             var oDataset_bl = new sap.viz.ui5.data.FlattenedDataset({
                 dimensions: [{
-                    name: 'Dia',
+                    name: _i18n.getText('chart_text1'),
                     value: "{Dia}"
                 }],
                 measures: [{
                     group: 1,
-                    name: 'Teorico',
+                    name: _i18n.getText('chart_text2'),
                     value: '{Teorico}'
                 }, {
                     group: 1,
-                    name: 'Peso',
+                    name: _i18n.getText('chart_text3'),
                     value: '{Peso}'
                 }],
                 data: {
@@ -45,18 +45,18 @@ sap.ui.define([
             var feedPrimaryValues_bl7 = new sap.viz.ui5.controls.common.feeds.FeedItem({
                     'uid': "primaryValues",
                     'type': "Measure",
-                    'values': ["Teorico", "Peso"]
+                    'values': [_i18n.getText('chart_feedValue1'), _i18n.getText('chart_feedValue2')]
                         //'values' : [ "Revenue" ]
                 }),
                 feedAxisLabels_bl7 = new sap.viz.ui5.controls.common.feeds.FeedItem({
                     'uid': "axisLabels",
                     'type': "Dimension",
-                    'values': ["Dia"]
+                    'values': [_i18n.getText("chart_feedAxisValue1")]
                 }),
                 feedTargetValues_bl7 = new sap.viz.ui5.controls.common.feeds.FeedItem({
                     'uid': "targetValues",
                     'type': "Measure",
-                    'values': ["Peso"]
+                    'values': [_i18n.getText("chart_feedTargetValue1")]
                 });
 
             oVizFrame.addFeed(feedPrimaryValues_bl7);
@@ -76,6 +76,9 @@ sap.ui.define([
             } else {
                 this.getRouter().navTo("home", {}, true /*no history*/);
             }
+        },
+        getI18n: function() {
+            return this.getOwnerComponent().getModel("i18n").getResourceBundle();
         }
     });
 
