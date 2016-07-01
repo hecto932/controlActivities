@@ -50,8 +50,9 @@ sap.ui.define([
                 var avg = sum / weights.length;
                 console.log("Resultdo: " + avg);
                 weights = [];
-                sap.ui.getCore().byId("master").getModel().setProperty("/ShedsCollection/" + oArgs.shedId + "/number", parseFloat(avg));
-                console.log(sap.ui.getCore().byId("master").getModel());
+            
+                oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/number", parseFloat(avg));
+                
                 this.getRouter().navTo("detail", {
                     shedId: oArgs.shedId,
                     weekId: oArgs.weekId
