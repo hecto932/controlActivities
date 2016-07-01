@@ -23,13 +23,21 @@ sap.ui.define([
 			oRouter.getRoute("detail").attachPatternMatched(this._onObjectMatched, this);
 		},
 		_onObjectMatched: function (oEvent) {
+			var oView = this.getView();
 			var oModel = this.getView().getModel();
 			this._oRouterArgs = oEvent.getParameter("arguments");
 
-			//console.log("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId);
-
 			this.getView().bindElement({
-				path: "/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId
+				path: "/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId,
+				events : {
+					change: this._onBindingChange.bind(this),
+					dataRequested: function (oEvent) {
+						oView.setBusy(true);
+					},
+					dataReceived: function (oEvent) {
+						oView.setBusy(false);
+					}
+				}
 			});
 			oArgs = this._oRouterArgs;
 			var oTable = sap.ui.getCore().byId("tableContol");
@@ -245,6 +253,12 @@ sap.ui.define([
 				shedId: splitPath[2],
 				weekId: splitPath[4]
 			});
+		},
+		_onBindingChange : function (oEvent) {
+			// No data for the binding
+			if (!this.getView().getBindingContext()) {
+				this.getRouter().getTargets().display("notFound");
+			}
 		}
 
 		/**

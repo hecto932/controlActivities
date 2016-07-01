@@ -15,9 +15,19 @@ sap.ui.define([
         _onObjectMatched: function (oEvent) {
             var oModel = this.getView().getModel();
             oArgs = oEvent.getParameter("arguments");
+            var oView = this.getView();
 
             this.getView().bindElement({
-                path: "/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId
+                path: "/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId,
+                events : {
+                    change: this._onBindingChange.bind(this),
+                    dataRequested: function (oEvent) {
+                        oView.setBusy(true);
+                    },
+                    dataReceived: function (oEvent) {
+                        oView.setBusy(false);
+                    }
+                }
             });
 
             var SamplingRate = oModel.getProperty("/SamplingRate");
@@ -40,8 +50,8 @@ sap.ui.define([
                 var avg = sum / weights.length;
                 console.log("Resultdo: " + avg);
                 weights = [];
-                oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/number", parseFloat(avg));
-                console.log(oModel);
+                sap.ui.getCore().byId("master").getModel().setProperty("/ShedsCollection/" + oArgs.shedId + "/number", parseFloat(avg));
+                console.log(sap.ui.getCore().byId("master").getModel());
                 this.getRouter().navTo("detail", {
                     shedId: oArgs.shedId,
                     weekId: oArgs.weekId
@@ -59,6 +69,12 @@ sap.ui.define([
                 window.history.go(-1);
             } else {
                 this.getRouter().navTo("home", {}, true /*no history*/);
+            }
+        },
+        _onBindingChange : function (oEvent) {
+            // No data for the binding
+            if (!this.getView().getBindingContext()) {
+                this.getRouter().getTargets().display("notFound");
             }
         }
 	})
