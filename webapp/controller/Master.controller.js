@@ -20,18 +20,10 @@ sap.ui.define([
 				var oView = this.getView();
 				this._oRouterArgs = oEvent.getParameter("arguments");
 				console.log("/ShedsCollection/" + this._oRouterArgs.shedId);
+
 				this.getView().bindElement({
-					path: "/ShedsCollection/" + this._oRouterArgs.shedId,
-					events : {
-						change: this._onBindingChange.bind(this),
-						dataRequested: function (oEvent) {
-							oView.setBusy(true);
-						},
-						dataReceived: function (oEvent) {
-							oView.setBusy(false);
-						}
-					}
-				});
+					path: "/ShedsCollection/" + this._oRouterArgs.shedId
+				});	
 			},
 			getRouter: function(){
 				return this.getOwnerComponent().getRouter();
@@ -90,6 +82,7 @@ sap.ui.define([
 			},
 			_onBindingChange : function (oEvent) {
 				// No data for the binding
+				console.log("Holaaa");
 				if (!this.getView().getBindingContext()) {
 					this.getRouter().getTargets().display("notFound");
 				}

@@ -41,13 +41,14 @@ sap.ui.define([
 
             oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/missing", --populationMissing);
             var inputWeight = sap.ui.getCore().byId("inputWeight").getValue();
-            weights.push(parseFloat(inputWeight));
+            //sap.ui.getCore().byId("inputWeight").setValue();
+            weights.push(parseFloat(parseFloat(inputWeight).toFixed(3)));
             console.log(weights);
 
             if(populationMissing <= 0){
                 console.log("Termine");
-                var sum = weights.reduce(function(a, b) { return a + b; });
-                var avg = sum / weights.length;
+                var sum = weights.reduce(function(a, b) { return parseFloat(a + b); });
+                var avg = parseFloat(sum / weights.length);
                 console.log("Resultdo: " + avg);
                 weights = [];
             
@@ -76,6 +77,8 @@ sap.ui.define([
             // No data for the binding
             if (!this.getView().getBindingContext()) {
                 this.getRouter().getTargets().display("notFound");
+            }else{
+                console.log("Si tiene binding");
             }
         }
 	})

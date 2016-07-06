@@ -30,12 +30,10 @@ sap.ui.jsview("controlActivities.view.Master", {
 					maxFractionDigits: 2
 				},
 				formatter: function(n){
-					if(n != "0"){
-						return n / 1000;
+					if(n < 1000){
+						return parseFloat(n / 1000);
 					}
-					else{
-						return n;
-					}
+					return parseFloat(n);
 				}
 			},
 			numberTextDirection: "RTL",
