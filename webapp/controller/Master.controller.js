@@ -12,18 +12,29 @@ sap.ui.define([
 		 * @memberOf controlActivities.view.Master
 		 */
 			onInit: function () {
-				
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.getRoute("master").attachPatternMatched(this._onObjectMatched, this);
 			},
 			_onObjectMatched: function (oEvent) {
 				var oView = this.getView();
 				this._oRouterArgs = oEvent.getParameter("arguments");
-				console.log("/ShedsCollection/" + this._oRouterArgs.shedId);
 
-				this.getView().bindElement({
-					path: "/ShedsCollection/" + this._oRouterArgs.shedId
-				});	
+				if(oView.getModel().getProperty('/ShedsCollection') !== undefined){
+					if(oView.getModel().getProperty('/ShedsCollection')[this._oRouterArgs.shedId] !== undefined){
+						this.getView().bindElement({
+							path: "/ShedsCollection/" + this._oRouterArgs.shedId
+						});	
+					}
+					else{
+						this.getRouter().getTargets().display("notFound");
+					}
+				}
+				else{
+					this.getRouter().getTargets().display("notFound");
+				}
+				
+				console.log(this.getView().getModel().getProperty("/ShedsCollection/" + this._oRouterArgs.shedId));
+
 			},
 			getRouter: function(){
 				return this.getOwnerComponent().getRouter();
