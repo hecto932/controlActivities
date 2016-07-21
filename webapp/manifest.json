@@ -80,12 +80,11 @@
             "config": {
                 "routerClass": "sap.m.routing.Router",
                 "viewPath": "controlActivities.view",
-                "viewType": "JS",
-                "targetControl": "app",
+                "viewType": "XML",
                 "clearTarget": false,
-                "controlId": "app",
-            	"controlAggregation": "pages",
+                "targetAggregation" : "pages",
             	"transition": "slide",
+            	"targetControl": "app",
                 "bypassed": {
                		"target": "notFound"
             	}
@@ -99,51 +98,48 @@
 					"targetControl": "app"
 				},
 				{
-					"pattern": "splitApp/{shedId}",
+					"pattern": "splitApp",
 					"name": "splitapp",
 					"view": "SplitApp",
-					"targetAggregation": "pages",
-					"targetControl": "app",
-					"viewLevel" : 1,
-					"preservePageInSplitContainer": true,					
-					"subroutes": [{
+					"targetControl": "app",			
+					"subroutes": [
+						{
 						"pattern": "master/{shedId}",
 						"name": "master",
 						"view": "Master",
 						"targetAggregation": "masterPages",
-						"targetControl": "splitApp",
-						"viewLevel" : 2,
-						"subroutes": [{
+						"targetControl": "splitapp"
+						}, 
+						{
 							"pattern": "detail/{shedId}/{weekId}",
 							"name": "detail",
 							"view": "Detail",
 							"targetAggregation": "detailPages",
-							"targetControl": "splitApp",
-							"viewLevel" : 3,
+							"targetControl": "splitapp",
 							"subroutes": [{
 								"pattern": "weight/{shedId}/{weekId}",
 								"name": "weight",
 								"view": "Weight",
 								"targetAggregation": "pages",
-								"viewLevel" : 4,
 								"targetControl": "app"
 							}]
-						}, {
+						},
+						{
 							"pattern": "graphic",
 							"name": "graphic",
 							"view": "Chart",
 							"targetAggregation": "pages",
-							"targetControl": "app",
-							"viewLevel" : 6
-						}]
-					}]
+							"targetControl": "app"
+						}
+					]
 				}
+				
             ],
             "targets": {
             	"home": {
 					"viewName": "Shed",
-					"viewType": "JS",
-					"viewLevel": 0
+					"viewType": "XML",
+					"viewLevel": 1
 				},
 				"notFound": {
 	               "viewName": "NotFound",
@@ -152,27 +148,27 @@
 	            },
 				"splitapp": {
 					"viewName": "SplitApp",
-					"viewType": "JS",
-					"viewLevel": 1
+					"viewType": "XML",
+					"viewLevel": 2
 				},
 				"master": {
 					"viewName": "Master",
-					"viewType": "JS",
-					"viewLevel": 2
+					"viewType": "XML",
+					"viewLevel": 3
 				},
 				"detail": {
 					"viewName": "Detail",
-					"viewType": "JS",
-					"viewLevel": 3
+					"viewType": "XML",
+					"viewLevel": 4
 				},
 				"graphic": {
 					"viewName": "Chart",
-					"viewType": "JS",
-					"viewLevel": 4
+					"viewType": "XML",
+					"viewLevel": 5
 				},
 				"weight": {
 					"viewName": "Weight",
-					"viewType": "JS",
+					"viewType": "XML",
 					"viewLevel": 5
 				}
             }

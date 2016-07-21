@@ -11,13 +11,12 @@
 				id="container"
 				tiles="{/ShedsCollection}">
 				<StandardTile
-					icon="{icon}"
-					type="{type}"
-					number="{number}"
-					numberUnit="{numberUnit}"
 					title="{title}"
 					info="{info}"
-					infoState="{infoState}" 
+					number="{number}"
+					numberUnit="{i18n>shed_numberUnit}"
+					icon="{icon}"
+					infoState="{infoState}"
 					press="handlePress" />
 			</TileContainer>
 		</Page>

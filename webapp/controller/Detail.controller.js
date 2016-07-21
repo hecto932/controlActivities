@@ -4,7 +4,10 @@ sap.ui.define([
 	"controlActivities/model/formatter"
 ], function(Controller, History, formatter) {
 	"use strict";
+
+	//GLOBAL VALUES
 	var oArgs = {};
+
 	return Controller.extend("controlActivities.controller.Detail", {
 
 		/**
@@ -41,23 +44,23 @@ sap.ui.define([
 				}
 			});
 
-			var oTable = sap.ui.getCore().byId("tableContol");
+			var oTable = oView.byId("tableContol");
 			var oTableLength = oTable.getItems().length;
-			//console.log(oTableLength);
+
 			if(oTableLength == 7){
-				sap.ui.getCore().byId("btnReport").setVisible(false);
-				sap.ui.getCore().byId("btnWeight").setVisible(true);
+				oView.byId("btnReport").setVisible(false);
+				oView.byId("btnWeight").setVisible(true);
 			}
 			else{
-				sap.ui.getCore().byId("btnReport").setVisible(true);
-				sap.ui.getCore().byId("btnWeight").setVisible(false);
+				oView.byId("btnReport").setVisible(true);
+				oView.byId("btnWeight").setVisible(false);
 			}
 			//console.log(oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/number"));
 			if(oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId + "/number") == "0" && oTableLength == 7)
 			{
-				sap.ui.getCore().byId("btnWeight").setVisible(true);
+				oView.byId("btnWeight").setVisible(true);
 			}else{
-				sap.ui.getCore().byId("btnWeight").setVisible(false);
+				oView.byId("btnWeight").setVisible(false);
 			}
 		},
 		getRouter: function(){
@@ -74,7 +77,8 @@ sap.ui.define([
 			}
 		},
 		showErrorReport: function(oEvent) {
-			sap.m.MessageToast.show("Ya se han cargado todos los dias de la semana.", {
+			var _i18n = this.getI18n();
+			sap.m.MessageToast.show(_i18n.getText("detail_messageToast"), {
 			    duration: 3000,                  // default
 			    width: "18em",                   // default
 			    my: "center center",             // default
@@ -90,8 +94,9 @@ sap.ui.define([
 			});
 		},
 		reportingDailyData: function (){
+			var oView = this.getView();
 			var oModel = this.getView().getModel();
-			var oTableControl = sap.ui.getCore().byId("tableContol");
+			var oTableControl = oView.byId("tableContol");
 			var oTableControlLength = oTableControl.getItems().length;
 			var dailyData = {
 				"day": oTableControlLength + 1,
@@ -119,8 +124,10 @@ sap.ui.define([
 			oTableControl.addItem(oColumnListItem);
 
 			if(oTableControl.getItems().length == 7){
-				var btnReport = sap.ui.getCore().byId("btnReport");
-				var btnWeight = sap.ui.getCore().byId("btnWeight");
+				var btnReport = oView.byId("btnReport");
+				var btnWeight = oView.byId("btnWeight");
+				console.log(btnReport);
+				console.log(btnReport);
 				btnReport.setVisible(false);
 				btnWeight.setVisible(true);
 			}
@@ -134,13 +141,15 @@ sap.ui.define([
 
 		},
 		onDialogPress: function (oEvent) {
-			var oTableControl = sap.ui.getCore().byId("tableContol");
+			var _i18n = this.getI18n();
+			var oView = this.getView();
+			var oTableControl = oView.byId("tableContol");
 			var oTableControlLength = oTableControl.getItems().length;
 
 			var oInputMortality = new sap.m.Input("inputMortality", {
 				type: "Number",
 				enabled: true,
-				placeholder: "Numero de mortalidad...",
+				placeholder: _i18n.getText("detail_placeholderMortality"),
 				value: {
 					path: "dummy>/input/mortality",
 					type: "sap.ui.model.type.Integer",
@@ -161,7 +170,7 @@ sap.ui.define([
 			var oInputDiscard = new sap.m.Input("inputDiscard", {
 				type: "Number",
 				enabled: true,
-				placeholder: "Numero de descarte...",
+				placeholder: _i18n.getText("detail_placeholderDiscard"),
 				value: {
 					path: "dummy>/input/discard",
 					type: "sap.ui.model.type.Integer",
@@ -196,14 +205,14 @@ sap.ui.define([
 							content: [
 								new sap.m.Label({
 									design: "Bold",
-									text: "Mortalidad",
+									text: _i18n.getText("detail_simpleFormLabel1"),
 									required: true
 								}),
 								oInputMortality
 								,
 								new sap.m.Label({
 									design: "Bold",
-									text: "Descarte",
+									text: _i18n.getText("detail_simpleFormLabel2"),
 									required: true
 								}),
 								oInputDiscard
@@ -211,7 +220,7 @@ sap.ui.define([
 						})
 					],
 					beginButton: new sap.m.Button("btnAdd",{
-						text: 'Guardar',
+						text: _i18n.getText("detail_simpleFormBtn1"),
 						type: "Accept",
 						press: function (){
 							that.reportingDailyData();
@@ -220,7 +229,7 @@ sap.ui.define([
 						} 
 					}),
 					endButton: new sap.m.Button({
-						text: 'Cancelar',
+						text: _i18n.getText("detail_simpleFormBtn2"),
 						type: "Reject",
 						press: function () {
 							dialog.close();
@@ -264,7 +273,10 @@ sap.ui.define([
 			/*if (!this.getView().getBindingContext()) {
 				this.getRouter().getTargets().display("notFound");
 			}*/
-		}
+		},
+		getI18n: function() {
+            return this.getOwnerComponent().getModel("i18n").getResourceBundle();
+        }
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered

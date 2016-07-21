@@ -2,21 +2,123 @@
 	height="100%"
 	controllerName="controlActivities.controller.Detail"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
 	xmlns="sap.m">
 	<Page
 		id="detail"
-		title="{i18n>masterTitle}"
+		title="{i18n>appTitle}"
 		enableScrolling="true" 
-		showNavButton="true"
+		showNavButton="{device>/system/phone}"
 		navButtonPress="onNavBack">
-		<ObjectHeader
-			title="{intro}"
-			icon="{icon}"
-			intro="{i18n>text_shed} {numberShed}"
-			fullScreenOptimized="true"
-			condensed="false"
-			responsive="true"
-			backgroundDesign="Solid">
-		</ObjectHeader>
+		
+		<content>
+			<Panel backgroundDesign="Solid">
+				<ObjectHeader
+					title="{intro}"
+					icon="{icon}"
+					intro="{intro}"
+					fullScreenOptimized="true"
+					condensed="false"
+					responsive="true"
+					background="Solid" >
+					<statuses>
+						<ObjectStatus
+							title="{i18n>detail_objectStatusText1}"
+							text="{status_text1}"
+							state="None"/>
+						<ObjectStatus
+							title="{i18n>detail_objectStatusText2}"
+							text="{status_text2}"
+							state="None" />
+					</statuses>
+				</ObjectHeader>
+				<FlexBox
+					alignItems="Start"
+					justifyContent="Center">
+					<items>
+						<RatingIndicator
+							iconSize="1.3em"
+							enabled="false" 
+							maxValue="5" 
+							value="{shedRating}"   
+							visualMode="Full" />
+					</items>
+				</FlexBox>
+			</Panel>
+			<l:Grid
+				hSpacing="0"
+				width="auto"
+				defaultSpan="XL12 L12 M12 S12"
+				defaultIndent="XL0 L0 M0 S0">
+				<l:content>
+					<Table id="tableContol"
+						items="{
+							path: 'days'
+						}">
+						<columns>
+							<Column hAlign="Center">
+								<Label 
+									text="{i18n>detail_tableCol1}" 
+									textAlign="Center" 
+									design="Bold" />
+							</Column>
+							<Column hAlign="Center">
+								<Label text="{i18n>detail_tableCol2}" textAlign="Center" design="Bold" />
+							</Column>
+							<Column hAlign="Center">
+								<Label 
+									text="{i18n>detail_tableCol3}" 
+									textAlign="Center" 
+									design="Bold" />
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<ObjectNumber
+										number="{day}"
+										unit="{WeightUnit}"
+										state="None"/>
+									<ObjectNumber
+										number="{mortality}"
+										numberUnit="{numberUnit}"
+										state="{
+											parts:[ {path:'mortality'} ],
+											formatter: '.formatter.verifyStatusMortality'
+										}" />
+									<ObjectNumber
+										number="{discard}"
+										numberUnit="{numberUnit}"
+										state="{
+											parts:[ {path:'discard'} ],
+											formatter: '.formatter.verifyStatusDiscard'
+										}" />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</l:content>
+			</l:Grid>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Button 
+						id="btnWeight"
+						text="{i18n>detail_btnWeight}" 
+						type="Default" 
+						icon="sap-icon://compare-2"
+						press="onRegisterWeight"/>
+				</contentLeft>
+				<contentRight>
+					<Button 
+						id="btnReport"
+						text="{i18n>detail_btnReportDaily}" 
+						type="Default" 
+						icon="sap-icon://add"
+						press="onDialogPress"/>
+				</contentRight>
+			</Bar>
+		</footer>
 	</Page>
 </mvc:View>

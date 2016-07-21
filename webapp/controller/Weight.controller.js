@@ -3,8 +3,8 @@ sap.ui.define([
     "sap/ui/core/routing/History"
 ], function(Controller, History){
 
-    //GLOBAL VARIABLES
-    var oArgs = {};     //THIS VARIABLE CONTAIN GET PARAMETERS
+    //GLOBAL VALUES
+    var oArgs = {};
     var weights = [];
 
 	return Controller.extend("controlActivities.controller.Weight", {
@@ -36,11 +36,12 @@ sap.ui.define([
             oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/missing", result);
         },
         onWeight: function(oEvent){
+            var oView = this.getView();
             var oModel = this.getView().getModel();
             var populationMissing = oModel.getProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/missing");
 
             oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/missing", --populationMissing);
-            var inputWeight = sap.ui.getCore().byId("inputWeight").getValue();
+            var inputWeight = oView.byId("inputWeight").getValue();
             //sap.ui.getCore().byId("inputWeight").setValue();
             weights.push(parseFloat(parseFloat(inputWeight).toFixed(3)));
             console.log(weights);
@@ -77,9 +78,19 @@ sap.ui.define([
             // No data for the binding
             if (!this.getView().getBindingContext()) {
                 this.getRouter().getTargets().display("notFound");
-            }else{
-                console.log("Si tiene binding");
             }
+        },
+        handleLiveChange: function(oEvent){
+            var value = oEvent.getParameter("value");
+            var btnSave = this.getView().byId('btnSave');
+            var inputWeight = this.getView().byId('inputWeight');
+            console.log(inputWeight);
+            if(inputWeight.getValue() == "" || inputWeight.getValue() <= 0){
+                btnSave.setEnabled(false);
+            } else{
+                btnSave.setEnabled(true);
+            }
+            
         }
 	})
 })

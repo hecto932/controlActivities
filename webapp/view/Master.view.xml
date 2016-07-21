@@ -4,33 +4,47 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m">
 	<Page
-		title="{i18n>masterTitle}"
+		id="master"
+		title="{i18n>master_pageTitle}"
 		enableScrolling="true" 
 		showNavButton="true"
 		navButtonPress="onNavBack">
 		<List 
 			id="myList"
-			items="{weeks}">
+			items="{weeks}"
+			mode="SingleSelectMaster"
+			selectionChange="onSelectionChange">
 			<ObjectListItem 
-				title="{i18n>objectWeek} {id}"
-				number="{number}"
+				title="{id}"
+				class="itr"
+				number="{
+					path: 'number',
+					type: 'sap.ui.model.type.Float',
+					formatOptions: {
+						maxFractionDigits: 3
+					},
+					formatter : '.formatter.formatWeight'
+				}"
+				numberTextDirection="RTL"
 				numberUnit="{numberUnit}"
 				type="Active"
-				numberState="Success" 
-				press="handlePress">
+				numberState="Success">
 				<attributes>
-					<ObjectAttribute text="{initDate} - {lastDate}" active="false"/>
+					<ObjectAttribute 
+						text="{initDate} - {lastDate}" 
+						active="false" />
 				</attributes>
 			</ObjectListItem>
 		</List>
 		<footer>
-			<OverflowToolbar >
+			<Toolbar>
+				<ToolbarSpacer/>
 				<Button 
-					text="Ver grafica"
-					type="Default"
-					press="OnShowGraphic">
-				</Button>
-			</OverflowToolbar >
+					text="{i18n>master_btnGraphic}" 
+					type="Default" 
+					icon="sap-icon://line-chart"
+					press="OnShowGraphic"/>
+			</Toolbar>
 		</footer>
 	</Page>
 </mvc:View>

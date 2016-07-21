@@ -6,13 +6,14 @@ sap.ui.define([
 
     return Controller.extend("controlActivities.controller.Chart", {
         onInit: function() {
+            var oView = this.getView();
             var _i18n = this.getI18n();
             var sPath = jQuery.sap.getModulePath("controlActivities.model", "/chart.json");
             var oModel = new sap.ui.model.json.JSONModel(sPath);
             console.log(oModel);
-
-            var oVizFrame = sap.ui.getCore().byId("oVizFrame");
-
+            
+            var oVizFrame = oView.byId("oVizFrame");
+            console.log(oVizFrame);
             oVizFrame.setModel(oModel);
 
             var oDataset_bl = new sap.viz.ui5.data.FlattenedDataset({
@@ -63,6 +64,7 @@ sap.ui.define([
             oVizFrame.addFeed(feedAxisLabels_bl7);
             oVizFrame.addFeed(feedTargetValues_bl7);
             oVizFrame.setVizType('line');
+            
         },
         getRouter: function() {
             return this.getOwnerComponent().getRouter();

@@ -1,0 +1,30 @@
+<mvc:View
+	height="100%"
+	controllerName="controlActivities.controller.Chart"
+	xmlns="sap.suite.ui.commons"
+	xmlns:m="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:viz="sap.viz.ui5.controls">
+	<m:Page
+		title="{i18n>appTitle}"
+		enableScrolling="true"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<m:content>
+			<ChartContainer
+				id="oChartContainer"
+				showFullScreen="true"
+				title="{i18n>chart_graphicTitle}">
+				<content>
+					<ChartContainerContent
+						icon = "sap-icon://line-chart"
+						title = "Line Chart">
+						<content>
+							<viz:VizFrame id="oVizFrame" width="100%" uiConfig="{applicationSet:'fiori'}"></viz:VizFrame>
+						</content>
+					</ChartContainerContent>
+				</content>
+			</ChartContainer>
+		</m:content>
+	</m:Page>
+</mvc:View>

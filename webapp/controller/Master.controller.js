@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History"
-], function(Controller, History) {
+	"sap/ui/core/routing/History",
+	"controlActivities/model/formatter"
+], function(Controller, History, formatter) {
 	"use strict";
 
 	return Controller.extend("controlActivities.controller.Master", {
@@ -11,6 +12,7 @@ sap.ui.define([
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf controlActivities.view.Master
 		 */
+		 	formatter: formatter,
 			onInit: function () {
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.getRoute("master").attachPatternMatched(this._onObjectMatched, this);
@@ -41,15 +43,10 @@ sap.ui.define([
 			},
 			handlePress: function(oEvent){
 				var oItem = oEvent.getSource();
-				console.log(oItem);
-				console.log(oEvent);
 				var oRouter = oItem.getBindingContext().getPath();
-				console.log(oRouter);
 				var splitPath = oItem.getBindingContext().getPath().split("/");
-
-				console.log(splitPath);
-
 				var route = sap.ui.core.UIComponent.getRouterFor(this);
+
 				route.navTo("detail", {
 					shedId: splitPath[2],
 					weekId: splitPath[4]
@@ -67,36 +64,32 @@ sap.ui.define([
 				}
 			},
 			addWeek : function(oEvent){
-				console.log("Agregando semana");
+				console.log("Adding week!");
 			},
 			OnShowGraphic: function(oEvent){
-				/*var oItem = oEvent.getSource();
-				var oRouter = oItem.getBindingContext().getPath();
-				console.log(oRouter);
-				var splitPath = oItem.getBindingContext().getPath().split("/");
-
-				console.log(splitPath);*/
-
 				var route = sap.ui.core.UIComponent.getRouterFor(this);
 				route.navTo("graphic");
 			},
 			onSelectionChange: function(oEvent){
 				var sPath = oEvent.getParameter("listItem").getBindingContext().getPath();
-				console.log(sPath);
 				var splitPath = sPath.split('/');
-				console.log(splitPath);
 				var route = this.getRouter();
+
 				route.navTo("detail", {
 					shedId: splitPath[2],
 					weekId: splitPath[4]
 				}, true);
 			},
 			_onBindingChange : function (oEvent) {
-				// No data for the binding
-				console.log("Holaaa");
 				if (!this.getView().getBindingContext()) {
 					this.getRouter().getTargets().display("notFound");
 				}
+			},
+			formatWeight: function(n){
+				if(n < 1000){
+					return parseFloat(n / 1000);
+				}
+				return parseFloat(n);
 			}
 
 		/**

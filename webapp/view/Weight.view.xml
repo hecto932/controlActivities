@@ -1,0 +1,100 @@
+<mvc:View
+	height="100%"
+	controllerName="controlActivities.controller.Weight"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m">
+	<Page
+		id="weight"
+		title="{i18n>weight_pageTitle}"
+		showNavButton="true" 
+		enableScrolling="true"
+		navButtonPress="onNavBack">
+		<content>
+			<Panel backgroundDesign="Solid">
+				<ObjectHeader
+					title="{intro}"
+					icon="{icon}"
+					intro="{intro}"
+					fullScreenOptimized="true"
+					condensed="false"
+					responsive="true"
+					background="Solid" >
+					<statuses>
+						<ObjectStatus
+							title="{i18n>detail_objectStatusText1}"
+							text="{status_text1}"
+							state="None"/>
+						<ObjectStatus
+							title="{i18n>detail_objectStatusText2}"
+							text="{status_text2}"
+							state="None" />
+					</statuses>
+				</ObjectHeader>
+				<FlexBox
+					alignItems="Start"
+					justifyContent="Center">
+					<items>
+						<RatingIndicator
+							iconSize="1.3em"
+							enabled="false" 
+							maxValue="5" 
+							value="{shedRating}"   
+							visualMode="Full" />
+					</items>
+				</FlexBox>
+			</Panel>
+			<l:Grid
+				hSpacing="0"
+				width="auto"
+				defaultSpan="XL10 L10 M10 S12"
+				defaultIndent="XL1 L1 M1 S0">
+				<l:content>
+					<f:SimpleForm 
+						editable="true"
+						maxContainerCols="2"
+						layout="ResponsiveGridLayout"
+						labelSpanL="4"
+						labelSpanM="4"
+						emptySpanL="1"
+						emptySpanM="1"
+						title="{i18n>weight_formTitle}"
+						columnsL="1"
+						columnsM="1">
+						<f:content>
+							<Text 
+								class="itr" 
+								text="{i18n>weight_text} {missing}" />
+							<Label 
+								text="{i18n>weight_lblText}"
+								required="true"
+								textAlign="Center"
+								design="Bold" />
+							<Input 
+								id="inputWeight"
+								type="Number"
+								enabled="true"
+								placeholder="Peso del Ave"
+								value="{
+									path: 'dummy>/input/average',
+									type: 'sap.ui.model.type.Float',
+									constraints: { minimum: 1 },
+									formatOptions: { maxFractionDigits: 3}
+								}" 
+								liveChange="handleLiveChange" />
+							<Label />
+							<Button
+								id="btnSave"
+								text="{i18n>weight_btnTextAccept}"
+								type="Accept"
+								width="100%"
+								enabled="false"
+								press="onWeight" />
+						</f:content>
+					</f:SimpleForm>
+				</l:content>
+			</l:Grid>
+		</content>
+	</Page>
+</mvc:View>

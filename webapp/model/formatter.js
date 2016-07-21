@@ -29,6 +29,12 @@ sap.ui.define([], function(){
 			}
 			
 			return status;
+		},
+		formatWeight: function(n){
+			if(n < 1000){
+				return parseFloat(n / 1000);
+			}
+			return parseFloat(n);
 		}
 	};
 });
