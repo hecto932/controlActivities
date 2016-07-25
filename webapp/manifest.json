@@ -11,8 +11,18 @@
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"sourceTemplate": {
-			"id": "ui5template.basicSAPUI5ApplicationProject",
-			"version": "1.32.0"
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"avicola.xsodata": {
+				"uri": "/SimpleAgro/services/avicola.xsodata/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "webapp/localService/metadata.xml"
+				}
+			}
 		}
 	},
 	"sap.ui": {
@@ -36,7 +46,6 @@
 			"sap_bluecrystal"
 		]
 	},
-
 	"sap.ui5": {
 		"_version": "1.1.0",
 		"rootView": {
@@ -56,41 +65,41 @@
 			"compact": true,
 			"cozy": true
 		},
-        "models": {
-            "": {
+		"models": {
+			"": {
 				"type": "sap.ui.model.json.JSONModel",
 				"uri": "model/data.json"
 			},
-            "i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleName": "controlActivities.i18n.i18n"
-                }
-            },
-            "dummy": {
-            	"type": "sap.ui.model.json.JSONModel",
-    			"uri": "model/dummy.json"
-            },
-            "chart": {
-            	"type": "sap.ui.model.json.JSONModel",
-    			"uri": "model/chart.json"
-            }
-        },
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "controlActivities.i18n.i18n"
+				}
+			},
+			"dummy": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/dummy.json"
+			},
+			"chart": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/chart.json"
+			}
+		},
 		"routing": {
-            "config": {
-                "routerClass": "sap.m.routing.Router",
-                "viewPath": "controlActivities.view",
-                "viewType": "XML",
-                "clearTarget": false,
-                "targetAggregation" : "pages",
-            	"transition": "slide",
-            	"targetControl": "app",
-                "bypassed": {
-               		"target": "notFound"
-            	}
-            },
-            "routes": [
-            	{
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewPath": "controlActivities.view",
+				"viewType": "XML",
+				"clearTarget": false,
+				"targetAggregation": "pages",
+				"transition": "slide",
+				"targetControl": "app",
+				"bypassed": {
+					"target": "notFound"
+				}
+			},
+			"routes": [
+				{
 					"pattern": "",
 					"name": "home",
 					"view": "Shed",
@@ -101,28 +110,30 @@
 					"pattern": "splitApp",
 					"name": "splitapp",
 					"view": "SplitApp",
-					"targetControl": "app",			
+					"targetControl": "app",
 					"subroutes": [
 						{
-						"pattern": "master/{shedId}",
-						"name": "master",
-						"view": "Master",
-						"targetAggregation": "masterPages",
-						"targetControl": "splitapp"
-						}, 
+							"pattern": "master/{shedId}",
+							"name": "master",
+							"view": "Master",
+							"targetAggregation": "masterPages",
+							"targetControl": "splitapp"
+						},
 						{
 							"pattern": "detail/{shedId}/{weekId}",
 							"name": "detail",
 							"view": "Detail",
 							"targetAggregation": "detailPages",
 							"targetControl": "splitapp",
-							"subroutes": [{
-								"pattern": "weight/{shedId}/{weekId}",
-								"name": "weight",
-								"view": "Weight",
-								"targetAggregation": "pages",
-								"targetControl": "app"
-							}]
+							"subroutes": [
+								{
+									"pattern": "weight/{shedId}/{weekId}",
+									"name": "weight",
+									"view": "Weight",
+									"targetAggregation": "pages",
+									"targetControl": "app"
+								}
+							]
 						},
 						{
 							"pattern": "graphic",
@@ -133,19 +144,18 @@
 						}
 					]
 				}
-				
-            ],
-            "targets": {
-            	"home": {
+			],
+			"targets": {
+				"home": {
 					"viewName": "Shed",
 					"viewType": "XML",
 					"viewLevel": 1
 				},
 				"notFound": {
-	               "viewName": "NotFound",
-	               "viewType": "XML",
-	               "transition": "slide"
-	            },
+					"viewName": "NotFound",
+					"viewType": "XML",
+					"transition": "slide"
+				},
 				"splitapp": {
 					"viewName": "SplitApp",
 					"viewType": "XML",
@@ -171,12 +181,14 @@
 					"viewType": "XML",
 					"viewLevel": 5
 				}
-            }
-        },
+			}
+		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		}
 	}
 }

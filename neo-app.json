@@ -18,6 +18,14 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/destinations/SimpleAgro",
+      "target": {
+        "type": "destination",
+        "name": "SimpleAgro"
+      },
+      "description": "Services oData to Consuming SimpleAgro Data"
     }
   ]
 }
