@@ -7,7 +7,6 @@ sap.ui.define([
 
 	//GLOBAL VALUES
 	var oArgs = {};
-
 	return Controller.extend("controlActivities.controller.Detail", {
 
 		/**
@@ -28,40 +27,40 @@ sap.ui.define([
 		_onObjectMatched: function (oEvent) {
 			var oView = this.getView();
 			var oModel = this.getView().getModel();
-			this._oRouterArgs = oEvent.getParameter("arguments");
-
-			oArgs = this._oRouterArgs;
-			this.getView().bindElement({
-				path: "/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId,
-				events : {
-					change: this._onBindingChange.bind(this),
-					dataRequested: function (oEvent) {
-						oView.setBusy(true);
-					},
-					dataReceived: function (oEvent) {
-						oView.setBusy(false);
+			var that = this;
+			oArgs = oEvent.getParameter("arguments");
+			console.log(oArgs);
+			oModel.read('/TXWEEKLYACTIVITIES', {
+				async: false,
+				urlParameters: {
+					$expand: 'TO_TXDAILYACTIVITIES,TO_TXBROILERSLOT,TO_TXDAILYACTIVITIES/TO_DMMESSUREUNIT_AGEUNIT'
+				},
+				filters: [
+					new sap.ui.model.Filter("TXBROILERSLOT.BROILERSLOTID", "EQ", oArgs.lotId),
+					new sap.ui.model.Filter("WEEKNUMBER", "EQ", oArgs.weekId)
+				],
+				success: function (oValue){
+					console.log(oValue);
+					var WEEKLYACTIVITIESID = oValue.results[0].WEEKLYACTIVITIESID;
+					oArgs.weeklyactivityId = WEEKLYACTIVITIESID;
+					console.log("/TXWEEKLYACTIVITIES("+ WEEKLYACTIVITIESID +")");
+					oView.bindElement({
+						path : "/TXWEEKLYACTIVITIES("+ WEEKLYACTIVITIESID +")"
+					});
+					var dailyRegisterNumber = oValue.results[0].TO_TXDAILYACTIVITIES.results.length;
+					oArgs.dailyRegistersNumber = dailyRegisterNumber;
+					if(dailyRegisterNumber == 7){
+						oView.byId("btnReport").setVisible(false);
+						oView.byId("btnWeight").setVisible(true);
+					}else{
+						oView.byId("btnReport").setVisible(true);
+						oView.byId("btnWeight").setVisible(false);
 					}
+				},
+				error: function (error) {
+					console.log(error);
 				}
 			});
-
-			var oTable = oView.byId("tableContol");
-			var oTableLength = oTable.getItems().length;
-
-			if(oTableLength == 7){
-				oView.byId("btnReport").setVisible(false);
-				oView.byId("btnWeight").setVisible(true);
-			}
-			else{
-				oView.byId("btnReport").setVisible(true);
-				oView.byId("btnWeight").setVisible(false);
-			}
-			//console.log(oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/number"));
-			if(oModel.getProperty("/ShedsCollection/" + this._oRouterArgs.shedId + "/weeks/" + this._oRouterArgs.weekId + "/number") == "0" && oTableLength == 7)
-			{
-				oView.byId("btnWeight").setVisible(true);
-			}else{
-				oView.byId("btnWeight").setVisible(false);
-			}
 		},
 		getRouter: function(){
 			return this.getOwnerComponent().getRouter();
@@ -103,7 +102,82 @@ sap.ui.define([
 				"mortality": sap.ui.getCore().byId("inputMortality").getValue(),
 				"discard": sap.ui.getCore().byId("inputDiscard").getValue()
 			};
-
+			var inputMortalityValue = sap.ui.getCore().byId("inputMortality").getValue();
+			var inputDiscardValue = sap.ui.getCore().byId("inputDiscard").getValue();
+			oModel.read('/TXDAILYACTIVITIES/$count', {
+				async: false,
+				success: (number) => {
+					var dailyActivityId = parseInt(number) + 1;
+					oArgs.dailyRegistersNumber = parseInt(oArgs.dailyRegistersNumber) + 1
+					var dailyActivity = {
+						"DAILYACTIVITIESID": dailyActivityId,
+						"TXWEEKLYACTIVITIES.WEEKLYACTIVITIESID": oArgs.weeklyactivityId,
+						"DMAGEUNIT.MESSUREUNITID": 30,
+						"REPORTDATE": new Date(),
+						"DEADQUANTITY": inputMortalityValue,
+						"DISCARDEDQUANTITY": inputDiscardValue,
+						"AGE": oArgs.dailyRegistersNumber,
+						"CREATEBY": "SYSTEM",
+						"CREATEDATE": new Date()
+					};
+					console.log("object dailyActivity");
+					console.log(dailyActivity);
+					
+					oModel.create("/TXDAILYACTIVITIES", dailyActivity, {
+						async: false,
+						success: (objResult) => {
+							console.log(objResult);
+						},
+						error: (error) => {
+							console.log(error);
+						}
+					});
+					
+					if(oArgs.dailyRegistersNumber == 7){
+						oModel.read("/TXWEEKLYACTIVITIES/$count", {
+							async: false,
+							success: (number) => {
+								console.log(number);
+								var WEEKLYACTIVITIESID = parseInt(number);
+								
+								var oWeeklyActivity = {
+									"WEEKLYACTIVITIESID": WEEKLYACTIVITIESID + 1,
+									"TXBROILERSLOT.BROILERSLOTID": oArgs.lotId,
+									"DMWEIGHTUNIT.MESSUREUNITID": 24,
+									"REPORTDATE": new Date(),
+									"WEEKNUMBER": parseInt(oArgs.weekId) + 1,
+									"CHICKENSAVGWEIGHT": "0",
+									"SAMPLINGQUANTITY": 0,
+									"CREATEBY": "SYSTEM",
+									"CREATEDATE": new Date() 	
+								};
+								console.log("SEMANA A CREAR");
+								console.log(oWeeklyActivity);
+								
+								oModel.create('/TXWEEKLYACTIVITIES', oWeeklyActivity, {
+									async: false,
+									success: (objSuccess) => {
+										console.log(objSuccess);
+											var btnReport = oView.byId("btnReport");
+											var btnWeight = oView.byId("btnWeight");
+											console.log(btnReport);
+											console.log(btnReport);
+											btnReport.setVisible(false);
+											btnWeight.setVisible(true);
+									},
+									error: (error) => {
+										console.log(error);
+									}
+								});
+							}
+						}) 
+					}
+				},
+				error: (error) => {
+					console.log(error);
+				}
+			})
+			/*
 			var oColumnListItem = new sap.m.ColumnListItem({
 				cells: [
 					new sap.m.ObjectNumber({
@@ -138,7 +212,7 @@ sap.ui.define([
 			var days = oModel.getProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/days");
 			days.push(dailyData);
 			oModel.setProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId + "/days", days);
-
+			*/
 		},
 		onDialogPress: function (oEvent) {
 			var _i18n = this.getI18n();
@@ -265,14 +339,10 @@ sap.ui.define([
 			});
 		},
 		_onBindingChange : function (oEvent) {
-
-			if(this.getView().getModel().getProperty("/ShedsCollection/" + oArgs.shedId + "/weeks/" + oArgs.weekId) == undefined){
+			// No data for the binding
+			if (!this.getView().getBindingContext()) {
 				this.getRouter().getTargets().display("notFound");
 			}
-			// No data for the binding
-			/*if (!this.getView().getBindingContext()) {
-				this.getRouter().getTargets().display("notFound");
-			}*/
 		},
 		getI18n: function() {
             return this.getOwnerComponent().getModel("i18n").getResourceBundle();

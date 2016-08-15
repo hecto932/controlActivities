@@ -9,14 +9,30 @@
 			enableScrolling="false">
 			<TileContainer
 				id="container"
-				tiles="{/ShedsCollection}">
+				tiles="{
+					path: '/OSSHED',
+					parameters: {
+						expand: 'TO_TXBROILERSLOT'
+					},
+					filters: [{
+						path: 'DMSTATUS.STATUSID',
+					    operator: 'EQ',
+					    value1: '4'
+					}]
+				}">
 				<StandardTile
-					title="{title}"
-					info="{info}"
-					number="{number}"
+					number="{SHEDID}"
 					numberUnit="{i18n>shed_numberUnit}"
-					icon="{icon}"
-					infoState="{infoState}"
+					title="{
+						path: 'TO_TXBROILERSLOT/QUANTITY',
+						type: 'sap.ui.model.type.Float'
+					} {i18n>shed_birdsUnit}"
+					info="{
+						path: 'TO_TXBROILERSLOT/WEIGHT',
+						type: 'sap.ui.model.type.Float'
+					} {i18n>shed_weightUnit}"
+					icon="sap-icon://factory"
+					infoState="Success"
 					press="handlePress" />
 			</TileContainer>
 		</Page>

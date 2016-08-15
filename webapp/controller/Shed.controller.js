@@ -8,15 +8,33 @@ sap.ui.define([
 			
 		},
 		handlePress: function(oEvent){
+			//this.getView().getModel().remove("/TXWEEKLYACTIVITIES(20)", null, null, null);
+			var oModel = this.getView().getModel();
 			var oItem = oEvent.getSource();
 			var oRouter = oItem.getBindingContext().getPath();
 			var splitPath = oItem.getBindingContext().getPath().split("/");
-
-			console.log(oRouter);
-
 			var route = sap.ui.core.UIComponent.getRouterFor(this);
-			route.navTo("master", {
-				shedId: splitPath[2]
+			
+			console.log("SHEDID: " + oItem.getNumber());
+			
+			oModel.read('/OSSHED', {
+				async: false,
+				filters: [
+					new sap.ui.model.Filter("SHEDID", sap.ui.model.FilterOperator.EQ, oItem.getNumber())
+				],
+				urlParameters: {
+					$expand: "TO_TXBROILERSLOT"
+				},
+				success: function(oValue){
+					console.log("LOTE: " + oValue.results[0].TO_TXBROILERSLOT.BROILERSLOTID);
+					
+					var LOTID = oValue.results[0].TO_TXBROILERSLOT.BROILERSLOTID;
+		
+					route.navTo("master", {
+						lotId: LOTID,
+						shedId: oItem.getNumber()
+					});
+				}
 			});
 		}
 	});

@@ -4,7 +4,10 @@ sap.ui.define([
 	"controlActivities/model/formatter"
 ], function(Controller, History, formatter) {
 	"use strict";
-
+	
+	//GLOBAL VALUES
+	var oArgs = {};
+	
 	return Controller.extend("controlActivities.controller.Master", {
 
 		/**
@@ -19,38 +22,48 @@ sap.ui.define([
 			},
 			_onObjectMatched: function (oEvent) {
 				var oView = this.getView();
-				this._oRouterArgs = oEvent.getParameter("arguments");
-
-				if(oView.getModel().getProperty('/ShedsCollection') !== undefined){
-					if(oView.getModel().getProperty('/ShedsCollection')[this._oRouterArgs.shedId] !== undefined){
-						this.getView().bindElement({
-							path: "/ShedsCollection/" + this._oRouterArgs.shedId
-						});	
+				var oModel = this.getView().getModel();
+				oArgs = oEvent.getParameter("arguments");
+				console.log(oArgs);
+				var that = this; 
+				oModel.read('/TXFOODPLAN', {
+					async: false,
+					urlParameters: {
+						$expand: 'TO_TXFOODPLANDETAIL'
+					},
+					filters: [
+						new sap.ui.model.Filter("TXBROILERSLOT.BROILERSLOTID", "EQ", oArgs.lotId)
+					],
+					success: function(oValue){
+						console.log("FOODPLANID: " + oValue.results[0].FOODPLANID);
+						console.log("/TXFOODPLAN('"+ oValue.results[0].FOODPLANID +"')");
+						oView.bindElement({
+							path : "/TXFOODPLAN('"+ oValue.results[0].FOODPLANID +"')",
+							events : {
+								change: that._onBindingChange.bind(that)
+							}
+						});
+					},
+					error: function(err){
+						console.log(err);
 					}
-					else{
-						this.getRouter().getTargets().display("notFound");
-					}
-				}
-				else{
-					this.getRouter().getTargets().display("notFound");
-				}
-				
-				console.log(this.getView().getModel().getProperty("/ShedsCollection/" + this._oRouterArgs.shedId));
-
+				});
 			},
 			getRouter: function(){
 				return this.getOwnerComponent().getRouter();
 			},
 			handlePress: function(oEvent){
 				var oItem = oEvent.getSource();
+				console.log(oItem);
 				var oRouter = oItem.getBindingContext().getPath();
 				var splitPath = oItem.getBindingContext().getPath().split("/");
 				var route = sap.ui.core.UIComponent.getRouterFor(this);
 
-				route.navTo("detail", {
+				/*route.navTo("detail", {
 					shedId: splitPath[2],
 					weekId: splitPath[4]
 				}, true);
+				*/
 			},
 			onNavBack: function (oEvent) {
 				//this.getRouter().navTo("home", {}, true /*no history*/);
@@ -71,14 +84,16 @@ sap.ui.define([
 				route.navTo("graphic");
 			},
 			onSelectionChange: function(oEvent){
+				var oItem = oEvent.getSource();
 				var sPath = oEvent.getParameter("listItem").getBindingContext().getPath();
-				var splitPath = sPath.split('/');
+				var bindingContext = oEvent.getParameter("listItem").getBindingContext().getObject();
+				oArgs.weekId = bindingContext.WEEKNUMBER;
+				console.log(sPath);
+				console.log(oArgs);
+				
 				var route = this.getRouter();
-
-				route.navTo("detail", {
-					shedId: splitPath[2],
-					weekId: splitPath[4]
-				}, true);
+				route.navTo("detail", oArgs, true);
+				
 			},
 			_onBindingChange : function (oEvent) {
 				if (!this.getView().getBindingContext()) {

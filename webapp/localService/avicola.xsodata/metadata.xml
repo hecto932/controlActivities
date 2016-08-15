@@ -1,0 +1,1195 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+        <Schema
+            xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+            xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="SimpleAgro.services.avicola">
+            <EntityType Name="OSCLIENTType">
+                <Key>
+                    <PropertyRef Name="CLIENTID"/>
+                </Key>
+                <Property Name="CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="ADDRESS" Type="Edm.String" Nullable="false" MaxLength="250"/>
+                <Property Name="DMCOUNTRY.COUNTRYID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMSTATE.STATEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMCITY.CITYID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="ZIPCODE" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="DESCRIP" Type="Edm.String" DefaultValue="" MaxLength="250"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSPARTNERSHIP" Relationship="SimpleAgro.services.avicola.FK_OSCLIENT_PARTNERSHIPType" FromRole="OSCLIENTPrincipal" ToRole="OSPARTNERSHIPDependent"/>
+                <NavigationProperty Name="TO_COUNTRY" Relationship="SimpleAgro.services.avicola.FK_COUNTRY_CLIENTType" FromRole="OSCLIENTDependent" ToRole="DMCOUNTRYPrincipal"/>
+                <NavigationProperty Name="TO_STATE" Relationship="SimpleAgro.services.avicola.FK_STATES_CLIENTType" FromRole="OSCLIENTDependent" ToRole="DMSTATESPrincipal"/>
+                <NavigationProperty Name="TO_CITY" Relationship="SimpleAgro.services.avicola.FK_CITY_CLIENTType" FromRole="OSCLIENTDependent" ToRole="DMCITYPrincipal"/>
+            </EntityType>
+            <EntityType Name="OSSTRUCTUREType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="TABLEID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="TABLEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAMETABLE" Type="Edm.String" MaxLength="30"/>
+                <Property Name="NAMEDESCRP" Type="Edm.String" MaxLength="50"/>
+                <Property Name="DESCRIP" Type="Edm.String" MaxLength="250"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSCLIENT" Relationship="SimpleAgro.services.avicola.FK_STRUCTURE_OSCLIENTType" FromRole="OSSTRUCTUREPrincipal" ToRole="OSCLIENTDependent"/>
+            </EntityType>
+            <EntityType Name="OSPARTNERSHIPType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="PARTNERSHIPID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="ADDRESS" Type="Edm.String" Nullable="false" MaxLength="250"/>
+                <Property Name="DMCOUNTRY.COUNTRYID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMSTATE.STATEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMCITY.CITYID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="ZIPCODE" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="DESCRIP" Type="Edm.String" DefaultValue="" MaxLength="250"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSBROILERSFARM" Relationship="SimpleAgro.services.avicola.FK_PARTNERSHIP_BROILERSFARMType" FromRole="OSPARTNERSHIPPrincipal" ToRole="OSBROILERSFARMDependent"/>
+                <NavigationProperty Name="TO_OSBREEDINGFARM" Relationship="SimpleAgro.services.avicola.FK_PARTNERSHIP_BREEDINGFARMType" FromRole="OSPARTNERSHIPPrincipal" ToRole="OSBREEDINGFARMDependent"/>
+                <NavigationProperty Name="TO_OSFEEDMILL" Relationship="SimpleAgro.services.avicola.FK_PARTNERSHIP_FEEDMILLType" FromRole="OSPARTNERSHIPPrincipal" ToRole="OSFEEDMILLDependent"/>
+                <NavigationProperty Name="TO_OSHATCHERY" Relationship="SimpleAgro.services.avicola.FK_PARTNERSHIP_HATCHERYType" FromRole="OSPARTNERSHIPPrincipal" ToRole="OSHATCHERYDependent"/>
+                <NavigationProperty Name="TO_OSCLIENT" Relationship="SimpleAgro.services.avicola.FK_PARTNERSHIP_OSCLIENTType" FromRole="OSPARTNERSHIPPrincipal" ToRole="OSCLIENTDependent"/>
+            </EntityType>
+            <EntityType Name="OSBROILERSFARMType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="BROILERSFARMID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="BROILERSFARMID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="FARMCODE" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="FARMNAME" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="DMSTATE.STATEID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DMCITY.CITYID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="PROPERTY" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="ICAREGISTRY" Type="Edm.Int32" DefaultValue="0"/>
+                <Property Name="DMWATERHARVESTINGTYPE" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="WATERSTORAGECAPACITY" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMWATERSTORAGEUNIT" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="WATERHARVESTINGLICENSE" Type="Edm.Int32" DefaultValue="0"/>
+                <Property Name="DMFUMIGATINGTYPE" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="DMSHOWERSYSTEM" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="LOCALMINTEMPERATURE" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="LOCALMAXTEMPERATURE" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMTEMPERATUREUNIT" Type="Edm.Int32" DefaultValue="0"/>
+                <Property Name="LOCALMINRH" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="LOCALMAXRH" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMRHUNIT" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="LOCALMINAIRPRESSURE" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="LOCALMAXAIRPRESSURE" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMAIRPRESSUREUNIT" Type="Edm.Int32" DefaultValue="0"/>
+                <Property Name="GPSLATITUDE1" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE1" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLATITUDE2" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE2" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLATITUDE3" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE3" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLATITUDE4" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE4" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSCENTER" Relationship="SimpleAgro.services.avicola.FK_BROILERSFARM_CENTERType" FromRole="OSBROILERSFARMPrincipal" ToRole="OSCENTERDependent"/>
+                <NavigationProperty Name="TO_OSPARTNERSHIP" Relationship="SimpleAgro.services.avicola.FK_BROILERSFARM_PARTNERSHIPType" FromRole="OSBROILERSFARMPrincipal" ToRole="OSPARTNERSHIPDependent"/>
+                <NavigationProperty Name="TO_OSFARMFEATUREDETAILS" Relationship="SimpleAgro.services.avicola.FK_BROILERSFARM_FARMFEATUREDETAILSType" FromRole="OSBROILERSFARMPrincipal" ToRole="OSFARMFEATUREDETAILSDependent"/>
+                <NavigationProperty Name="TO_OSWAREHOUSE" Relationship="SimpleAgro.services.avicola.FK_BROILERSFARM_WAREHOUSEType" FromRole="OSBROILERSFARMPrincipal" ToRole="OSWAREHOUSEDependent"/>
+            </EntityType>
+            <EntityType Name="OSCENTERType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="OSBROILERSFARM.BROILERSFARMID"/>
+                    <PropertyRef Name="CENTERID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSBROILERSFARM.BROILERSFARMID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="CENTERID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="CENTERCODE" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSSHED" Relationship="SimpleAgro.services.avicola.FK_CENTER_SHEDType" FromRole="OSCENTERPrincipal" ToRole="OSSHEDDependent"/>
+                <NavigationProperty Name="TO_OSBROILERSFARM" Relationship="SimpleAgro.services.avicola.FK_CENTER_BROILERSFARMType" FromRole="OSCENTERPrincipal" ToRole="OSBROILERSFARMDependent"/>
+            </EntityType>
+            <EntityType Name="OSSHEDType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="OSBROILERSFARM.BROILERSFARMID"/>
+                    <PropertyRef Name="OSCENTER.CENTERID"/>
+                    <PropertyRef Name="SHEDID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSBROILERSFARM.BROILERSFARMID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSCENTER.CENTERID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="SHEDID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="SHEDCODE" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="DMSTATE" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="DMSTALLTYPE" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="BUILDINGDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="STALLLONGITUDE" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="STALLWIDTH" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="STALLHEIGHT" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMSTALLMEASUREMENTUNIT" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="USABLEAREA" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMAREAUNIT" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="STALLORIENTATION" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMSTALLORIENTATIONUNIT" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="STALLSHADING" Type="Edm.Int32" DefaultValue="0"/>
+                <Property Name="MAXILLUMINATION" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMILLUMINATIONUNIT" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="TOTALAIRFLOW" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMAIRFLOWUNIT" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="DMWATERORIGIN" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="WORKERSQUANTITY" Type="Edm.Int32" DefaultValue="0"/>
+                <Property Name="GPSLATITUDE1" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE1" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLATITUDE2" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE2" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLATITUDE3" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE3" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLATITUDE4" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE4" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_SHEDFEATUREDETAILS" Relationship="SimpleAgro.services.avicola.FK_SHED_SHEDFEATUREDETAILSType" FromRole="OSSHEDPrincipal" ToRole="OSSHEDFEATUREDETAILSDependent"/>
+                <NavigationProperty Name="TO_OSSILO" Relationship="SimpleAgro.services.avicola.FK_SHED_SILOType" FromRole="OSSHEDPrincipal" ToRole="OSSILODependent"/>
+                <NavigationProperty Name="TO_OSCENTER" Relationship="SimpleAgro.services.avicola.FK_SHED_CENTERType" FromRole="OSSHEDPrincipal" ToRole="OSCENTERDependent"/>
+            </EntityType>
+            <EntityType Name="OSFARMFEATUREDETAILSType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="OSBROILERSFARM.BROILERSFARMID"/>
+                    <PropertyRef Name="FARMFEATUREDETAILSID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSBROILERSFARM.BROILERSFARMID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="FARMFEATUREDETAILSID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDFARMFEATURE.FARMFEATUREID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMFARMFEATURETYPE" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="QUANTITY" Type="Edm.Int32" DefaultValue="0"/>
+                <Property Name="BRAND" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="MODEL" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="DMCONSERVATIONSTATE" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CAPACITY" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMCAPACITYUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="POWER" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMPOWERUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="HEIGHT" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMHEIGHTUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="DMCOLOR" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="AREA" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMAREAUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_MDFARMFEATURE" Relationship="SimpleAgro.services.avicola.FK_FARMFEATUREDETAILS_FARMFEATUREType" FromRole="OSFARMFEATUREDETAILSPrincipal" ToRole="MDFARMFEATUREDependent"/>
+                <NavigationProperty Name="TO_OSBROILERSFARM" Relationship="SimpleAgro.services.avicola.FK_FARMFEATUREDETAILS_BROILERSFARMType" FromRole="OSFARMFEATUREDETAILSPrincipal" ToRole="OSBROILERSFARMDependent"/>
+            </EntityType>
+            <EntityType Name="OSSHEDFEATUREDETAILSType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="OSBROILERSFARM.BROILERSFARMID"/>
+                    <PropertyRef Name="OSCENTER.CENTERID"/>
+                    <PropertyRef Name="OSSHED.SHEDID"/>
+                    <PropertyRef Name="SHEDFEATUREDETAILSID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSBROILERSFARM.BROILERSFARMID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSCENTER.CENTERID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSSHED.SHEDID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="SHEDFEATUREDETAILSID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDSHEDFEATURE.SHEDFEATUREID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMSHEDFEATURETYPE" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="QUANTITY" Type="Edm.Int32" DefaultValue="0"/>
+                <Property Name="BRAND" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="MODEL" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="DMCONSERVATIONSTATE" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CAPACITY" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMCAPACITYUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="POWER" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMPOWERUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="HEIGHT" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMHEIGHTUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="DMCOLOR" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="AREA" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMAREAUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_MDSHEDFEATURE" Relationship="SimpleAgro.services.avicola.FK_SHEDFEATUREDETAILS_SHEDFEATUREType" FromRole="OSSHEDFEATUREDETAILSPrincipal" ToRole="MDSHEDFEATUREDependent"/>
+                <NavigationProperty Name="TO_OSSHED" Relationship="SimpleAgro.services.avicola.FK_SHEDFEATUREDETAILS_SHEDType" FromRole="OSSHEDFEATUREDETAILSPrincipal" ToRole="OSSHEDDependent"/>
+            </EntityType>
+            <EntityType Name="OSSILOType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="OSBROILERSFARM.BROILERSFARMID"/>
+                    <PropertyRef Name="OSCENTER.CENTERID"/>
+                    <PropertyRef Name="OSSHED.SHEDID"/>
+                    <PropertyRef Name="SILOID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSBROILERSFARM.BROILERSFARMID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSCENTER.CENTERID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSSHED.SHEDID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="SILOID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="RINGHEIGHT" Type="Edm.Decimal" Nullable="false" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMRINGHEIGHTUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="DIAMETER" Type="Edm.Decimal" Nullable="false" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMDIAMETERUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="TOTALRINGSQUANTITY" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+                <Property Name="DMMEASURINGMECHANISM" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CONEDEGREES" Type="Edm.Decimal" Nullable="false" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="TOTALCAPACITY1" Type="Edm.Decimal" Nullable="false" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="TOTALCAPACITY2" Type="Edm.Decimal" Nullable="false" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMCAPACITY1UNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="DMCAPACITY2UNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CENTRAL" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSSILO_HAS_MDFOOD" Relationship="SimpleAgro.services.avicola.FK_SILO_SILOHASMDFOODType" FromRole="OSSILOPrincipal" ToRole="OSSILOHASMDFOODDependent"/>
+            </EntityType>
+            <EntityType Name="OSSILOHASMDFOODType">
+                <Key>
+                    <PropertyRef Name="OSSILO.SILOID"/>
+                    <PropertyRef Name="MDFOOD.FOODID"/>
+                </Key>
+                <Property Name="OSSILO.SILOID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDFOOD.FOODID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="FOODQUANTITY" Type="Edm.Decimal" Nullable="false" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMQUANTITYAUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="REPORTDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSSILO" Relationship="SimpleAgro.services.avicola.FK_SILOHASMDFOOD_SILOType" FromRole="OSSILOHASMDFOODPrincipal" ToRole="OSSILODependent"/>
+            </EntityType>
+            <EntityType Name="OSWAREHOUSEType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="OSBROILERSFARM.BROILERSFARMID"/>
+                    <PropertyRef Name="WAREHOUSEID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSBROILERSFARM.BROILERSFARMID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="WAREHOUSEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="CENTRAL" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="MAXFOODBAGSQUANTITY" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+                <Property Name="TOTALAREA" Type="Edm.Decimal" Nullable="false" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="USEFULAREA" Type="Edm.Decimal" Nullable="false" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMAREAUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSWAREHOUSE_HAS_MDFOOD" Relationship="SimpleAgro.services.avicola.FK_WAREHOUSE_WAREHOUSEHASMDFOODType" FromRole="OSWAREHOUSEPrincipal" ToRole="OSWAREHOUSEHASMDFOODDependent"/>
+            </EntityType>
+            <EntityType Name="OSWAREHOUSEHASMDFOODType">
+                <Key>
+                    <PropertyRef Name="OSWAREHOUSE.WAREHOUSEID"/>
+                    <PropertyRef Name="MDFOOD.FOODID"/>
+                </Key>
+                <Property Name="OSWAREHOUSE.WAREHOUSEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDFOOD.FOODID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="FOODQUANTITY" Type="Edm.Decimal" Nullable="false" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMQUANTITYAUNIT" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="REPORTDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSWAREHOUSE" Relationship="SimpleAgro.services.avicola.FK_WAREHOUSEHASMDFOOD_WAREHOUSEType" FromRole="OSWAREHOUSEHASMDFOODPrincipal" ToRole="OSWAREHOUSEDependent"/>
+            </EntityType>
+            <EntityType Name="OSBREEDINGFARMType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="BREEDINGFARMID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="BREEDINGFARMID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="FARMCODE" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="FARMNAME" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="DMSTATE.STATEID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DMCITY.CITYID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="LOCALMINTEMPERATURE" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="LOCALMAXTEMPERATURE" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMTEMPERATUREUNIT" Type="Edm.Int32" DefaultValue="0"/>
+                <Property Name="LOCALMINRH" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="LOCALMAXRH" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMRHUNIT" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="LOCALMINAIRPRESSURE" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="LOCALMAXAIRPRESSURE" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMAIRPRESSUREUNIT" Type="Edm.Int32" DefaultValue="0"/>
+                <Property Name="GPSLATITUDE1" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE1" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLATITUDE2" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE2" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLATITUDE3" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE3" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLATITUDE4" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="GPSLONGITUDE4" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSPARTNERSHIP" Relationship="SimpleAgro.services.avicola.FK_BREEDINGFARM_PARTNERSHIPType" FromRole="OSBREEDINGFARMPrincipal" ToRole="OSPARTNERSHIPDependent"/>
+            </EntityType>
+            <EntityType Name="OSFEEDMILLType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="FEEDMILLID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="FEEDMILLID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="FEEDMILLCODE" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="FEEDMILLNAME" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSPARTNERSHIP" Relationship="SimpleAgro.services.avicola.FK_FEEDMILL_PARTNERSHIPType" FromRole="OSFEEDMILLPrincipal" ToRole="OSPARTNERSHIPDependent"/>
+            </EntityType>
+            <EntityType Name="OSHATCHERYType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="HATCHERYID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="HATCHERYID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="HATCHERYCODE" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="HATCHERYNAME" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" Nullable="false" DefaultValue="SYSTEM" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" Nullable="false" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_OSPARTNERSHIP" Relationship="SimpleAgro.services.avicola.FK_HATCHERY_PARTNERSHIPType" FromRole="OSHATCHERYPrincipal" ToRole="OSPARTNERSHIPDependent"/>
+            </EntityType>
+            <EntityType Name="MDTRUCKType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="TRUCKID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="TRUCKID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMMARK" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DMMODEL" Type="Edm.String" MaxLength="10"/>
+                <Property Name="NRREGISTER" Type="Edm.String" MaxLength="10"/>
+                <Property Name="TARE" Type="Edm.Decimal" Precision="34"/>
+                <Property Name="CAPACITYMAX" Type="Edm.Decimal" Precision="34"/>
+                <Property Name="TRAILERAMOUNT" Type="Edm.Int32"/>
+                <Property Name="FULLREGISTER" Type="Edm.String" MaxLength="1"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="TO_PARTNERSHIP" Relationship="SimpleAgro.services.avicola.FK_MDTRUCK_PARTNERSHIPType" FromRole="MDTRUCKPrincipal" ToRole="OSPARTNERSHIPDependent"/>
+            </EntityType>
+            <EntityType Name="MDDRIVERType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="DRIVERID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DRIVERID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NRIDENTIFIC" Type="Edm.String" MaxLength="10"/>
+                <Property Name="FIRSTNAME" Type="Edm.String" MaxLength="50"/>
+                <Property Name="LASTNAME" Type="Edm.String" MaxLength="50"/>
+                <Property Name="NRLICENSE" Type="Edm.Int32"/>
+                <Property Name="GRLICENSE" Type="Edm.Int32"/>
+                <Property Name="URLPHOTO" Type="Edm.String" MaxLength="150"/>
+                <Property Name="PHONE1" Type="Edm.String" MaxLength="30"/>
+                <Property Name="PHONE2" Type="Edm.String" MaxLength="30"/>
+                <Property Name="ADDRESS" Type="Edm.String" MaxLength="250"/>
+                <Property Name="DMCOUNTRY" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DMSTATE" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DMCITY" Type="Edm.String" MaxLength="10"/>
+                <Property Name="FULLREGISTER" Type="Edm.String" MaxLength="1"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDTRUCKDRIVERType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="TRUCKID"/>
+                    <PropertyRef Name="DRIVERID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="TRUCKID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DRIVERID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="TEXT" Type="Edm.String" MaxLength="150"/>
+                <Property Name="DATEDRIVING" Type="Edm.DateTime"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDSUPPLIERType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="SUPPLIERID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="SUPPLIERID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="ACCOUNTNUM" Type="Edm.String" MaxLength="10"/>
+                <Property Name="NAME1" Type="Edm.String" MaxLength="50"/>
+                <Property Name="NAME2" Type="Edm.String" MaxLength="150"/>
+                <Property Name="NAME3" Type="Edm.String" MaxLength="30"/>
+                <Property Name="ADDRESS" Type="Edm.String" MaxLength="250"/>
+                <Property Name="DMCOUNTRY" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DMSTATE" Type="Edm.String" MaxLength="50"/>
+                <Property Name="DMCITY" Type="Edm.String" MaxLength="50"/>
+                <Property Name="ZIPCODE" Type="Edm.String" MaxLength="10"/>
+                <Property Name="CONTACT" Type="Edm.String" MaxLength="150"/>
+                <Property Name="PHONE1" Type="Edm.String" MaxLength="30"/>
+                <Property Name="PHONE2" Type="Edm.String" MaxLength="30"/>
+                <Property Name="EMAIL" Type="Edm.String" MaxLength="150"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDCUSTOMERType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="CUSTOMERID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="CUSTOMERID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="ACCOUNTNUM" Type="Edm.String" MaxLength="10"/>
+                <Property Name="NAME1" Type="Edm.String" MaxLength="50"/>
+                <Property Name="NAME2" Type="Edm.String" MaxLength="150"/>
+                <Property Name="NAME3" Type="Edm.String" MaxLength="30"/>
+                <Property Name="ADDRESS" Type="Edm.String" MaxLength="250"/>
+                <Property Name="DMCOUNTRY" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DMSTATE" Type="Edm.String" MaxLength="50"/>
+                <Property Name="DMCITY" Type="Edm.String" MaxLength="50"/>
+                <Property Name="ZIPCODE" Type="Edm.String" MaxLength="10"/>
+                <Property Name="CONTACT" Type="Edm.String" MaxLength="150"/>
+                <Property Name="PHONE1" Type="Edm.String" MaxLength="30"/>
+                <Property Name="PHONE2" Type="Edm.String" MaxLength="30"/>
+                <Property Name="EMAIL" Type="Edm.String" MaxLength="150"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDMATERIALType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="MATERIALID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MATERIALID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME1" Type="Edm.String" MaxLength="50"/>
+                <Property Name="NAME2" Type="Edm.String" MaxLength="30"/>
+                <Property Name="DMTYPE" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DMMESSUREUNIT" Type="Edm.String" MaxLength="10"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDCHARACTMATERIALType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="MATERIALID"/>
+                    <PropertyRef Name="DMCHARACTID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MATERIALID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMCHARACTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDFARMFEATUREType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="FARMFEATUREID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="FARMFEATUREID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" DefaultValue="" MaxLength="150"/>
+                <Property Name="FEATURECODE" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDSHEDFEATUREType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="SHEDFEATUREID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="SHEDFEATUREID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" DefaultValue="" MaxLength="150"/>
+                <Property Name="FEATURECODE" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDBROILERBREEDType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="BROILERBREEDID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="BROILERBREEDID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="GENETICLINE" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="FIELD2" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDCYCLESType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="MDBROILERBREED.BROILERBREEDID"/>
+                    <PropertyRef Name="CYCLESID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDBROILERBREED.BROILERBREEDID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="CYCLESID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDSTAGEType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="MDBROILERBREED.BROILERBREEDID"/>
+                    <PropertyRef Name="MDCYCLES.CYCLESID"/>
+                    <PropertyRef Name="STAGEID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDBROILERBREED.BROILERBREEDID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDCYCLES.CYCLESID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="STAGEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDPHASEType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="MDBROILERBREED.BROILERBREEDID"/>
+                    <PropertyRef Name="MDCYCLES.CYCLESID"/>
+                    <PropertyRef Name="MDSTAGE.STAGEID"/>
+                    <PropertyRef Name="PHASEID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDBROILERBREED.BROILERBREEDID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDCYCLES.CYCLESID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDSTAGE.STAGEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="PHASEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="MDFOODType">
+                <Key>
+                    <PropertyRef Name="OSCLIENT.CLIENTID"/>
+                    <PropertyRef Name="OSPARTNERSHIP.PARTNERSHIPID"/>
+                    <PropertyRef Name="MDBROILERBREED.BROILERBREEDID"/>
+                    <PropertyRef Name="MDCYCLES.CYCLESID"/>
+                    <PropertyRef Name="MDSTAGE.STAGEID"/>
+                    <PropertyRef Name="MDPHASE.STAGEID"/>
+                    <PropertyRef Name="FOODID"/>
+                </Key>
+                <Property Name="OSCLIENT.CLIENTID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="OSPARTNERSHIP.PARTNERSHIPID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDBROILERBREED.BROILERBREEDID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDCYCLES.CYCLESID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDSTAGE.STAGEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="MDPHASE.STAGEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="FOODID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMFORMULA" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="DENSITY" Type="Edm.Decimal" DefaultValue="0" Precision="11" Scale="2"/>
+                <Property Name="DMDENSITYUNIT" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="DMPRESENTACION" Type="Edm.String" DefaultValue="" MaxLength="45"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <EntityType Name="DMCOUNTRYType">
+                <Key>
+                    <PropertyRef Name="MDKEYLANGUAGEID.KEYLANGUAGEID"/>
+                    <PropertyRef Name="COUNTRYID"/>
+                </Key>
+                <Property Name="MDKEYLANGUAGEID.KEYLANGUAGEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="COUNTRYID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME1" Type="Edm.String" MaxLength="50"/>
+                <Property Name="NAME2" Type="Edm.String" MaxLength="150"/>
+                <Property Name="NAME3" Type="Edm.String" MaxLength="30"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="DMSTATES" Relationship="SimpleAgro.services.avicola.FK_COUNTRY_STATESType" FromRole="DMCOUNTRYPrincipal" ToRole="DMSTATESDependent"/>
+            </EntityType>
+            <EntityType Name="DMSTATESType">
+                <Key>
+                    <PropertyRef Name="MDKEYLANGUAGEID.KEYLANGUAGEID"/>
+                    <PropertyRef Name="DMCOUNTRY.COUNTRYID"/>
+                    <PropertyRef Name="STATEID"/>
+                </Key>
+                <Property Name="MDKEYLANGUAGEID.KEYLANGUAGEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMCOUNTRY.COUNTRYID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="STATEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME1" Type="Edm.String" MaxLength="50"/>
+                <Property Name="NAME2" Type="Edm.String" MaxLength="150"/>
+                <Property Name="NAME3" Type="Edm.String" MaxLength="30"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <NavigationProperty Name="DMCITY" Relationship="SimpleAgro.services.avicola.FK_STATES_CITYType" FromRole="DMSTATESPrincipal" ToRole="DMCITYDependent"/>
+            </EntityType>
+            <EntityType Name="DMCITYType">
+                <Key>
+                    <PropertyRef Name="MDKEYLANGUAGEID.KEYLANGUAGEID"/>
+                    <PropertyRef Name="DMCOUNTRY.COUNTRYID"/>
+                    <PropertyRef Name="DMSTATE.STATEID"/>
+                    <PropertyRef Name="CITYID"/>
+                </Key>
+                <Property Name="MDKEYLANGUAGEID.KEYLANGUAGEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMCOUNTRY.COUNTRYID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="DMSTATE.STATEID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="CITYID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="NAME1" Type="Edm.String" MaxLength="50"/>
+                <Property Name="NAME2" Type="Edm.String" MaxLength="150"/>
+                <Property Name="NAME3" Type="Edm.String" MaxLength="30"/>
+                <Property Name="FIELD1" Type="Edm.String" DefaultValue="" MaxLength="50"/>
+                <Property Name="CREATEBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="CREATEDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="MODIFIEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="MODIFIEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+                <Property Name="DELETEDMARK" Type="Edm.String" DefaultValue="" MaxLength="1"/>
+                <Property Name="DELETEDBY" Type="Edm.String" DefaultValue="" MaxLength="10"/>
+                <Property Name="DELETEDDATE" Type="Edm.DateTime" DefaultValue="2999-12-31T00:00:00.0000000"/>
+            </EntityType>
+            <Association Name="FK_OSCLIENT_PARTNERSHIPType">
+                <End Type="SimpleAgro.services.avicola.OSCLIENTType" Role="OSCLIENTPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_STRUCTURE_OSCLIENTType">
+                <End Type="SimpleAgro.services.avicola.OSSTRUCTUREType" Role="OSSTRUCTUREPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSCLIENTType" Role="OSCLIENTDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_PARTNERSHIP_OSCLIENTType">
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSCLIENTType" Role="OSCLIENTDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_PARTNERSHIP_BROILERSFARMType">
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSBROILERSFARMType" Role="OSBROILERSFARMDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_PARTNERSHIP_BREEDINGFARMType">
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSBREEDINGFARMType" Role="OSBREEDINGFARMDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_PARTNERSHIP_FEEDMILLType">
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSFEEDMILLType" Role="OSFEEDMILLDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_PARTNERSHIP_HATCHERYType">
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSHATCHERYType" Role="OSHATCHERYDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_BROILERSFARM_PARTNERSHIPType">
+                <End Type="SimpleAgro.services.avicola.OSBROILERSFARMType" Role="OSBROILERSFARMPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_BROILERSFARM_CENTERType">
+                <End Type="SimpleAgro.services.avicola.OSBROILERSFARMType" Role="OSBROILERSFARMPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSCENTERType" Role="OSCENTERDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_BROILERSFARM_FARMFEATUREDETAILSType">
+                <End Type="SimpleAgro.services.avicola.OSBROILERSFARMType" Role="OSBROILERSFARMPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSFARMFEATUREDETAILSType" Role="OSFARMFEATUREDETAILSDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_BROILERSFARM_WAREHOUSEType">
+                <End Type="SimpleAgro.services.avicola.OSBROILERSFARMType" Role="OSBROILERSFARMPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSWAREHOUSEType" Role="OSWAREHOUSEDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_CENTER_BROILERSFARMType">
+                <End Type="SimpleAgro.services.avicola.OSCENTERType" Role="OSCENTERPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSBROILERSFARMType" Role="OSBROILERSFARMDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_CENTER_SHEDType">
+                <End Type="SimpleAgro.services.avicola.OSCENTERType" Role="OSCENTERPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSSHEDType" Role="OSSHEDDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_SHED_CENTERType">
+                <End Type="SimpleAgro.services.avicola.OSSHEDType" Role="OSSHEDPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSCENTERType" Role="OSCENTERDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_SHED_SHEDFEATUREDETAILSType">
+                <End Type="SimpleAgro.services.avicola.OSSHEDType" Role="OSSHEDPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSSHEDFEATUREDETAILSType" Role="OSSHEDFEATUREDETAILSDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_SHED_SILOType">
+                <End Type="SimpleAgro.services.avicola.OSSHEDType" Role="OSSHEDPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSSILOType" Role="OSSILODependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_FARMFEATUREDETAILS_BROILERSFARMType">
+                <End Type="SimpleAgro.services.avicola.OSFARMFEATUREDETAILSType" Role="OSFARMFEATUREDETAILSPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSBROILERSFARMType" Role="OSBROILERSFARMDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_SHEDFEATUREDETAILS_SHEDType">
+                <End Type="SimpleAgro.services.avicola.OSSHEDFEATUREDETAILSType" Role="OSSHEDFEATUREDETAILSPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSSHEDType" Role="OSSHEDDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_SILO_SILOHASMDFOODType">
+                <End Type="SimpleAgro.services.avicola.OSSILOType" Role="OSSILOPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSSILOHASMDFOODType" Role="OSSILOHASMDFOODDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_SILOHASMDFOOD_SILOType">
+                <End Type="SimpleAgro.services.avicola.OSSILOHASMDFOODType" Role="OSSILOHASMDFOODPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSSILOType" Role="OSSILODependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_WAREHOUSE_WAREHOUSEHASMDFOODType">
+                <End Type="SimpleAgro.services.avicola.OSWAREHOUSEType" Role="OSWAREHOUSEPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSWAREHOUSEHASMDFOODType" Role="OSWAREHOUSEHASMDFOODDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_WAREHOUSEHASMDFOOD_WAREHOUSEType">
+                <End Type="SimpleAgro.services.avicola.OSWAREHOUSEHASMDFOODType" Role="OSWAREHOUSEHASMDFOODPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSWAREHOUSEType" Role="OSWAREHOUSEDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_BREEDINGFARM_PARTNERSHIPType">
+                <End Type="SimpleAgro.services.avicola.OSBREEDINGFARMType" Role="OSBREEDINGFARMPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_FEEDMILL_PARTNERSHIPType">
+                <End Type="SimpleAgro.services.avicola.OSFEEDMILLType" Role="OSFEEDMILLPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_HATCHERY_PARTNERSHIPType">
+                <End Type="SimpleAgro.services.avicola.OSHATCHERYType" Role="OSHATCHERYPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_COUNTRY_CLIENTType">
+                <End Type="SimpleAgro.services.avicola.DMCOUNTRYType" Role="DMCOUNTRYPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSCLIENTType" Role="OSCLIENTDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_STATES_CLIENTType">
+                <End Type="SimpleAgro.services.avicola.DMSTATESType" Role="DMSTATESPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSCLIENTType" Role="OSCLIENTDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_CITY_CLIENTType">
+                <End Type="SimpleAgro.services.avicola.DMCITYType" Role="DMCITYPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSCLIENTType" Role="OSCLIENTDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_FARMFEATUREDETAILS_FARMFEATUREType">
+                <End Type="SimpleAgro.services.avicola.OSFARMFEATUREDETAILSType" Role="OSFARMFEATUREDETAILSPrincipal" Multiplicity="*"/>
+                <End Type="SimpleAgro.services.avicola.MDFARMFEATUREType" Role="MDFARMFEATUREDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_SHEDFEATUREDETAILS_SHEDFEATUREType">
+                <End Type="SimpleAgro.services.avicola.OSSHEDFEATUREDETAILSType" Role="OSSHEDFEATUREDETAILSPrincipal" Multiplicity="*"/>
+                <End Type="SimpleAgro.services.avicola.MDSHEDFEATUREType" Role="MDSHEDFEATUREDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_MDTRUCK_PARTNERSHIPType">
+                <End Type="SimpleAgro.services.avicola.MDTRUCKType" Role="MDTRUCKPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.OSPARTNERSHIPType" Role="OSPARTNERSHIPDependent" Multiplicity="1"/>
+            </Association>
+            <Association Name="FK_COUNTRY_STATESType">
+                <End Type="SimpleAgro.services.avicola.DMCOUNTRYType" Role="DMCOUNTRYPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.DMSTATESType" Role="DMSTATESDependent" Multiplicity="*"/>
+            </Association>
+            <Association Name="FK_STATES_CITYType">
+                <End Type="SimpleAgro.services.avicola.DMSTATESType" Role="DMSTATESPrincipal" Multiplicity="1"/>
+                <End Type="SimpleAgro.services.avicola.DMCITYType" Role="DMCITYDependent" Multiplicity="*"/>
+            </Association>
+            <EntityContainer Name="avicola" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="OSCLIENT" EntityType="SimpleAgro.services.avicola.OSCLIENTType"/>
+                <EntitySet Name="OSSTRUCTURE" EntityType="SimpleAgro.services.avicola.OSSTRUCTUREType"/>
+                <EntitySet Name="OSPARTNERSHIP" EntityType="SimpleAgro.services.avicola.OSPARTNERSHIPType"/>
+                <EntitySet Name="OSBROILERSFARM" EntityType="SimpleAgro.services.avicola.OSBROILERSFARMType"/>
+                <EntitySet Name="OSCENTER" EntityType="SimpleAgro.services.avicola.OSCENTERType"/>
+                <EntitySet Name="OSSHED" EntityType="SimpleAgro.services.avicola.OSSHEDType"/>
+                <EntitySet Name="OSFARMFEATUREDETAILS" EntityType="SimpleAgro.services.avicola.OSFARMFEATUREDETAILSType"/>
+                <EntitySet Name="OSSHEDFEATUREDETAILS" EntityType="SimpleAgro.services.avicola.OSSHEDFEATUREDETAILSType"/>
+                <EntitySet Name="OSSILO" EntityType="SimpleAgro.services.avicola.OSSILOType"/>
+                <EntitySet Name="OSSILOHASMDFOOD" EntityType="SimpleAgro.services.avicola.OSSILOHASMDFOODType"/>
+                <EntitySet Name="OSWAREHOUSE" EntityType="SimpleAgro.services.avicola.OSWAREHOUSEType"/>
+                <EntitySet Name="OSWAREHOUSEHASMDFOOD" EntityType="SimpleAgro.services.avicola.OSWAREHOUSEHASMDFOODType"/>
+                <EntitySet Name="OSBREEDINGFARM" EntityType="SimpleAgro.services.avicola.OSBREEDINGFARMType"/>
+                <EntitySet Name="OSFEEDMILL" EntityType="SimpleAgro.services.avicola.OSFEEDMILLType"/>
+                <EntitySet Name="OSHATCHERY" EntityType="SimpleAgro.services.avicola.OSHATCHERYType"/>
+                <EntitySet Name="MDTRUCK" EntityType="SimpleAgro.services.avicola.MDTRUCKType"/>
+                <EntitySet Name="MDDRIVER" EntityType="SimpleAgro.services.avicola.MDDRIVERType"/>
+                <EntitySet Name="MDTRUCKDRIVER" EntityType="SimpleAgro.services.avicola.MDTRUCKDRIVERType"/>
+                <EntitySet Name="MDSUPPLIER" EntityType="SimpleAgro.services.avicola.MDSUPPLIERType"/>
+                <EntitySet Name="MDCUSTOMER" EntityType="SimpleAgro.services.avicola.MDCUSTOMERType"/>
+                <EntitySet Name="MDMATERIAL" EntityType="SimpleAgro.services.avicola.MDMATERIALType"/>
+                <EntitySet Name="MDCHARACTMATERIAL" EntityType="SimpleAgro.services.avicola.MDCHARACTMATERIALType"/>
+                <EntitySet Name="MDFARMFEATURE" EntityType="SimpleAgro.services.avicola.MDFARMFEATUREType"/>
+                <EntitySet Name="MDSHEDFEATURE" EntityType="SimpleAgro.services.avicola.MDSHEDFEATUREType"/>
+                <EntitySet Name="MDBROILERBREED" EntityType="SimpleAgro.services.avicola.MDBROILERBREEDType"/>
+                <EntitySet Name="MDCYCLES" EntityType="SimpleAgro.services.avicola.MDCYCLESType"/>
+                <EntitySet Name="MDSTAGE" EntityType="SimpleAgro.services.avicola.MDSTAGEType"/>
+                <EntitySet Name="MDPHASE" EntityType="SimpleAgro.services.avicola.MDPHASEType"/>
+                <EntitySet Name="MDFOOD" EntityType="SimpleAgro.services.avicola.MDFOODType"/>
+                <EntitySet Name="DMCOUNTRY" EntityType="SimpleAgro.services.avicola.DMCOUNTRYType"/>
+                <EntitySet Name="DMSTATES" EntityType="SimpleAgro.services.avicola.DMSTATESType"/>
+                <EntitySet Name="DMCITY" EntityType="SimpleAgro.services.avicola.DMCITYType"/>
+                <AssociationSet Name="FK_OSCLIENT_PARTNERSHIP" Association="SimpleAgro.services.avicola.FK_OSCLIENT_PARTNERSHIPType">
+                    <End Role="OSCLIENTPrincipal" EntitySet="OSCLIENT"/>
+                    <End Role="OSPARTNERSHIPDependent" EntitySet="OSPARTNERSHIP"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_STRUCTURE_OSCLIENT" Association="SimpleAgro.services.avicola.FK_STRUCTURE_OSCLIENTType">
+                    <End Role="OSSTRUCTUREPrincipal" EntitySet="OSSTRUCTURE"/>
+                    <End Role="OSCLIENTDependent" EntitySet="OSCLIENT"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_PARTNERSHIP_OSCLIENT" Association="SimpleAgro.services.avicola.FK_PARTNERSHIP_OSCLIENTType">
+                    <End Role="OSPARTNERSHIPPrincipal" EntitySet="OSPARTNERSHIP"/>
+                    <End Role="OSCLIENTDependent" EntitySet="OSCLIENT"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_PARTNERSHIP_BROILERSFARM" Association="SimpleAgro.services.avicola.FK_PARTNERSHIP_BROILERSFARMType">
+                    <End Role="OSPARTNERSHIPPrincipal" EntitySet="OSPARTNERSHIP"/>
+                    <End Role="OSBROILERSFARMDependent" EntitySet="OSBROILERSFARM"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_PARTNERSHIP_BREEDINGFARM" Association="SimpleAgro.services.avicola.FK_PARTNERSHIP_BREEDINGFARMType">
+                    <End Role="OSPARTNERSHIPPrincipal" EntitySet="OSPARTNERSHIP"/>
+                    <End Role="OSBREEDINGFARMDependent" EntitySet="OSBREEDINGFARM"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_PARTNERSHIP_FEEDMILL" Association="SimpleAgro.services.avicola.FK_PARTNERSHIP_FEEDMILLType">
+                    <End Role="OSPARTNERSHIPPrincipal" EntitySet="OSPARTNERSHIP"/>
+                    <End Role="OSFEEDMILLDependent" EntitySet="OSFEEDMILL"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_PARTNERSHIP_HATCHERY" Association="SimpleAgro.services.avicola.FK_PARTNERSHIP_HATCHERYType">
+                    <End Role="OSPARTNERSHIPPrincipal" EntitySet="OSPARTNERSHIP"/>
+                    <End Role="OSHATCHERYDependent" EntitySet="OSHATCHERY"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_BROILERSFARM_PARTNERSHIP" Association="SimpleAgro.services.avicola.FK_BROILERSFARM_PARTNERSHIPType">
+                    <End Role="OSBROILERSFARMPrincipal" EntitySet="OSBROILERSFARM"/>
+                    <End Role="OSPARTNERSHIPDependent" EntitySet="OSPARTNERSHIP"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_BROILERSFARM_CENTER" Association="SimpleAgro.services.avicola.FK_BROILERSFARM_CENTERType">
+                    <End Role="OSBROILERSFARMPrincipal" EntitySet="OSBROILERSFARM"/>
+                    <End Role="OSCENTERDependent" EntitySet="OSCENTER"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_BROILERSFARM_FARMFEATUREDETAILS" Association="SimpleAgro.services.avicola.FK_BROILERSFARM_FARMFEATUREDETAILSType">
+                    <End Role="OSBROILERSFARMPrincipal" EntitySet="OSBROILERSFARM"/>
+                    <End Role="OSFARMFEATUREDETAILSDependent" EntitySet="OSFARMFEATUREDETAILS"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_BROILERSFARM_WAREHOUSE" Association="SimpleAgro.services.avicola.FK_BROILERSFARM_WAREHOUSEType">
+                    <End Role="OSBROILERSFARMPrincipal" EntitySet="OSBROILERSFARM"/>
+                    <End Role="OSWAREHOUSEDependent" EntitySet="OSWAREHOUSE"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_CENTER_BROILERSFARM" Association="SimpleAgro.services.avicola.FK_CENTER_BROILERSFARMType">
+                    <End Role="OSCENTERPrincipal" EntitySet="OSCENTER"/>
+                    <End Role="OSBROILERSFARMDependent" EntitySet="OSBROILERSFARM"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_CENTER_SHED" Association="SimpleAgro.services.avicola.FK_CENTER_SHEDType">
+                    <End Role="OSCENTERPrincipal" EntitySet="OSCENTER"/>
+                    <End Role="OSSHEDDependent" EntitySet="OSSHED"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_SHED_CENTER" Association="SimpleAgro.services.avicola.FK_SHED_CENTERType">
+                    <End Role="OSSHEDPrincipal" EntitySet="OSSHED"/>
+                    <End Role="OSCENTERDependent" EntitySet="OSCENTER"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_SHED_SHEDFEATUREDETAILS" Association="SimpleAgro.services.avicola.FK_SHED_SHEDFEATUREDETAILSType">
+                    <End Role="OSSHEDPrincipal" EntitySet="OSSHED"/>
+                    <End Role="OSSHEDFEATUREDETAILSDependent" EntitySet="OSSHEDFEATUREDETAILS"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_SHED_SILO" Association="SimpleAgro.services.avicola.FK_SHED_SILOType">
+                    <End Role="OSSHEDPrincipal" EntitySet="OSSHED"/>
+                    <End Role="OSSILODependent" EntitySet="OSSILO"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_FARMFEATUREDETAILS_BROILERSFARM" Association="SimpleAgro.services.avicola.FK_FARMFEATUREDETAILS_BROILERSFARMType">
+                    <End Role="OSFARMFEATUREDETAILSPrincipal" EntitySet="OSFARMFEATUREDETAILS"/>
+                    <End Role="OSBROILERSFARMDependent" EntitySet="OSBROILERSFARM"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_SHEDFEATUREDETAILS_SHED" Association="SimpleAgro.services.avicola.FK_SHEDFEATUREDETAILS_SHEDType">
+                    <End Role="OSSHEDFEATUREDETAILSPrincipal" EntitySet="OSSHEDFEATUREDETAILS"/>
+                    <End Role="OSSHEDDependent" EntitySet="OSSHED"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_SILO_SILOHASMDFOOD" Association="SimpleAgro.services.avicola.FK_SILO_SILOHASMDFOODType">
+                    <End Role="OSSILOPrincipal" EntitySet="OSSILO"/>
+                    <End Role="OSSILOHASMDFOODDependent" EntitySet="OSSILOHASMDFOOD"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_SILOHASMDFOOD_SILO" Association="SimpleAgro.services.avicola.FK_SILOHASMDFOOD_SILOType">
+                    <End Role="OSSILOHASMDFOODPrincipal" EntitySet="OSSILOHASMDFOOD"/>
+                    <End Role="OSSILODependent" EntitySet="OSSILO"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_WAREHOUSE_WAREHOUSEHASMDFOOD" Association="SimpleAgro.services.avicola.FK_WAREHOUSE_WAREHOUSEHASMDFOODType">
+                    <End Role="OSWAREHOUSEPrincipal" EntitySet="OSWAREHOUSE"/>
+                    <End Role="OSWAREHOUSEHASMDFOODDependent" EntitySet="OSWAREHOUSEHASMDFOOD"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_WAREHOUSEHASMDFOOD_WAREHOUSE" Association="SimpleAgro.services.avicola.FK_WAREHOUSEHASMDFOOD_WAREHOUSEType">
+                    <End Role="OSWAREHOUSEHASMDFOODPrincipal" EntitySet="OSWAREHOUSEHASMDFOOD"/>
+                    <End Role="OSWAREHOUSEDependent" EntitySet="OSWAREHOUSE"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_BREEDINGFARM_PARTNERSHIP" Association="SimpleAgro.services.avicola.FK_BREEDINGFARM_PARTNERSHIPType">
+                    <End Role="OSBREEDINGFARMPrincipal" EntitySet="OSBREEDINGFARM"/>
+                    <End Role="OSPARTNERSHIPDependent" EntitySet="OSPARTNERSHIP"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_FEEDMILL_PARTNERSHIP" Association="SimpleAgro.services.avicola.FK_FEEDMILL_PARTNERSHIPType">
+                    <End Role="OSFEEDMILLPrincipal" EntitySet="OSFEEDMILL"/>
+                    <End Role="OSPARTNERSHIPDependent" EntitySet="OSPARTNERSHIP"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_HATCHERY_PARTNERSHIP" Association="SimpleAgro.services.avicola.FK_HATCHERY_PARTNERSHIPType">
+                    <End Role="OSHATCHERYPrincipal" EntitySet="OSHATCHERY"/>
+                    <End Role="OSPARTNERSHIPDependent" EntitySet="OSPARTNERSHIP"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_COUNTRY_CLIENT" Association="SimpleAgro.services.avicola.FK_COUNTRY_CLIENTType">
+                    <End Role="DMCOUNTRYPrincipal" EntitySet="DMCOUNTRY"/>
+                    <End Role="OSCLIENTDependent" EntitySet="OSCLIENT"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_STATES_CLIENT" Association="SimpleAgro.services.avicola.FK_STATES_CLIENTType">
+                    <End Role="DMSTATESPrincipal" EntitySet="DMSTATES"/>
+                    <End Role="OSCLIENTDependent" EntitySet="OSCLIENT"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_CITY_CLIENT" Association="SimpleAgro.services.avicola.FK_CITY_CLIENTType">
+                    <End Role="DMCITYPrincipal" EntitySet="DMCITY"/>
+                    <End Role="OSCLIENTDependent" EntitySet="OSCLIENT"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_FARMFEATUREDETAILS_FARMFEATURE" Association="SimpleAgro.services.avicola.FK_FARMFEATUREDETAILS_FARMFEATUREType">
+                    <End Role="OSFARMFEATUREDETAILSPrincipal" EntitySet="OSFARMFEATUREDETAILS"/>
+                    <End Role="MDFARMFEATUREDependent" EntitySet="MDFARMFEATURE"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_SHEDFEATUREDETAILS_SHEDFEATURE" Association="SimpleAgro.services.avicola.FK_SHEDFEATUREDETAILS_SHEDFEATUREType">
+                    <End Role="OSSHEDFEATUREDETAILSPrincipal" EntitySet="OSSHEDFEATUREDETAILS"/>
+                    <End Role="MDSHEDFEATUREDependent" EntitySet="MDSHEDFEATURE"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_MDTRUCK_PARTNERSHIP" Association="SimpleAgro.services.avicola.FK_MDTRUCK_PARTNERSHIPType">
+                    <End Role="MDTRUCKPrincipal" EntitySet="MDTRUCK"/>
+                    <End Role="OSPARTNERSHIPDependent" EntitySet="OSPARTNERSHIP"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_COUNTRY_STATES" Association="SimpleAgro.services.avicola.FK_COUNTRY_STATESType">
+                    <End Role="DMCOUNTRYPrincipal" EntitySet="DMCOUNTRY"/>
+                    <End Role="DMSTATESDependent" EntitySet="DMSTATES"/>
+                </AssociationSet>
+                <AssociationSet Name="FK_STATES_CITY" Association="SimpleAgro.services.avicola.FK_STATES_CITYType">
+                    <End Role="DMSTATESPrincipal" EntitySet="DMSTATES"/>
+                    <End Role="DMCITYDependent" EntitySet="DMCITY"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

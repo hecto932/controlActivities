@@ -14,9 +14,9 @@
 		<content>
 			<Panel backgroundDesign="Solid">
 				<ObjectHeader
-					title="{intro}"
-					icon="{icon}"
-					intro="{intro}"
+					title="{i18n>detail_weekTitle} {WEEKNUMBER}"
+					icon="sap-icon://product"
+					intro="{i18n>detail_objectHeaderText} {TO_TXBROILERSLOT/OSSHED.SHEDID}"
 					fullScreenOptimized="true"
 					condensed="false"
 					responsive="true"
@@ -24,11 +24,17 @@
 					<statuses>
 						<ObjectStatus
 							title="{i18n>detail_objectStatusText1}"
-							text="{status_text1}"
+							text="{
+								path: 'TO_TXBROILERSLOT/WEIGHT',
+								type: 'sap.ui.model.type.Float'
+							}"
 							state="None"/>
 						<ObjectStatus
 							title="{i18n>detail_objectStatusText2}"
-							text="{status_text2}"
+							text="{
+								path: 'TO_TXBROILERSLOT/QUANTITY',
+								type: 'sap.ui.model.type.Integer'
+							}"
 							state="None" />
 					</statuses>
 				</ObjectHeader>
@@ -40,7 +46,7 @@
 							iconSize="1.3em"
 							enabled="false" 
 							maxValue="5" 
-							value="{shedRating}"   
+							value="{SAMPLINGQUANTITY}"   
 							visualMode="Full" />
 					</items>
 				</FlexBox>
@@ -53,7 +59,7 @@
 				<l:content>
 					<Table id="tableContol"
 						items="{
-							path: 'days'
+							path: 'TO_TXDAILYACTIVITIES'
 						}">
 						<columns>
 							<Column hAlign="Center">
@@ -76,21 +82,21 @@
 							<ColumnListItem>
 								<cells>
 									<ObjectNumber
-										number="{day}"
-										unit="{WeightUnit}"
+										number="{AGE}"
+										unit="day"
 										state="None"/>
 									<ObjectNumber
-										number="{mortality}"
-										numberUnit="{numberUnit}"
+										number="{DEADQUANTITY}"
+										numberUnit="Birds"
 										state="{
-											parts:[ {path:'mortality'} ],
+											parts:[ {path:'DEADQUANTITY'} ],
 											formatter: '.formatter.verifyStatusMortality'
 										}" />
 									<ObjectNumber
-										number="{discard}"
-										numberUnit="{numberUnit}"
+										number="{DISCARDEDQUANTITY}"
+										numberUnit="Birds"
 										state="{
-											parts:[ {path:'discard'} ],
+											parts:[ {path:'DISCARDEDQUANTITY'} ],
 											formatter: '.formatter.verifyStatusDiscard'
 										}" />
 								</cells>

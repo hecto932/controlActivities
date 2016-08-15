@@ -35,6 +35,14 @@ sap.ui.define([], function(){
 				return parseFloat(n / 1000);
 			}
 			return parseFloat(n);
+		},
+		getId: function productCount(oValue) {
+		    //return the number of products linked to Category // sync call only to get $count
+		    if (oValue) {
+		        var sPath = this.getBindingContext().getPath() + '/Products';
+		        var oBindings = this.getModel().bindList(sPath);
+		        return oBindings.getLength();
+		    }
 		}
 	};
 });

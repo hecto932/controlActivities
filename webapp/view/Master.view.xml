@@ -11,11 +11,17 @@
 		navButtonPress="onNavBack">
 		<List 
 			id="myList"
-			items="{weeks}"
 			mode="SingleSelectMaster"
-			selectionChange="onSelectionChange">
+			selectionChange="onSelectionChange"
+			items="{
+					path: 'TO_TXFOODPLANDETAIL',
+					sorter: {
+				       path: 'INITIALDATE',
+				       descending: false
+					}
+			}">
 			<ObjectListItem 
-				title="{id}"
+				title="{WEEKNUMBER}"
 				class="itr"
 				number="{
 					path: 'number',
@@ -26,12 +32,25 @@
 					formatter : '.formatter.formatWeight'
 				}"
 				numberTextDirection="RTL"
-				numberUnit="{numberUnit}"
+				numberUnit="Kg"
 				type="Active"
 				numberState="Success">
 				<attributes>
 					<ObjectAttribute 
-						text="{initDate} - {lastDate}" 
+						text="{
+							path: 'INITIALDATE',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+								pattern: 'dd/MM/yyyy'
+							}
+						} - 
+						{
+							path: 'ENDINGDATE',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+								pattern: 'dd/MM/yyyy'
+							}
+						}" 
 						active="false" />
 				</attributes>
 			</ObjectListItem>

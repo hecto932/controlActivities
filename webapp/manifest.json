@@ -15,12 +15,12 @@
 			"version": "0.0.0"
 		},
 		"dataSources": {
-			"avicola.xsodata": {
-				"uri": "/SimpleAgro/services/avicola.xsodata/",
+			"mainService": {
+				"uri": "/destinations/SimpleAgro/services/avicola.xsodata/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
-					"localUri": "webapp/localService/metadata.xml"
+					"localUri": "webapp/localService/avicola.xsodata/metadata.xml"
 				}
 			}
 		}
@@ -67,6 +67,9 @@
 		},
 		"models": {
 			"": {
+				"dataSource": "mainService"
+			},
+			"jsonmodel": {
 				"type": "sap.ui.model.json.JSONModel",
 				"uri": "model/data.json"
 			},
@@ -113,14 +116,14 @@
 					"targetControl": "app",
 					"subroutes": [
 						{
-							"pattern": "master/{shedId}",
+							"pattern": "master/{lotId}/{shedId}",
 							"name": "master",
 							"view": "Master",
 							"targetAggregation": "masterPages",
 							"targetControl": "splitapp"
 						},
 						{
-							"pattern": "detail/{shedId}/{weekId}",
+							"pattern": "detail/{lotId}/{shedId}/{weekId}",
 							"name": "detail",
 							"view": "Detail",
 							"targetAggregation": "detailPages",
